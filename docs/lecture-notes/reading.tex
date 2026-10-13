@@ -1,0 +1,65 @@
+\section*{Forms and matrices: a reading guide}\addcontentsline{toc}{section}{Forms and matrices: a
+reading guide}
+
+\noindent\motiv{\reve{\reve{Most texts on Gaussian states and channels work with matrices: covariance
+matrices of finitely many modes and channel matrices $(X,Y)$. The thesis~\cite{krueger}, like these
+notes, works on the lattice with forms on labels, which it writes through the matrices $\Gamma(x)$ and
+$g(x)$, the coefficients and cells below. These notes describe all objects by bilinear forms on the
+phase space $V$ of the whole chain and by their coefficients, the cells (not to be confused with the
+cell of a site, its $2n$ degrees of freedom).} The reason is that a Weyl operator $W(u)$ is labelled by
+a vector $u$ of $V$, so that a Gaussian state or a channel is most directly a prescription on labels,
+with no region and no basis chosen. The two descriptions are equivalent, and the dictionary below is
+all that is needed to pass from one to the other.}}
+
+\medskip
+\noindent\reve{\textbf{Vectors and forms.} A vector $u\in V$ assigns to every site $x$ a column
+$u(x)\in\R^{2n}$, positions first, and only finitely many are nonzero. A bilinear form $\beta$ on $V$
+takes two such vectors to a number. If $\beta$ is translation invariant, it is determined by the
+matrices $\beta_x$, its \emph{cells}, which record the correlation between the site $x$ and the site
+$0$:
+\[\beta(u,w)=\sum_{x,y}u(x)^{\mathsf T}\beta_{x-y}\,w(y),\qquad(\beta_x)_{ij}=\beta(e_{x,i},e_{0,j}).\]
+Restricted to finitely many sites, $\beta$ is the block matrix $[\beta_{x-y}]$, constant along its
+diagonals. The noise matrices $g(x)$ of the thesis are cells.}
+
+\medskip
+\noindent\reve{\textbf{Covariance matrices.} A Gaussian state is given by a covariance \emph{form}
+$\gamma$, through its characteristic function $\omega(W(u))=\exp(\ii d(u)-\frac14\gamma(u,u))$. Its
+covariance \emph{matrix} on a finite region, the familiar $\gamma_B$ with entries twice the
+symmetrized second moments \reve{of the centred coordinates} (the vacuum has $\gamma_B=1$), is
+\[\gamma_B=\Omega^{\mathsf T}\gamma\,\Omega\qquad\text{(Definition~\ref{def:gs-covmat})},\]
+\reve{where $\gamma$ stands for the matrix of the form on the region, positions first.} The congruence by
+$\Omega$ exchanges positions and momenta, because the position slot of a label multiplies the momentum
+operator in $W(u)$: for one mode, \reve{with position and momentum operators $Q$ and $P$,}
+$W(u)=\exp(\ii(u_p\reve{Q}-u_qP))$. Thus the entry $(\gamma)_{11}$ of the form is the momentum entry of
+$\gamma_B$, and the state condition $\gamma+\ii\sigma\ge0$ on forms is \reve{equivalent to} the familiar
+$\gamma_B-\ii\Omega\ge0$ on matrices (Proposition~\ref{prop:gs-admissible}).}
+
+\medskip
+\noindent\reve{\textbf{Rules and symbols.} A translation-invariant linear map of $V$, a \emph{rule},
+has coefficients $\ell_m$, the thesis's $\Gamma(m)$, and acts by $(Lu)(x)=\sum_m\ell_mu(x-m)$. Its
+\emph{symbol} is the matrix of Laurent polynomials $\hat L(z)=\sum_m\ell_mz^m$, with $z$ standing for
+the shift by one site; composing rules multiplies symbols (Theorem~\ref{thm:qca-symbol}).
+Substituting $z=e^{-\ii k}$ gives the Fourier symbol $\hat L(k)$, a $2n\times2n$ matrix at each wave
+number $k$, and the cells of a form give $\hat\beta(k)=\sum_x\beta_xe^{-\ii kx}$ in the same way.}
+
+\medskip
+\noindent\reve{\textbf{Dynamics.} A rule or a channel moves labels, $W(u)\mapsto W(Lu)$ up to a factor,
+and therefore acts on forms by pull-back, $\beta\mapsto\beta(L\cdot,L\cdot)$. In cells and in
+Fourier symbols,
+\[(L_*\beta)_j=\sum_{m,m'}\ell_m^{\mathsf T}\beta_{j+m-m'}\ell_{m'},\qquad
+\widehat{L_*\beta}(k)=\hat L(k)^\dagger\,\hat\beta(k)\,\hat L(k),\]
+so that on the chain every step is a congruence at each wave number (Theorem~\ref{thm:gs-evolution}).
+Two consequences recur. \reve{An on-site rule acting at every site by a symplectic matrix $S$ acts on
+covariance matrices through its inverse, $\gamma_B\mapsto S^{-1}\gamma_BS^{-\mathsf T}$ at each site
+(Corollary~\ref{cor:gs-onsite}),} since labels and moments transform oppositely; and pull-backs
+compose in the reverse order, $(L_2L_1)_*=L_{1*}L_{2*}$.}
+
+\medskip
+\noindent\reve{\textbf{Channels.} A Gaussian channel is a linear map $L$ of labels, a noise form $\nu$
+and a displacement $\mu$, with $T(W(u))=e^{\ii\mu(u)-\nu(u,u)/4}\,W(Lu)$. It sends the covariance
+form $\gamma$ to $\gamma(L\cdot,L\cdot)+\nu$, which in matrices is the familiar
+$\gamma_B\mapsto X\gamma_BX^{\mathsf T}+Y$ with $X=\Omega^{\mathsf T}L^{\mathsf T}\Omega$ and
+$Y=\Omega^{\mathsf T}\nu\,\Omega$ (Proposition~\ref{prop:ch-matrices}); the condition
+$\nu+\ii(\sigma-\sigma(L\cdot,L\cdot))\ge0$ becomes $Y-\ii\Omega+\ii X\Omega X^{\mathsf T}\ge0$. On
+the chain, the noise has cells $\nu_x$\reve{; the two notions of locality are read off from where the
+cells vanish, and the condition from the Fourier symbols at each $k$ (Chapter~\ref{sec:chain})}.}

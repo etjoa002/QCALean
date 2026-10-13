@@ -1,0 +1,323 @@
+\clearpage
+\section{Convergence to the stationary states}\label{sec:convergence}
+
+\noindent\motiv{\reve{A reversible dynamics does not bring the state of the chain to a limit in norm
+unless the state is stationary, since the distance between the states at consecutive times does not
+change with time. What it can do is spread the correlations of any finite region over ever larger
+distances, so that every expectation value settles to a limit. For the example system in the regime
+this happens for every Gaussian initial state with zero displacement whose covariance is given by
+cell data. For reflection-symmetric data the symbol of the limit is, wave number by wave number, of
+the form found in Theorem~\ref{thm:es-stationary}.
+After $t$ steps the symbol $\hat L(k)^t$ is conjugate to the rotation by the angle $t\theta(k)$, so that
+the evolved symbol of the covariance consists of a part independent of $t$ and parts proportional to
+$\cos(2t\theta(k))$ and $\sin(2t\theta(k))$. The cells are the Fourier coefficients of this symbol.
+Because $\theta(k)$ varies with $k$, the Fourier coefficients of the oscillating parts tend to zero,
+and the limit is the average of the symbol over the rotation, which is invariant under
+$S\mapsto\hat L(k)^{\mathsf T}S\hat L(k)$.}}
+
+\medskip
+\noindent\motiv{\reve{As in the previous section, $(\varphi,\lambda)$ lies in the regime of Definition~\ref{def:es-regime}, and $\theta(k)$ is
+the rotation angle of Definition~\ref{def:es-alpha}. The real matrix $N(k)$ is defined by
+$\hat L(k)=\cos\theta(k)\,1-\sin\theta(k)\,N(k)$ and satisfies $N(k)^2=-1$, and $\hat\varepsilon(k)$ is the
+invariant form of Definition~\ref{def:es-eps}.}}
+
+\subsection{Oscillatory integrals}
+
+\noindent\motiv{\reve{The Riemann--Lebesgue lemma states that $\int f(u)e^{\ii ru}\,du$ tends to zero as
+$r\to\infty$ for every integrable $f$. The integrals that arise here carry the phase $r\theta(k)$, with
+$\theta$ the rotation angle, instead of $ru$. Since $\theta$ is strictly monotone on each half of the
+circle, a change of variables brings them to the standard form.}}
+
+\begin{lemma}[Oscillatory integrals along a monotone phase]\label{lem:cv-rl}
+\reve{Let $a\le b$, let $g$ be strictly monotone on $[a,b]$ and differentiable on $(a,b)$ with
+$g'\neq0$ there, and let $f$ be integrable on $[a,b]$. Then
+\[\int_a^bf(k)\,e^{\ii rg(k)}\,dk\longrightarrow0\qquad(r\to+\infty).\]}
+\end{lemma}
+
+\begin{proof}
+\reve{The endpoints have measure zero, so that the integral may be taken over the open interval
+$(a,b)$, on which $g$ is injective with a nonvanishing derivative. Its image $I=g((a,b))$
+is measurable, and $g$ has an inverse $g^{-1}\colon I\to(a,b)$. The change-of-variables formula
+for an injective differentiable map gives
+\[\int_IG(u)\,du=\int_a^b|g'(k)|\,G(g(k))\,dk\]
+for every measurable function $G$, with $G$ integrable on $I$ exactly when $|g'|\,(G\circ g)$ is
+integrable on $(a,b)$. For $G(u)=H(u)e^{\ii ru}$ with $H=(f/|g'|)\circ g^{-1}$ the right side is the
+integral in question, and $|g'|\,(H\circ g)=f$ is integrable, so that $H$ is integrable
+on $I$. Hence
+\[\int_a^bf(k)\,e^{\ii rg(k)}\,dk=\int_\R\mathbf 1_I(u)H(u)\,e^{\ii ru}\,du,\]
+the integral of the integrable function $\mathbf 1_IH$ against $e^{\ii ru}$, which tends to zero by
+the Riemann--Lebesgue lemma.}
+\end{proof}
+
+\noindent\reve{When $g'$ tends to zero at an endpoint, as it will for the rotation angle $\theta$ at
+$k=0$ and $k=\pm\pi$, the function $H$ may be unbounded there. The proof requires only its
+integrability, which the change of variables supplies, so that no separate estimate near the critical
+points of $g$ is needed.}
+
+\begin{corollary}[Oscillatory integrals of the example]\label{cor:cv-rl}
+\reve{Let $(\varphi,\lambda)$ lie in the regime, and let $f\colon\R\to\C$ be continuous. Then,
+for either choice of sign,
+\[\int_{-\pi}^{\pi}f(k)\,e^{\pm2\ii t\theta(k)}\,dk\longrightarrow0\qquad(t\to\infty,\ t\in\mathbb N).\]}
+\end{corollary}
+
+\begin{proof}
+\reve{Split the integral at $k=0$. By Proposition~\ref{prop:es-alpha}, $\theta$ is differentiable with
+$\theta'(k)=\lambda\sin\varphi\sin k/\sin\theta(k)$, which vanishes nowhere on $(0,\pi)$ or on
+$(-\pi,0)$, because $\lambda\sin\varphi\neq0$ in the regime; on $[0,\pi]$ it is strictly monotone, and on
+$[-\pi,0]$ it is strictly monotone in the opposite sense, being even. Lemma~\ref{lem:cv-rl} with $r=2t$,
+applied on each half to $\theta$ for the upper sign and to $-\theta$ for the lower, gives the claim.}
+\end{proof}
+
+\noindent\reve{In this chapter the condition $\lambda\sin\varphi\neq0$ of the regime enters only through this
+corollary. For $\lambda=0$ the symbol $\hat L(k)$ is the same rotation matrix at every wave number,
+and the phase does not vary with $k$.}
+
+\subsection{The limit of the covariance}
+
+\noindent\motiv{\reve{The evolved cell data $(L_*)^t\gamma$ have the symbol
+$(\hat L(k)^t)^{\mathsf T}\hat\gamma(k)\hat L(k)^t$, by Proposition~\ref{prop:es-iterate} and the
+reflection symmetry of $\hat L$ (Proposition~\ref{prop:es-symbol}). The power $\hat L^t$ is the
+rotation $\cos(t\theta)\,1-\sin(t\theta)\,N$, and the quadratic expression in it separates into a part
+that does not depend on $t$ and parts at twice the angle.}}
+
+\begin{lemma}[Splitting of the evolved symbol]\label{lem:cv-split}
+\reve{Let $(\varphi,\lambda)$ lie in the regime, and let $A$ be a complex $2\times2$ matrix. At each wave
+number $k$, with $\theta=\theta(k)$ and $N=N(k)$, and for every $t\in\mathbb N$,
+\[(\hat L(k)^t)^{\mathsf T}A\,\hat L(k)^t=C+\cos(2t\theta)\,A_c+\sin(2t\theta)\,A_s,\]
+where $C=\frac12(A+N^{\mathsf T}AN)$, $A_c=\frac12(A-N^{\mathsf T}AN)$ and
+$A_s=-\frac12(N^{\mathsf T}A+AN)$.}
+\end{lemma}
+
+\begin{proof}
+\reve{By Proposition~\ref{prop:es-projectors}(c) and $P_k-\bar P_k=\ii N$, the power is
+$\hat L^t=\cos(t\theta)\,1-\sin(t\theta)\,N$, so that
+\[(\hat L^t)^{\mathsf T}A\hat L^t=\cos^2(t\theta)\,A-\cos(t\theta)\sin(t\theta)\,(N^{\mathsf
+T}A+AN)+\sin^2(t\theta)\,N^{\mathsf T}AN,\]
+and the double-angle formulas $\cos^2x=\frac12(1+\cos2x)$, $\sin^2x=\frac12(1-\cos2x)$ and
+$\cos x\sin x=\frac12\sin2x$ give the stated form.}
+\end{proof}
+
+\noindent\motiv{\reve{The part $C$ is the average of $(\hat L^t)^{\mathsf T}A\hat L^t$ over a full
+rotation.}}
+
+\begin{definition}[Limit symbol and limit cells]\label{def:cv-limit}
+\reve{Let $(\varphi,\lambda)$ lie in the regime. For cell data $(\gamma_x)$ with symbol $\hat\gamma$,
+the \emph{limit symbol} is
+\[C(k)=\tfrac12\bigl(\hat\gamma(k)+N(k)^{\mathsf T}\hat\gamma(k)N(k)\bigr),\]
+and the \emph{limit cells} are its Fourier coefficients,
+\[\gamma_{\infty,x}=\frac1{2\pi}\int_{-\pi}^{\pi}e^{\ii kx}\,C(k)\,dk\qquad(x\in\Z).\]}
+\end{definition}
+
+\begin{lemma}[The limit cells]\label{lem:cv-limit}
+\reve{Let $(\varphi,\lambda)$ lie in the regime. For cell data $(\gamma_x)$, every $\gamma_{\infty,x}$
+is a real matrix, and
+$\gamma_{\infty,-x}=\gamma_{\infty,x}^{\mathsf T}$.}
+\end{lemma}
+
+\begin{proof}
+\reve{The matrix $N(k)$ is real and even in $k$, and $\hat\gamma(-k)=\overline{\hat\gamma(k)}$ by
+Lemma~\ref{lem:gs-cells}, so that $C(-k)=\overline{C(k)}$. Conjugating the defining integral and
+substituting $k\mapsto-k$ gives
+$\overline{\gamma_{\infty,x}}=\frac1{2\pi}\int e^{-\ii kx}C(-k)\,dk=\gamma_{\infty,x}$. Since
+$\hat\gamma(k)$ is Hermitian, so is $C(k)$, and the same substitution gives
+$\gamma_{\infty,x}^{\mathsf T}=\frac1{2\pi}\int e^{\ii kx}\,\overline{C(k)}\,dk
+=\frac1{2\pi}\int e^{-\ii kx}C(k)\,dk=\gamma_{\infty,-x}$.}
+\end{proof}
+
+\noindent\reve{The proof uses of $N$ only that $N(k)$ is real and even in $k$.}
+
+\begin{remark}[Summability of the limit cells]\label{rem:cv-summable}
+\reve{Let $(\varphi,\lambda)$ lie in the regime and let $(\gamma_x)$ be cell data. Then
+$(\gamma_{\infty,x})$ are cell data, and their symbol is $C$.}
+\end{remark}
+
+\begin{proof}
+\reve{The $2\pi$-periodic functions $F(k)=\sum_xc_xe^{-\ii kx}$ with $\sum_x|c_x|<\infty$ form an algebra
+under pointwise multiplication, since the coefficients of a product are the convolution of the
+coefficients, and the convolution of two summable sequences is summable. The entries of $\hat\gamma$
+belong to it by the definition of cell data. The function $\tau$ is a trigonometric polynomial with
+$|\tau|<1$, so that $1-\tau^2$ is a positive trigonometric polynomial; its square root $\sin\theta$ and
+the reciprocal $1/\sin\theta$ extend holomorphically to a strip around the real axis, and the entries
+of $N=(\tau\,1-\hat L)/\sin\theta$ are therefore $2\pi$-periodic functions holomorphic in a strip, whose
+Fourier coefficients decay exponentially. Hence the entries of $C$ lie in the algebra, $C(k)=\sum_x
+c_xe^{-\ii kx}$ with summable matrix coefficients $c_x$, and integrating term by term gives
+$\gamma_{\infty,x}=c_x$. By Lemma~\ref{lem:cv-limit} these are real with $\gamma_{\infty,-x}=
+\gamma_{\infty,x}^{\mathsf T}$.}
+\end{proof}
+
+\begin{theorem}[Convergence of the covariance]\label{thm:cv-converge}
+\reve{Let $(\varphi,\lambda)$ lie in the regime and let $(\gamma_x)$ be cell data. Then
+for every $x\in\Z$,
+\[\lim_{t\to\infty}\bigl((L_*)^t\gamma\bigr)_x=\gamma_{\infty,x}.\]}
+\end{theorem}
+
+\begin{proof}
+\reve{The evolved data $(L_*)^t\gamma$ are again cell data by Proposition~\ref{prop:es-iterate}(b), so
+that by Fourier inversion (Proposition~\ref{prop:es-inversion}) and Lemma~\ref{lem:cv-split} with $A=\hat\gamma(k)$,
+\[\bigl((L_*)^t\gamma\bigr)_x=\gamma_{\infty,x}+\frac1{2\pi}\int_{-\pi}^{\pi}e^{\ii kx}\bigl(\cos(2t\theta(k))
+A_c(k)+\sin(2t\theta(k))A_s(k)\bigr)\,dk .\]
+The symbol $\hat\gamma$ is continuous by Lemma~\ref{lem:gs-cells}, and $N$ is continuous in the
+regime, since $\theta$ is and $\sin\theta>0$; hence the entries of $A_c$ and $A_s$ are continuous.
+Writing the cosine and the sine through $e^{\pm2\ii t\theta(k)}$ expresses each entry of the integral
+as a combination of four integrals of the form of Corollary~\ref{cor:cv-rl}, with $f(k)$ equal to
+$e^{\ii kx}$ times an entry of $A_c(k)$ or of $A_s(k)$, and each of them tends to zero.}
+\end{proof}
+
+\noindent\motiv{\reve{For $\lambda=0$ every wave number is rotated by the same matrix, and the
+covariance of a state that is not invariant under this rotation need not converge.}}
+
+\begin{proposition}[No convergence without coupling]\label{prop:cv-nocoupling}
+\reve{For $\varphi=\pi/2$, $\lambda=0$ and the cell data $\gamma_0=\operatorname{diag}(2,\frac12)$,
+$\gamma_x=0$ for $x\neq0$, the entry $\bigl((L_*)^t\gamma\bigr)_{0,11}$ equals $2$ for even $t$ and
+$\frac12$ for odd $t$; in particular it does not converge.}
+\end{proposition}
+
+\begin{proof}
+\reve{At $\lambda=0$ the symbol is the constant matrix $R=\begin{psmallmatrix}0&-1\\1&0\end{psmallmatrix}$,
+and $\hat\gamma\equiv\gamma_0$, so that the evolved symbol is the constant $(R^t)^{\mathsf T}\gamma_0R^t$
+and, by Fourier inversion, equals the cell at the origin. Since $R^2=-1$, this matrix is $\gamma_0$ for
+even $t$ and $R^{\mathsf T}\gamma_0R=\operatorname{diag}(\frac12,2)$ for odd $t$.}
+\end{proof}
+
+\noindent\motiv{\reve{The hypothesis
+$\hat\gamma(k)+\ii\Omega\ge0$ below holds at every $k$ whenever the covariance form of the cell data
+satisfies the state condition, by Remark~\ref{rem:gs-fourier-general}. In particular, by
+Theorem~\ref{thm:gs-necessity}, it holds for the covariance of a Gaussian state.}}
+
+\begin{proposition}[The limit is stationary]\label{prop:cv-stationary}
+\reve{Let $(\varphi,\lambda)$ lie in the regime, let $(\gamma_x)$ be cell data and $k\in\R$.
+\begin{enumerate}[label=(\alph*)]
+\item $\hat L(k)^{\mathsf T}C(k)\hat L(k)=C(k)$.
+\item If $\hat\gamma(k)+\ii\Omega\ge0$, then $C(k)+\ii\Omega\ge0$.
+\item If $\gamma_{-x}=\gamma_x$ for every $x$ and
+$\hat\gamma(k)+\ii\Omega\ge0$, then $C(k)=\eta\,\hat\varepsilon(k)$ for some real $\eta\ge1$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Write $A=\hat\gamma(k)$ and $\theta=\theta(k)$, so that $\hat L=\cos\theta\,1-\sin\theta\,N$. Since
+$(N^{\mathsf T})^2=(N^2)^{\mathsf T}=-1$, one has $N^{\mathsf T}CN=\frac12(N^{\mathsf T}AN+A)=C$ and
+$N^{\mathsf T}C+CN=\frac12\bigl(N^{\mathsf T}A-AN+AN-N^{\mathsf T}A\bigr)=0$, and therefore
+$\hat L^{\mathsf T}C\hat L=\cos^2\theta\,C-\cos\theta\sin\theta\,(N^{\mathsf T}C+CN)+\sin^2\theta\,
+N^{\mathsf T}CN=C$.
+\item $N$ is real with $N^2=-1$, hence $\operatorname{tr}N=0$ and $\det N=1$, and
+$N^{\mathsf T}\Omega N=(\det N)\,\Omega=\Omega$ by Lemma~\ref{lem:qca-2x2}. Therefore
+$C+\ii\Omega=\frac12\bigl((\hat\gamma+\ii\Omega)+N^{\mathsf T}(\hat\gamma+\ii\Omega)N\bigr)$, and
+$N^{\mathsf T}=N^*$ because $N$ is real, so that both terms are positive semidefinite.
+\item By Lemma~\ref{lem:es-refl}, $\hat\gamma(k)$ is real symmetric, hence so is $C(k)$. By (a) and
+Corollary~\ref{cor:es-coeff}, $C(k)=\eta\,\hat\varepsilon(k)$ with $\eta=h_k(C(k))$, and $\eta\ge1$ by
+(b) and Proposition~\ref{prop:es-threshold}.
+\end{enumerate}}
+\end{proof}
+
+\begin{example}[The vacuum in the running example]\label{ex:cv-running}
+\reve{For $\varphi=\pi/2$ and $0<|\lambda|<1$, the vacuum of Example~\ref{ex:gs-vacuum} has
+$\hat\gamma\equiv1$ and, by Example~\ref{ex:es-running-stat}, is not stationary. With
+$\sin\theta(k)=\sqrt{1-\lambda^2\cos^2k}$ one finds
+$N(k)=(\sin\theta(k))^{-1}\begin{psmallmatrix}-\lambda\cos k&1\\-1&\lambda\cos k\end{psmallmatrix}$, hence
+\[N^{\mathsf T}N=\frac1{\sin^2\theta}\begin{pmatrix}1+\lambda^2\cos^2k&-2\lambda\cos k\\-2\lambda\cos
+k&1+\lambda^2\cos^2k\end{pmatrix},\qquad
+C(k)=\frac1{\sin^2\theta(k)}\begin{pmatrix}1&-\lambda\cos k\\-\lambda\cos k&1\end{pmatrix}.\]
+This is $\eta(k)\hat\varepsilon(k)$ with $\eta(k)=(1-\lambda^2\cos^2k)^{-1/2}\ge1$, with excess noise wherever $\cos k\neq0$. By
+Remark~\ref{rem:cv-summable} the limit cells are cell data with symbol $C$; they are reflection
+symmetric, since $C$ is real and even, and $\eta$ is continuous and even with $\eta\ge1$, so that by
+Theorem~\ref{thm:es-stationary} the cells of the vacuum converge to those of a stationary covariance.
+Here the entries of $C$ are themselves holomorphic in a strip, and the limit cells decay
+exponentially.}
+\end{example}
+
+\subsection{The limit state}
+
+\noindent\motiv{\reve{The convergence of the covariance cells yields the convergence of the
+characteristic functions, since the covariance form on a vector of finite support involves only
+finitely many cells. To pass from characteristic functions to arbitrary observables one uses that the
+Weyl operators span a dense subspace, together with a bound on states that is uniform in the state.}}
+
+\medskip
+\noindent\reve{Let $(\gamma_x)$ be cell data with covariance form $\gamma$, and let $\omega$ be a given
+Gaussian state with covariance form $\gamma$ and displacement zero. Its evolution by $t$ steps,
+$\omega_t=\omega\circ\alpha_{L^t}$, is by Proposition~\ref{prop:gs-evolve} a Gaussian state with
+covariance form $\gamma(L^t\cdot,L^t\cdot)$. The limit cells are cell data by
+Remark~\ref{rem:cv-summable}, and we denote their covariance form by $\gamma_\infty$.}
+
+\begin{lemma}[Norm of a state]\label{lem:cv-norm}
+\reve{For every state $\omega$ on $\CCR(V,\sigma)$ and every $a\in\CCR(V,\sigma)$,
+$|\omega(a)|\le\|a\|$.}
+\end{lemma}
+
+\begin{proof}
+\reve{The form $(a,b)\mapsto\omega(a^*b)$ is positive semidefinite, and the Cauchy--Schwarz inequality
+gives $|\omega(a)|^2=|\omega(1^*a)|^2\le\omega(1)\,\omega(a^*a)=\omega(a^*a)$. The element $a^*a$ is
+positive in the C*-algebra $\CCR(V,\sigma)$, with spectrum in $[0,\|a^*a\|]=[0,\|a\|^2]$, so that
+$\|a\|^2\,1-a^*a$ has non-negative spectrum and is the square of its self-adjoint square root; positivity
+of $\omega$ then gives $\omega(a^*a)\le\|a\|^2$.}
+\end{proof}
+
+\begin{theorem}[Convergence of the states]\label{thm:cv-weak}
+\reve{Let $(\varphi,\lambda)$ lie in the regime, and let $\omega$, $\omega_t$ and $\gamma_\infty$ be as
+above.
+\begin{enumerate}[label=(\alph*)]
+\item For every $u\in V$, $\chi_{\omega_t}(u)\to\exp\bigl(-\frac14\gamma_\infty(u,u)\bigr)$.
+\item There is a Gaussian state $\omega_\infty$ with covariance form $\gamma_\infty$ and displacement
+zero such that $\omega_t(a)\to\omega_\infty(a)$ for every $a\in\CCR(V,\sigma)$, that is, $\omega_t\to
+\omega_\infty$ in the weak-$*$ topology; $\omega_\infty$ is the only state with this characteristic
+function.
+\end{enumerate}}
+\end{theorem}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Since the displacement vanishes,
+$\chi_{\omega_t}(u)=\exp\bigl(-\frac14\gamma(L^tu,L^tu)\bigr)$, and by Theorem~\ref{thm:gs-evolution} and
+Proposition~\ref{prop:es-iterate}, $\gamma(L^tu,L^tu)=\sum_{x,y}u(x)^{\mathsf T}\bigl((L_*)^t\gamma\bigr)_{x-y}\,u(y)$. The sum is finite, each cell converges by Theorem~\ref{thm:cv-converge}, and
+the exponential is continuous.
+\item On a finite combination $b=\sum_jz_jW(u_j)$ the sequence $\omega_t(b)=\sum_jz_j\chi_{\omega_t}(u_j)$
+converges by (a). The span of the Weyl operators is dense in $\CCR(V,\sigma)$, which is its closure; for
+arbitrary $a$ and $\zeta>0$ choose such a $b$ with $\|a-b\|<\zeta$. By
+Lemma~\ref{lem:cv-norm}, $|\omega_t(a)-\omega_{t'}(a)|\le2\zeta+|\omega_t(b)-\omega_{t'}(b)|$, so that
+$(\omega_t(a))_t$ is a Cauchy sequence. Its limit $\omega_\infty(a)$ is linear in $a$ and satisfies
+$|\omega_\infty(a)|\le\|a\|$, so that it is continuous, and $\omega_\infty(1)=1$ and
+$\omega_\infty(a^*a)\ge0$ hold in the limit because the non-negative reals form a closed subset of $\C$.
+By (a), $\chi_{\omega_\infty}(u)=\exp\bigl(-\frac14\gamma_\infty(u,u)\bigr)$, and $\gamma_\infty$ is
+symmetric by Lemma~\ref{lem:cv-limit}; hence $\omega_\infty$ is Gaussian with covariance form
+$\gamma_\infty$ and displacement zero, and it is unique by Proposition~\ref{prop:gs-pullback}(a).
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{Since $\omega$ is a Gaussian state, $\hat\gamma(k)+\ii\Omega\ge0$ for every $k$ by
+Theorem~\ref{thm:gs-necessity} and Remark~\ref{rem:gs-fourier-general}. By
+Proposition~\ref{prop:cv-stationary} the symbol $C$ of the limit therefore satisfies
+$\hat L(k)^{\mathsf T}C(k)\hat L(k)=C(k)$ and $C(k)+\ii\Omega\ge0$ at every wave number, and by
+Remark~\ref{rem:cv-summable} and Fourier inversion the limit cells are stationary. For
+reflection-symmetric data $C(k)=\eta(k)\hat\varepsilon(k)$ with $\eta(k)\ge1$, so that the limit is one of
+the stationary covariances of Theorem~\ref{thm:es-stationary}.}
+
+\subsection{Notes and references}\label{sec:cv-notes}
+
+\begin{enumerate}
+\item \reve{\emph{Convergence.} Theorem~\ref{thm:cv-converge} is Proposition~4.7
+of~\cite[p.~87]{krueger}.
+The thesis assumes a pure initial state of finite correlation length. It treats the oscillatory
+integrals by a stationary-phase expansion around the extrema of the rotation angle, written as an
+equality, without showing that the contributions near the extrema
+vanish~\cite[pp.~85--86]{krueger}. Here only summability of the initial cells is assumed, and the
+change of variables of Lemma~\ref{lem:cv-rl} reduces the decay to the Riemann--Lebesgue lemma. The
+thesis does not state the condition $\lambda\neq0$ explicitly; Proposition~\ref{prop:cv-nocoupling} shows that the
+statement fails without it. The thesis remarks that the first moments do not converge unless they
+vanish~\cite[p.~86]{krueger}. This holds for translation-invariant displacements, which the dynamics
+rotates at the single wave number $k=0$. For a displacement supported on finitely many sites one
+expects decay to zero by the same dephasing, now with the phases $e^{\pm\ii t\theta(k)}$, but this is
+not proved here.}
+\item \reve{\emph{The limit.} Proposition~\ref{prop:cv-stationary}(c) identifies the limit symbol with
+the form of Theorem~4.8 of~\cite{krueger}, wave number by wave number. The thesis concludes that the
+limit is a stationary state in the sense of cell data, on the grounds that $\hat\varepsilon$ is
+continuous~\cite[p.~89]{krueger}. Continuity of a symbol does not by itself imply summability of its
+Fourier coefficients. The conclusion holds nevertheless, by the real-analyticity of $N$ and the
+algebra property used in Remark~\ref{rem:cv-summable}.}
+\item \reve{\emph{The limit state.} Theorem~\ref{thm:cv-weak} is the first part of Theorem~4.9
+of~\cite{krueger}, the convergence of expectation values. The second part, convergence of the reduced
+density matrices of finite regions in trace norm, is not treated in these notes.
+Lemma~\ref{lem:cv-norm} is the standard bound $\|\omega\|=\omega(1)$ for positive functionals on a
+unital C*-algebra.}
+\end{enumerate}

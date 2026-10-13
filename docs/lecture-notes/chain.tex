@@ -1,0 +1,487 @@
+\clearpage
+\section{Irreversible Gaussian automata on the chain}\label{sec:chain}
+
+\noindent\motiv{\reve{Chapter~\ref{sec:channels} developed Gaussian channels over an arbitrary real
+vector space with an alternating form and extended the definition of a quantum cellular automaton to
+completely positive dynamics. We now return to the chain and ask which Gaussian channels commute with
+the translations, and how the two notions of locality of Definition~\ref{def:ch-locality} read on
+their data. For a channel whose linear map is a rule and whose noise is given by summable cells,
+locality becomes a statement about where these two families vanish: finite propagation concerns the
+rule alone, while factorization constrains the noise and, through the symplectic form pulled back by
+the rule, the rule as well. The thesis asks for factorization because it would let the action on a
+single site determine the whole automaton~\cite[p.~91]{krueger} \vetsource{(pinpoint to be
+checked)}, and it asks that the class of automata so obtained be closed under concatenation; the
+chapter shows how far both wishes are met.}}
+
+\medskip
+\noindent\motiv{\reve{Throughout, $G=\Z$, the phase space $V$ and the form $\sigma$ are those of the
+lattice, and a rule $L$ has coefficients $\ell_m$, finitely many of them nonzero, with range
+$N_L=\{m:\ell_m\neq0\}$ (Corollary~\ref{cor:qca-range}). Cell data $(\nu_x)$ and their covariance
+form and symbol are as in Definition~\ref{def:gs-cells}. The existence of a completely positive map
+with prescribed data is not proved in these notes (Chapter~\ref{sec:channels}). Every statement below
+therefore concerns the channels with given data and holds vacuously if there is none, and a
+conclusion about a class of channels, such as the failure of closure under concatenation, presupposes
+that the channels in question exist; the only channels constructed here are the automorphisms of
+symplectic rules.}}
+
+\subsection{Lattice channels}
+
+\begin{definition}[Lattice channel]\label{def:lc-channel}
+\reve{A Gaussian channel $T$ on $\CCR(V,\sigma)$ is a \emph{lattice channel} with rule $L$ and noise
+cells $(\nu_x)$ if its linear map is $L$, $(\nu_x)$ are cell data whose covariance form is its noise
+$\nu$, and its displacement is translation invariant, $\mu(\kappa_{a*}u)=\mu(u)$ for all $a\in\Z$
+and $u\in V$.}
+\end{definition}
+
+\noindent\motiv{\reve{The automaton $\alpha_L$ of a symplectic rule (Theorem~\ref{thm:rule-qca}) is a
+lattice channel with \reve{zero noise cells and zero displacement}, by Proposition~\ref{prop:ch-reversible}. The
+running example of the chapter is irreversible.}}
+
+\begin{example}[The lossy chain]\label{ex:lc-lossy}
+\reve{Let $n=1$, let $L$ be the example system of Definition~\ref{def:es-example}, fix $0<\zeta<1$, and
+consider the data $\zeta L$, with coefficients $\zeta\ell_m$, and the on-site noise cells
+$\nu_0=(1-\zeta^2)\cdot1$, $\nu_x=0$ for $x\neq0$. These are the data that
+Proposition~\ref{prop:ch-comp} assigns to $\alpha_L\circ T_1$, where $T_1$ has rule $\zeta\cdot1$ and
+on-site noise $(1-\zeta^2)\cdot1$, the attenuator of Example~\ref{ex:ch-attenuator} at every site. In
+the Schr\"odinger picture this is one step of the example system followed by the loss of the
+fraction $1-\zeta^2$ of the intensity at every site into vacuum.}
+\end{example}
+
+\noindent\motiv{\reve{Locality is a statement about local algebras, and a channel is known only through
+its values on Weyl operators. The following lemma translates between the two.}}
+
+\begin{lemma}[Weyl operators in local algebras]\label{lem:lc-weyl}
+\reve{Let $O\subseteq\Z$.
+\begin{enumerate}[label=(\alph*)]
+\item $\cA(O)$ is the closure of the linear span of the Weyl operators $W(u)$ with $\supp u\subseteq
+O$.
+\item $W(u)\in\cA(O)$ if and only if $\supp u\subseteq O$.
+\end{enumerate}}
+\end{lemma}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item The span in question is a $*$-algebra, since a product of Weyl operators is a multiple of the
+Weyl operator of the sum, $\supp(u+w)\subseteq\supp u\cup\supp w$ and $W(u)^*=W(-u)$. Its closure is
+therefore a closed $*$-algebra containing the generators of $\cA(O)$ and contained in $\cA(O)$, hence
+equal to $\cA(O)$.
+\item One direction is contained in (a). For the other, suppose that $\supp u\not\subseteq O$. The
+Weyl operator $W(v)$ maps the point mass $\delta_0$ in $\ell^2(V)$ to a multiple of modulus one of
+the point mass $\delta_{-v}$, so that the continuous linear functional
+$\phi(a)=\langle\delta_{-u},a\,\delta_0\rangle$ satisfies $\phi(W(v))\neq0$ exactly for $v=u$. It
+vanishes on every generator of $\cA(O)$, and hence on $\cA(O)$ by (a), but not on $W(u)$.
+\end{enumerate}}
+\end{proof}
+
+\begin{proposition}[Lattice channels are automata]\label{prop:lc-qca}
+\reve{A lattice channel $T$ with rule $L$ commutes with every translation, $\alpha_a\circ T=T\circ
+\alpha_a$, and $(T,N_L)$ is a quantum cellular automaton.}
+\end{proposition}
+
+\begin{proof}
+\reve{The channel is unital by Lemma~\ref{lem:ch-unit} and completely positive by definition. Both
+$\alpha_a\circ T$ and $T\circ\alpha_a$ are bounded and linear. On a Weyl operator the first
+gives $e^{\ii\mu(u)-\nu(u,u)/4}W(\kappa_{a*}Lu)$ and the second
+$e^{\ii\mu(\kappa_{a*}u)-\nu(\kappa_{a*}u,\kappa_{a*}u)/4}W(L\kappa_{a*}u)$; these agree, because the
+rule commutes with translations, the covariance form of cell data is translation invariant
+(Lemma~\ref{lem:gs-cells}(a)) and so is the displacement. Lemma~\ref{lem:ch-unit} gives equality.
+For locality, $T(W(u))$ is a multiple of $W(Lu)$ and $\supp Lu\subseteq\supp u+N_L$ by
+Corollary~\ref{cor:qca-range}, so that $T$ maps the Weyl operators of $\cA(O)$ into the closed
+subalgebra $\cA(O+N_L)$; by continuity and Lemma~\ref{lem:lc-weyl}(a) it maps $\cA(O)$ there.}
+\end{proof}
+
+\subsection{Pull-back cells and locality}
+
+\noindent\motiv{\reve{Factorization involves the product formula of
+Proposition~\ref{prop:ch-product}, and hence the dissipation form
+$\nu+\ii(\sigma-\sigma(L\cdot,L\cdot))$. Its three terms are translation-invariant forms, and we
+describe each by its cells. For the noise these are the given cells; for $\sigma$ they are $\Omega$ at
+the origin and zero elsewhere; and for $\sigma(L\cdot,L\cdot)$ they are obtained, as in the evolution
+of a covariance in Theorem~\ref{thm:gs-evolution}, by pulling the cells of $\sigma$ back along the
+rule.}}
+
+\begin{definition}[Pull-back cells]\label{def:lc-pullback}
+\reve{For a rule $L$ and a family $(\nu_x)$ of real $2n\times2n$ matrices, the \emph{pull-back cells}
+are
+\[(L_*\nu)_j=\sum_{m,m'}\ell_m^{\mathsf T}\,\nu_{j+m-m'}\,\ell_{m'}\qquad(j\in\Z),\]
+the sum running over the finitely many $m,m'$ with $\ell_m,\ell_{m'}\neq0$. We write
+$(L_*\sigma)_j=\sum_m\ell_m^{\mathsf T}\Omega\,\ell_{m+j}$ for the pull-back cells of the on-site
+cells $\Omega\delta_{x,0}$ of $\sigma$, and $\delta_{\bullet,0}\,\nu_0$ for the on-site cells equal to a
+matrix $\nu_0$ at the origin and to zero elsewhere. These are the cells $L_*\gamma$ of
+Chapter~\ref{sec:stationary}, written there for cell data; the subscript records that forms are
+pulled back along $L$, an operation often written $L^*$ in geometry. The \emph{form} of an arbitrary family
+$(\nu_x)$ is $\nu(u,w)=\sum_{x,y}u(x)^{\mathsf T}\nu_{x-y}w(y)$, a finite sum; it determines the family,
+since $\nu(e_{x,i},e_{0,j})=(\nu_x)_{ij}$.}
+\end{definition}
+
+\begin{lemma}[Forms of pull-back cells]\label{lem:lc-pullback}
+\reve{Let $L$ be a rule.
+\begin{enumerate}[label=(\alph*)]
+\item For every family $(\nu_x)$, the form $\sum_{x,y}u(x)^{\mathsf T}(L_*\nu)_{x-y}w(y)$ is
+$\nu(Lu,Lw)$, where $\nu$ is the form of the cells $(\nu_x)$; if $(\nu_x)$ are cell data, so are
+$(L_*\nu)$.
+\item $\sigma(Lu,Lw)=\sum_{x,y}u(x)^{\mathsf T}(L_*\sigma)_{x-y}w(y)$, and $(L_*\sigma)_j$ is the
+coefficient of $z^j$ in $\hat L^{\star\mathsf T}\Omega\hat L$, where $\hat L^\star$ replaces $z$ by
+$z^{-1}$.
+\item If $(\nu_x)$ are cell data, the symbol of $L_*\nu$ is
+$\widehat{L_*\nu}(k)=\hat L(k)^\dagger\,\hat\nu(k)\,\hat L(k)$.
+\end{enumerate}}
+\end{lemma}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item The cells $(L_*\nu)$ are the cells $\gamma'$ of Theorem~\ref{thm:gs-evolution}, and the
+computation of the form in its proof uses neither summability nor symmetry of the cells; the second
+statement is part of that theorem.
+\item The first statement is (a) for the on-site cells of $\sigma$, whose form is $\sigma$. In
+$\hat L^{\star\mathsf T}\Omega\hat L=\sum_{m,m'}\ell_m^{\mathsf T}\Omega\,\ell_{m'}z^{m'-m}$ the
+coefficient of $z^j$ collects the terms with $m'=m+j$.
+\item This is the formula for the symbol in Theorem~\ref{thm:gs-evolution}.
+\end{enumerate}}
+\end{proof}
+
+\begin{theorem}[Locality on the chain]\label{thm:lc-locality}
+\reve{Let $T$ be a lattice channel with rule $L$ and noise cells $(\nu_x)$.
+\begin{enumerate}[label=(\Roman*)]
+\item For a finite set $N\subseteq\Z$, $T$ has finite propagation with neighbourhood $N$ if and only
+if $N_L\subseteq N$.
+\item For a finite set $N'\subseteq\Z$ with $0\in N'=-N'$, $T$ factorizes with respect to $N'$ if
+and only if $\nu_x=0$ and $(L_*\sigma)_x=0$ for every $x\notin N'$.
+\end{enumerate}}
+\end{theorem}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\Roman*)]
+\item If $N_L\subseteq N$, then $T$ has finite propagation with neighbourhood $N_L$ by
+Proposition~\ref{prop:lc-qca}, and hence with $N$. Conversely, for the site vector $u=e_{0,i}$,
+$T(W(u))$ is a nonzero multiple of $W(Lu)$ and lies in $\cA(N)$, so that $\supp Lu\subseteq N$ by
+Lemma~\ref{lem:lc-weyl}(b). Since $(Lu)(m)$ is the $i$-th column of $\ell_m$, every $m$ for which this
+column is nonzero lies in $N$, and taking all $i$ gives $N_L\subseteq N$.
+\item Suppose first that the cells vanish outside $N'$, and let $u,w$ have supports with $(\supp
+u+N')\cap\supp w=\emptyset$, so that $x-y\notin N'$ for $x\in\supp u$ and $y\in\supp w$. By
+Lemma~\ref{lem:lc-pullback}, $\nu(u,w)=0$ and $\sigma(Lu,Lw)=0$, and $\sigma(u,w)=0$ because the
+supports are disjoint; the dissipation form vanishes on $(u,w)$, and
+$T(W(u)W(w))=T(W(u))T(W(w))$ by Proposition~\ref{prop:ch-product}. For regions $O_1,O_2$ with
+$(O_1+N')\cap O_2=\emptyset$, the maps $(b_1,b_2)\mapsto T(b_1b_2)$ and $(b_1,b_2)\mapsto
+T(b_1)T(b_2)$ are bilinear and continuous on $\cA(O_1)\times\cA(O_2)$ and agree on pairs of Weyl
+operators, hence everywhere by Lemma~\ref{lem:lc-weyl}(a). Conversely, suppose that $T$ factorizes with respect to $N'$, let $x\notin N'$, and let $u=e_{x,i}$ and
+$w=e_{0,j}$ be site vectors. The regions $\{x\}$ and $\{0\}$
+are separated by $N'$, and for every real $t\neq0$ factorization together with the product formula
+gives $e^{-\Delta_T(tu,w)/2}\,T(W(tu))\,T(W(w))=T(W(tu))\,T(W(w))$, where the product on the right is
+a nonzero multiple of a unitary. Hence $e^{-t\Delta_T(u,w)/2}=1$ for every $t\neq0$; choosing $t$ so
+small that $|t\Delta_T(u,w)/2|<2\pi$ forces $\Delta_T(u,w)=0$. Its real part is
+$\nu(u,w)=(\nu_x)_{ij}$, and its imaginary part is $\sigma(u,w)-\sigma(Lu,Lw)=-((L_*\sigma)_x)_{ij}$,
+because $\sigma(u,w)=0$ for $x\neq0$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\motiv{\reve{For $N'=\{0\}$ the condition on the rule is that
+$(L_*\sigma)_x=\sum_m\ell_m^{\mathsf T}\Omega\,\ell_{m+x}$ vanish for $x\neq0$. These are the coefficient
+equations~\eqref{eq:qca-coeff} of a symplectic rule \reve{for $\Omega$ at every index other than $0$,} without the
+\reve{equation at the index $0$}; the rule need not be symplectic, and $\hat L^{\star\mathsf T}\Omega\hat L$ need only
+be a constant matrix. The two notions of locality are independent of each other in the following
+sense.}}
+
+\begin{proposition}[Independence of the two notions]\label{prop:lc-independent}
+\reve{Let $n\ge1$.
+\begin{enumerate}[label=(\alph*)]
+\item There is a Gaussian channel that factorizes with respect to $\{0\}$ and does not have finite
+propagation with neighbourhood $\{0\}$.
+\item For every finite set $N'\subseteq\Z$ with $0\in N'=-N'$ there are cell data $(\nu_x)$ of
+finite range such that the rule $0$ and the noise $\nu$ satisfy~\eqref{eq:ch-cond}, and no lattice
+channel with these data factorizes with respect to $N'$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item The shift, the rule with coefficient $\ell_1=1$ and all others zero, is symplectic, and its
+automorphism is a lattice channel. Since $\hat L^{\star\mathsf T}\Omega\hat L=z^{-1}\Omega z=\Omega$,
+the pull-back cells of $\sigma$ vanish off the origin, and Theorem~\ref{thm:lc-locality}(II) gives
+factorization with respect to $\{0\}$; since $N_L=\{1\}$, part (I) excludes finite propagation with
+neighbourhood $\{0\}$.
+\item Let $x_0=1+\max_{m\in N'}|m|$, and let $\nu_0=2\cdot1$, $\nu_{\pm x_0}=\frac12\cdot1$ and
+$\nu_x=0$ otherwise. For the rule $0$, condition~\eqref{eq:ch-cond} is the state condition
+$\nu+\ii\sigma\ge0$ (Proposition~\ref{prop:ch-special}(c)), which holds by
+Theorem~\ref{thm:gs-fourier}(a), since
+$\hat\nu(k)+\ii\Omega=(1+\cos kx_0)\cdot1+(1+\ii\Omega)$ is a sum of positive semidefinite
+matrices. Since $x_0\notin N'$ and $\nu_{x_0}\neq0$, Theorem~\ref{thm:lc-locality}(II) excludes
+factorization with respect to $N'$ for every lattice channel with these data.
+\end{enumerate}}
+\end{proof}
+
+\noindent\motiv{\reve{Every lattice channel with the rule $0$ has finite propagation with neighbourhood
+$\{0\}$ by Theorem~\ref{thm:lc-locality}(I), since \reve{$N_L=\emptyset$ for $L=0$}. Part (b) therefore shows that
+finite propagation does not imply factorization, and part (a) that factorization does not imply
+finite propagation with a prescribed neighbourhood.}}
+
+\subsection{Concatenation}
+
+\noindent\motiv{\reve{Applying two lattice channels in succession gives a lattice channel whose rule is
+the product of the two rules and whose noise collects the first noise and the pull-back of the second.
+The ranges of the resulting families are controlled by those of the factors.}}
+
+\begin{proposition}[Concatenation of lattice channels]\label{prop:lc-comp}
+\reve{If $T_1$ and $T_2$ are lattice channels with rules $L_1,L_2$ and noise cells $(\nu_{1,x})$,
+$(\nu_{2,x})$, then $T_2\circ T_1$ is a lattice channel with rule $L_2L_1$ and noise cells
+$\nu_1+L_{1*}\nu_2$.}
+\end{proposition}
+
+\begin{proof}
+\reve{By Proposition~\ref{prop:ch-comp}, $T_2\circ T_1$ is a Gaussian channel with linear map
+$L_2L_1$, noise $\nu_1+\nu_2(L_1\cdot,L_1\cdot)$ and displacement $\mu_1+\mu_2\circ L_1$. The noise is
+the form of the cells $\nu_1+L_{1*}\nu_2$ by Lemma~\ref{lem:lc-pullback}(a), which are cell data, and
+the displacement is translation invariant because $L_1$ commutes with translations.}
+\end{proof}
+
+\begin{proposition}[Ranges under concatenation]\label{prop:lc-supports}
+\reve{Let $L,L_1,L_2$ be rules.
+\begin{enumerate}[label=(\alph*)]
+\item $N_{L_2L_1}\subseteq N_{L_1}+N_{L_2}$.
+\item If $(\nu_x)$ vanishes outside a finite set $M$, then $(L_*\nu)_j=0$ for $j\notin
+M+(N_L-N_L)$.
+\item $(L_*\sigma)_j=0$ for $j\notin N_L-N_L$.
+\item Let $N_1,N_2$ be finite, $N_2$ nonempty, $N_{L_i}\subseteq N_i$, and let $(\nu_{i,x})$ vanish
+outside $N_i-N_i$ for $i=1,2$. Then $N_{L_2L_1}\subseteq N_1+N_2$, and $\nu_1+L_{1*}\nu_2$ vanishes
+outside $(N_1+N_2)-(N_1+N_2)$.
+\item For on-site noises $\nu_{i,x}=\delta_{x,0}\nu_{i,0}$, the noise cells $\nu_1+L_{1*}\nu_2$ vanish
+off the origin if and only if $(L_{1*}\nu_2)_x=0$ for every $x\neq0$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item The coefficient of $z^j$ in $\hat L_2\hat L_1$ is a sum of products of coefficients of $z^b$ in
+$\hat L_2$ and of $z^a$ in $\hat L_1$ with $a+b=j$, and is zero unless such $a\in N_{L_1}$ and $b\in
+N_{L_2}$ exist.
+\item A term of $(L_*\nu)_j$ is nonzero only if $j+m-m'\in M$ for some $m,m'\in N_L$, that is,
+$j\in M+(N_L-N_L)$.
+\item This is (b) for the on-site cells of $\sigma$, with $M=\{0\}$.
+\item The first statement follows from (a). Choose $c\in N_2$. If $x=a-b$ with $a,b\in N_1$, then
+$x=(a+c)-(b+c)\in(N_1+N_2)-(N_1+N_2)$, so that $\nu_1$ vanishes outside this set. By (b), the cells
+$L_{1*}\nu_2$ vanish outside $(N_2-N_2)+(N_{L_1}-N_{L_1})$, and an element $(a-b)+(a'-b')$ of this
+set, with $a,b\in N_2$ and $a',b'\in N_{L_1}\subseteq N_1$, is $(a'+a)-(b'+b)$.
+\item The first summand vanishes off the origin.
+\end{enumerate}}
+\end{proof}
+
+\noindent\motiv{\reve{The inclusion in (a) can be strict, since coefficients may cancel: the rules
+with symbols $(1-z)\cdot1$ and $(1+z)\cdot1$ have ranges $\{0,1\}$, and their product $(1-z^2)\cdot1$
+has range $\{0,2\}$, a proper subset of $\{0,1,2\}$.}}
+
+\noindent\motiv{\reve{Part (d) says that channels whose noise is correlated only within the
+differences of their neighbourhoods form a class closed under concatenation. The channels that
+factorize with respect to $\{0\}$, whose noise and whose pull-back of $\sigma$ are both on site, do
+not, as the next \reve{subsection} shows for the noise; part (e) says what closure would require of it.}}
+
+\noindent\motiv{\reve{The pull-back of $\sigma$ can also leave the site under concatenation. Since a
+family is determined by its form, Lemma~\ref{lem:lc-pullback}(a) applied twice gives
+$(L_2L_1)_*\nu=L_{1*}(L_{2*}\nu)$ for every family. If $L_{1*}\sigma$ and $L_{2*}\sigma$ are on site
+and $n=1$, the on-site cell of $L_{2*}\sigma$ is antisymmetric and hence a multiple $c\,\Omega$, and
+then $(L_2L_1)_*\sigma=c\,L_{1*}\sigma$ is again on site. For $n=2$ this fails. With coordinates
+$(q_1,q_2,p_1,p_2)$, let $L_1$ have the coefficients $\ell_0=P_2$ and $\ell_1=P_1$, the projections
+onto the second and the first mode, so that it shifts the first mode and fixes the second, and let
+$L_2$ act at every site by the matrix $S=1+E_{12}$, that is, $q_1\mapsto q_1+q_2$. Both $L_{1*}\sigma$
+and $L_{2*}\sigma$ are on site, the latter with the cell $S^{\mathsf T}\Omega S=\Omega+E_{23}-E_{32}$,
+but the cell of $(L_2L_1)_*\sigma$ at $j=1$ is $\ell_0^{\mathsf T}(S^{\mathsf T}\Omega S)\ell_1=
+P_2(E_{23}-E_{32})P_1=E_{23}\neq0$.}}
+
+\subsection{The example system}
+
+\noindent\motiv{\reve{For the example system, the cell at distance two of the pull-back of on-site
+noise can be computed in closed form, and it decides when two steps with on-site noise again have
+on-site noise.}}
+
+\begin{theorem}[Two steps with on-site noise]\label{thm:lc-twosteps}
+\reve{Let $n=1$, let $L$ be the example system of Definition~\ref{def:es-example}, with
+$r=(\sin\varphi,\cos\varphi)^{\mathsf T}$ the transposed second row of $\ell_0$, and let $\nu_0$ be a
+real $2\times2$ matrix. Then
+\[(L_*\nu)_2=(\nu_0)_{11}\,\lambda^2\,rr^{\mathsf T}\]
+for the on-site cells $\nu_x=\delta_{x,0}\nu_0$. If $\nu_0$ is symmetric and positive semidefinite,
+then
+$(L_*\nu)_x=0$ for every $x\neq0$ if and only if $\lambda=0$ or $(\nu_0)_{11}=0$.}
+\end{theorem}
+
+\begin{proof}
+\reve{For on-site cells, $(L_*\nu)_j=\sum_{m'-m=j}\ell_m^{\mathsf T}\nu_0\ell_{m'}$. For $j=2$ only
+$(m,m')=(-1,1)$ occurs, and with $\ell_{\pm1}=\lambda e_1r^{\mathsf T}$,
+\[\ell_{-1}^{\mathsf T}\nu_0\ell_1=\lambda^2\,r\,(e_1^{\mathsf T}\nu_0e_1)\,r^{\mathsf
+T}=\lambda^2(\nu_0)_{11}\,rr^{\mathsf T}.\]
+If the cells vanish off the origin, the trace of this cell, $\lambda^2(\nu_0)_{11}|r|^2=
+\lambda^2(\nu_0)_{11}$, vanishes. Conversely, if $\lambda=0$ only $m=m'=0$ contributes. If
+$(\nu_0)_{11}=0$ and $\nu_0$ is symmetric and positive semidefinite, then $\nu_0e_1=0$, since such a
+matrix with a zero diagonal entry has a zero row and column; hence
+$\nu_0\ell_{\pm1}=0=\ell_{\pm1}^{\mathsf T}\nu_0$, and every term with $j\neq0$ contains some
+$\ell_{\pm1}$.}
+\end{proof}
+
+\noindent\motiv{\reve{By the congruence $\gamma_B=\Omega^{\mathsf T}\gamma\,\Omega$ of
+Chapter~\ref{sec:gaussianstates}, which exchanges the diagonal entries of a $2\times2$ form, the
+entry $(\nu_0)_{11}$ of the noise form is the momentum entry of the matrix that the noise adds to the
+covariance matrix of each site, that is, twice the variance it adds to the momentum. Pulled back by
+one step of the rule, this part of the noise correlates sites two apart through the two coupling
+factors in $\ell_{-1}^{\mathsf T}\nu_0\ell_1$, while noise with $(\nu_0)_{11}=0$, such as
+$\nu_0=\operatorname{diag}(0,b)$, which adds to the position alone, is not read by the coupling
+$\ell_{\pm1}=\lambda e_1r^{\mathsf T}$ and stays on site. For the lossy chain the consequence is the following.}}
+
+\begin{proposition}[The lossy chain]\label{prop:lc-lossy}
+\reve{Let $0<\zeta<1$, and let $\zeta L$ and the on-site cells $(1-\zeta^2)\cdot1$ be the data of
+Example~\ref{ex:lc-lossy}.
+\begin{enumerate}[label=(\alph*)]
+\item The data satisfy~\eqref{eq:ch-cond}.
+\item $((\zeta L)_*\sigma)_j=0$ for every $j\neq0$.
+\item The rule $\zeta L$ is not symplectic.
+\item If $\lambda\neq0$, the noise cells of two steps, $\nu+(\zeta L)_*\nu$, are nonzero at $j=2$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Since $L$ is symplectic, $\sigma(\zeta Lu,\zeta Lw)=\zeta^2\sigma(u,w)$, and the matrices
+of~\eqref{eq:ch-cond} are $(1-\zeta^2)$ times those of $\gamma+\ii\sigma$, with $\gamma$ the vacuum form
+of the cells $\delta_{x,0}\cdot1$; the vacuum form satisfies the state condition
+(Example~\ref{ex:gs-vacuum}).
+\item By Lemma~\ref{lem:lc-pullback}(b), $((\zeta L)_*\sigma)_j$ is the coefficient of $z^j$ in
+$\zeta^2\hat L^{\star\mathsf T}\Omega\hat L=\zeta^2\Omega$, since the example system is symplectic
+(Example~\ref{ex:qca-rotation}).
+\item $(\zeta\hat L)^{\star\mathsf T}\Omega(\zeta\hat L)=\zeta^2\Omega\neq\Omega$, so that $\zeta L$ is
+not symplectic by Theorem~\ref{thm:qca-criterion}.
+\item The on-site first summand does not contribute at $j=2$. The pull-back cells of the rule $\zeta L$
+are $\zeta^2$ times those of $L$, so that by Theorem~\ref{thm:lc-twosteps} with
+$\nu_0=(1-\zeta^2)\cdot1$ the second summand at $j=2$ is $\zeta^2(1-\zeta^2)\lambda^2rr^{\mathsf
+T}\neq0$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\motiv{\reve{By Theorem~\ref{thm:lc-locality}, every lattice channel with the data of the lossy
+chain therefore has finite propagation with neighbourhood $\{-1,0,1\}$ and factorizes with respect to
+$\{0\}$, although its rule is not symplectic, whereas two steps of it, a lattice channel by
+Proposition~\ref{prop:lc-comp}, no longer factorize with respect to $\{0\}$ when $\lambda\neq0$.}}
+
+\subsection{The Fourier form of the condition and dilations}
+
+\noindent\motiv{\reve{For translation-invariant data, condition~\eqref{eq:ch-cond} reduces, as the
+state condition does in Theorem~\ref{thm:gs-fourier}, to one Hermitian matrix at each wave number.}}
+
+\begin{theorem}[Fourier form of the condition]\label{thm:lc-fourier}
+\reve{Let $(\nu_x)$ be cell data of finite range and $L$ a rule. Then $L$ and $\nu$
+satisfy~\eqref{eq:ch-cond} if and only if
+\[\hat\nu(k)+\ii\Omega-\ii\,\hat L(k)^\dagger\Omega\hat L(k)\ge0\qquad\text{for every }k\in\R.\]}
+\end{theorem}
+
+\begin{proof}
+\reve{By Lemma~\ref{lem:lc-pullback}, the Hermitian form of~\eqref{eq:ch-cond} on complex combinations
+of vectors, $h(f)=\sum_{x,y}f(x)^\dagger a_{x-y}f(y)$ for finitely supported
+$f\colon\Z\to\C^{2n}$, has the cells $a_j=\nu_j+\ii(\Omega\delta_{j,0}-(L_*\sigma)_j)$, of finite
+range, with $a_{-j}=a_j^\dagger$, and
+$\sum_ja_je^{-\ii kj}=\hat\nu(k)+\ii\Omega-\ii\hat L(k)^\dagger\Omega\hat L(k)$ by
+Lemma~\ref{lem:lc-pullback}(b) and the computation of the symbol in Theorem~\ref{thm:gs-evolution}.
+The proof of Lemma~\ref{lem:gs-parseval} and Theorem~\ref{thm:gs-fourier} uses of the cells
+$a_g=\gamma_g+\ii\delta_{g,0}\Omega$ only that they are summable and satisfy $a_{-g}=a_g^\dagger$,
+and the necessity part only their finite range; it applies verbatim to the cells $a_j$ and gives
+both directions.}
+\end{proof}
+
+\noindent\motiv{\reve{The finite range is assumed only for simplicity, since the cells $a_j$ of summable
+noise are summable and Remark~\ref{rem:gs-fourier-general} extends the necessity to them.} \reve{At
+each wave number, the matrix of the theorem is the matrix $\nu+\ii(\Omega-L^{\mathsf T}\Omega L)$ whose
+positivity is the condition for finitely many modes (proof of Proposition~\ref{prop:ch-matrices}(c)),
+with the real matrices $L$ and $\nu$ replaced by the complex matrices $\hat L(k)$ and $\hat\nu(k)$ and
+the transpose by the conjugate transpose, so that the condition on the chain is the finite-mode
+condition of Chapter~\ref{sec:channels} read at every wave number.}}
+
+\noindent\motiv{\reve{For the lossy chain, $\hat\nu(k)=(1-\zeta^2)\cdot1$ and
+$(\zeta\hat L(k))^\dagger\Omega(\zeta\hat L(k))=\zeta^2\Omega$, since the example system is symplectic,
+so that the matrix of the theorem is $(1-\zeta^2)(1+\ii\Omega)$ at every wave
+number, which is positive semidefinite, in agreement with Proposition~\ref{prop:lc-lossy}(a).}}
+
+\noindent\motiv{\reve{It remains to consider dilations on the chain. Let a translation-invariant ancilla with $n'$ modes per site be coupled to the
+chain by a rule $S$ on $n+n'$ modes per site that preserves the form of
+$\Omega_n\oplus\Omega_{n'}$. As in Proposition~\ref{prop:ch-dilation}, $S(u,0)=(S_{11}u,S_{21}u)$,
+where the symbol $\hat S_{11}$ of the system block is a $2n\times2n$ and the symbol $\hat S_{21}$ of
+the block from system to ancilla a $2n'\times2n$ matrix of Laurent polynomials; the pull-back cells
+$S_{21*}\gamma$ of cells of the ancilla are defined as in Definition~\ref{def:lc-pullback}.}}
+
+\begin{theorem}[Dilations on the chain]\label{thm:lc-dilation}
+\reve{Let $\hat S^{\star\mathsf T}(\Omega_n\oplus\Omega_{n'})\hat S=\Omega_n\oplus\Omega_{n'}$, and
+let $\gamma_0$ be a real $2n'\times2n'$ matrix with $\gamma_0+\ii\Omega_{n'}\ge0$, which forces
+$\gamma_0$ to be symmetric. Then the rule
+$S_{11}$ and the noise with cells $\nu=S_{21*}(\delta_{\bullet,0}\gamma_0)$
+satisfy~\eqref{eq:ch-cond}; $\hat\nu(k)=\hat S_{21}(k)^\dagger\gamma_0\hat S_{21}(k)$ for every $k$;
+$N_{S_{11}}\subseteq N_S$; and $\nu_j=0$ for $j\notin N_S-N_S$.}
+\end{theorem}
+
+\begin{proof}
+\reve{The block of the system in $\hat S^{\star\mathsf T}(\Omega_n\oplus\Omega_{n'})\hat S=\Omega_n
+\oplus\Omega_{n'}$ reads $\hat S_{11}^{\star\mathsf T}\Omega_n\hat S_{11}+\hat
+S_{21}^{\star\mathsf T}\Omega_{n'}\hat S_{21}=\Omega_n$, which by the computation of
+Lemma~\ref{lem:lc-pullback}(b) says that $\sigma(S_{11}u,S_{11}w)+\sigma'(S_{21}u,S_{21}w)=
+\sigma(u,w)$, with $\sigma'$ the form of the ancilla; this is
+Proposition~\ref{prop:ch-dilation}(a) for the translation-invariant maps $S_{11}$ and $S_{21}$, and
+Proposition~\ref{prop:ch-dilation}(b) gives~\eqref{eq:ch-cond}, since the on-site form of
+$\gamma_0+\ii\Omega_{n'}$ is positive semidefinite. The symbol is computed as in
+Theorem~\ref{thm:gs-evolution} for the rectangular matrix $\hat S_{21}$, and the ranges follow as in
+Proposition~\ref{prop:lc-supports}\reve{(b)}, because the blocks of $\hat S$ have ranges within
+$N_S$.}
+\end{proof}
+
+\noindent\motiv{\reve{For the lossy chain, let $B$ be the beam splitter of
+Example~\ref{ex:ch-beamsplitter} at every site, with one ancilla mode per site, and let
+$S=(L\oplus1)\circ B$, which preserves $\Omega_1\oplus\Omega_1$ since both factors do. On a system
+vector, $S(u,0)=(\zeta Lu,-\sqrt{1-\zeta^2}\,u)$, so that $S_{11}=\zeta L$ and
+$S_{21}=-\sqrt{1-\zeta^2}\cdot1$,
+and with the ancilla in the vacuum, $\gamma_0=1$, the theorem gives the on-site noise
+$(1-\zeta^2)\cdot1$ of the lossy chain. The composite $\alpha_{L\oplus1}\circ\alpha_B$ acts on states
+first by $\alpha_{L\oplus1}$, so that this is one step of the example system followed by the beam
+splitter, as in Example~\ref{ex:lc-lossy}. The other order, $S=B\circ(L\oplus1)$, gives
+$S_{21}=-\sqrt{1-\zeta^2}\,L$ and the noise cells $(1-\zeta^2)L_*(\delta_{\bullet,0}\cdot1)$, which by the
+computation of Theorem~\ref{thm:lc-twosteps} are nonzero at $j=2$ when $\lambda\neq0$.}}
+
+\subsection{Notes and references}\label{sec:lc-notes}
+
+\begin{enumerate}[label=(\arabic*)]
+\item \reve{\emph{Lattice channels.} Definition~\ref{def:lc-channel} is the translation-invariant
+setting of~\cite[p.~92]{krueger}, whose rule and noise are $\Gamma(x)$ and $g(x)$, the rule there of
+finite range. The notes ask for summable noise cells, as in Chapter~\ref{sec:gaussianstates};
+Theorem~\ref{thm:lc-fourier} assumes finite range, which the data of
+Proposition~\ref{prop:lc-independent}(b) have.}
+\item \reve{\emph{Locality.} Theorem~\ref{thm:lc-locality} is Lemma~4.11 of~\cite[p.~95]{krueger},
+which is stated with ``if''; its proof argues the converse for notion (II), and the scaling step
+that turns $e^{-\Delta_T/2}=1$ into $\Delta_T=0$ is not written there. The thesis's condition
+(4.36), $\sum_x\Gamma^+_x\Gamma_{\Delta+x}=0$ with $\Gamma^+=-\sigma_s\Gamma^{\mathsf T}\sigma_s$, is
+$-\Omega(L_*\sigma)_\Delta=0$. The thesis's witness for ``(II) does not imply (I)'' in the proof of
+Lemma~4.10(v)~\cite[pp.~94--95]{krueger}, the completely depolarizing channel, maps every observable
+to a multiple of the unit and so has finite propagation with neighbourhood $\{0\}$. Since every
+automaton has finite propagation for some finite neighbourhood, what can be meant is that
+factorization gives no bound on the neighbourhood, which Proposition~\ref{prop:lc-independent}(a)
+shows for the neighbourhood $\{0\}$ and the same argument with the shift by $1+\max_{m\in N}|m|$ for
+any \reve{nonempty} finite $N$. Part (b) makes explicit the thesis's witness for the converse, noise of range beyond
+the given set.}
+\item \reve{\emph{Concatenation.} Proposition~\ref{prop:lc-comp} and
+Proposition~\ref{prop:lc-supports} are the discussion of~\cite[p.~96]{krueger}, where the ranges
+of the composite are written as $N_1+N_2$ and $M_1\cup(M_2+N_1-N_1)$; only the inclusions hold, by the
+example after the proof for the first and by Theorem~\ref{thm:lc-twosteps} for the second, where the
+noise $\operatorname{diag}(0,b)$ has an on-site pull-back although $M_2+N_L-N_L=\{-2,\dots,2\}$. The
+nonempty $N_2$ in (d) is supplied in the thesis by its convention $0\in N$. Part (e) is (4.39).}
+\item \reve{\emph{The example system.} The thesis states that the noise of two steps does not fulfil
+(4.39) whenever the coupling is nonzero~\cite[p.~97]{krueger}; by Theorem~\ref{thm:lc-twosteps} this
+holds for isotropic noise $c\cdot1$, $c>0$, and fails for noise with $(\nu_0)_{11}=0$, which adds
+variance to the position quadrature alone, such as $\nu_0=\operatorname{diag}(0,b)$, $b>0$, with the
+symplectic rule $L$, for which these data satisfy~\eqref{eq:ch-cond} by
+Proposition~\ref{prop:ch-special}(b). The remark after Lemma~4.11 of~\cite[p.~95]{krueger}
+asserts that for one mode per site a rule of both types need not be symplectic; the lossy chain is an
+explicit instance, with noise that satisfies~\eqref{eq:ch-cond}.}
+\item \reve{\emph{Dilations.} Theorem~\ref{thm:lc-dilation} is Lemma~4.12 of~\cite[p.~97]{krueger} at
+the level of covariances, with the reduction (4.40) of~\cite[p.~98]{krueger}; that the data satisfy
+the condition goes beyond the thesis, which checks that the noise is real and symmetric. The thesis
+writes the symbol of the noise with transposes, $\hat C^{\mathsf T}(k)\hat\gamma'\hat C(k)$; the
+conjugate transpose of Theorem~\ref{thm:lc-dilation} agrees with it for reflection-symmetric blocks,
+as in the note on (4.17) in Chapter~\ref{sec:gaussianstates}. The range statements correspond to
+Lemma~4.10(iii)--(iv) of~\cite[p.~94]{krueger}. The construction of the channel on the algebra is not
+carried out here. In finite dimensions without translation invariance, factorization does not imply
+that a channel is a local dilation~\cite{piroli-cirac} \vetsource{(pinpoint to be checked)}.}
+\item \reve{\emph{Not treated here.} Section~4.3 of the thesis also defines two further notions of
+locality, (III) by local Kraus operators and (IV) by local dilations, relates the four notions in
+Lemma~4.10~\cite[pp.~93--94]{krueger}, and leaves open whether every irreversible Gaussian automaton
+is of type (IV)~\cite[p.~98]{krueger} \vetsource{(pinpoint to be checked)}.}
+\end{enumerate}

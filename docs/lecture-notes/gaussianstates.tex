@@ -1,0 +1,963 @@
+\clearpage
+\section{Gaussian states on the lattice}\label{sec:gaussianstates}
+
+\noindent\motiv{\reve{The automata of Chapter~\ref{sec:ccrautomata} act on observables, and a
+dynamics of observables becomes a dynamics of physical situations only once it acts on states. This
+chapter introduces the states of the lattice CCR algebra through their characteristic functions,
+singles out the Gaussian states, whose characteristic functions are exponentials of quadratic
+forms, and derives the condition that the quadratic form of a Gaussian state must satisfy. Because
+a Gaussian state is determined by a covariance form on the whole infinite lattice, whereas the
+classical theory of Gaussian states concerns covariance matrices of finitely many modes, a large
+part of the chapter is devoted to showing that the two descriptions agree: restricted to a finite
+region, a covariance form is a covariance matrix of finitely many modes, and the condition on the
+form becomes the familiar matrix inequality on every region. On the chain the condition can also be
+read off pointwise from a Fourier transform, which leads to a matrix condition that saturates the state condition at every wave number, and to an
+explicit law for the evolution of the covariance under a Gaussian automaton.}}
+
+\medskip
+\noindent\motiv{\reve{Two product states serve as examples throughout, the vacuum and the squeezed
+states, and the running example of the previous chapters returns at the end, where one step of the
+leapfrog is applied to the vacuum and the correlations it creates between neighbouring sites are
+computed exactly.}}
+
+\medskip
+\noindent\motiv{\reve{As in Chapter~\ref{sec:ccrautomata}, $G$ is an abelian group, the cell carries
+$n$ modes with coordinates ordered positions first, $u(x)=(q_1,\dots,q_n,p_1,\dots,p_n)$, and
+$\sigma(u,w)=\sum_xu(x)^{\mathsf T}\Omega\,w(x)$ with
+$\Omega=\begin{psmallmatrix}0&I_n\\-I_n&0\end{psmallmatrix}$, so that
+$\Omega^{\mathsf T}=-\Omega=\Omega^{-1}$. For a site $x$ and a cell index $i$ we write $e_{x,i}\in V$
+for the vector whose value at $x$ is the $i$-th unit vector and which vanishes elsewhere, so that
+$\sigma(e_{x,i},e_{y,j})=\delta_{xy}\Omega_{ij}$. Since products and adjoints of Weyl operators are
+multiples of Weyl operators, the linear span of the Weyl operators is a $*$-subalgebra of
+$\CCR(V,\sigma)$, and it is dense by the definition of $\CCR(V,\sigma)$ as its closure. For a
+complex vector or matrix, ${}^\dagger$ denotes the conjugate transpose, and $A\ge0$ means that the
+Hermitian matrix $A$ is positive semidefinite.}}
+
+\subsection{States and characteristic functions}
+
+\noindent\motiv{\reve{A state assigns to each observable its expectation value, and the only
+requirements on such an assignment are linearity, normalization and positivity on the squares
+$a^*a$, which are the observables with non-negative spectrum.}}
+
+\begin{definition}[State]\label{def:gs-state}
+\reve{A \emph{state} on $\CCR(V,\sigma)$ is a continuous $\C$-linear functional $\omega$ with
+$\omega(1)=1$ and $\omega(a^*a)\ge0$ for every $a$, where, for a complex number $z$, $z\ge0$ means that
+$z$ is real and non-negative.}
+\end{definition}
+
+\noindent\reve{Positivity is required of the complex numbers $\omega(a^*a)$, so that no order on
+the algebra itself needs to be introduced. Continuity follows from positivity on every C*-algebra,
+but it is included in the definition because it is the property the arguments below use directly.}
+
+\noindent\motiv{\reve{Since the Weyl operators span a dense subalgebra, a continuous functional is
+known once its values on them are known, and these values form a function on the phase space. The
+products $W(u_j)^*W(u_k)$ are again multiples of Weyl operators, and positivity of the state on
+combinations of such products becomes a positivity property of this function.}}
+
+\begin{definition}[Characteristic function]\label{def:gs-chi}
+\reve{The \emph{characteristic function} of a state $\omega$ is $\chi_\omega(u)=\omega(W(u))$. For a
+function $\chi\colon V\to\C$ and a family $(u_j)_{j\in I}$ in $V$ indexed by a finite set $I$, the
+\emph{twisted kernel} is the matrix
+\[K_{jk}=e^{\ii\sigma(u_j,u_k)/2}\,\chi(u_k-u_j)\qquad(j,k\in I).\]}
+\end{definition}
+
+\begin{proposition}[Twisted positivity]\label{prop:gs-twisted}
+\reve{Let $\omega$ be a state with characteristic function $\chi$.
+\begin{enumerate}[label=(\alph*)]
+\item For every finite family $(u_j)_{j\in I}$ and all $c\in\C^I$,
+$\sum_{j,k}\bar c_jc_k\,e^{\ii\sigma(u_j,u_k)/2}\chi(u_k-u_j)\ge0$, so that the twisted kernel of
+$\chi$ on every finite family is positive semidefinite.
+\item $\chi(0)=1$, $\chi(-u)=\overline{\chi(u)}$ and $|\chi(u)|\le1$ for every $u\in V$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item By the Weyl relations,
+$W(u_j)^*W(u_k)=W(-u_j)W(u_k)=e^{\ii\sigma(u_j,u_k)/2}W(u_k-u_j)$, so that for
+$X=\sum_kc_kW(u_k)$ the product $X^*X$ equals
+$\sum_{j,k}\bar c_jc_k\,e^{\ii\sigma(u_j,u_k)/2}W(u_k-u_j)$, and the sum in question is
+$\omega(X^*X)\ge0$. A complex matrix $K$ whose quadratic form $c^\dagger Kc$ is real for every $c$
+is Hermitian, because the quadratic form of $K-K^\dagger$, which is
+$c^\dagger Kc-\overline{c^\dagger Kc}$, then vanishes identically, and a complex matrix with
+vanishing quadratic form is zero by polarization. The twisted kernel is therefore Hermitian with
+non-negative quadratic form, that is, positive semidefinite.
+\item First, $\chi(0)=\omega(1)=1$. For the family $(0,u)$ the phases are trivial, because
+$\sigma(0,u)=\sigma(u,0)=0$, and the twisted kernel is
+$\begin{psmallmatrix}1&\chi(u)\\\chi(-u)&1\end{psmallmatrix}$. By (a) it is Hermitian, which gives
+$\chi(-u)=\overline{\chi(u)}$, and its determinant $1-|\chi(u)|^2$ is non-negative.
+\end{enumerate}}
+\end{proof}
+
+\begin{remark}[Twisted positive-definiteness]\label{rem:gs-bochner}
+\reve{Part~(a) says that $\chi$ is \emph{$\sigma$-positive-definite}. For $\sigma=0$ this is the
+positive-definiteness of Bochner's theorem, by which a continuous positive-definite function on a
+finite-dimensional real vector space with $\chi(0)=1$ is the characteristic function of a
+probability measure, and the twisted condition is its analogue for the canonical commutation
+relations. The analogue of Bochner's theorem itself, for finitely many degrees of freedom, is the
+quantum Bochner theorem of Kastler~\cite{kastler} and of Loupias and Miracle-Sole~\cite{lms}: a
+continuous $\sigma$-positive-definite function on a finite-dimensional symplectic space with
+$\chi(0)=1$ is the characteristic function of a density operator in the Schr\"odinger
+representation, and its symplectic Fourier transform is the Wigner function of that density
+operator, just as the Fourier transform of $\chi$ is the probability density in the commutative
+case} \vetsource{(statement recalled, not checked against the two sources)}\reve{. Both hypotheses
+of that theorem belong to finitely many degrees of freedom, continuity of $\chi$ and a Schr\"odinger
+representation in which the density operator lives. On the infinite lattice there is no such
+distinguished representation, and a state need not be given by a density operator in any fixed
+representation, as Remark~\ref{rem:gs-existence} shows for the representation on $\ell^2(V)$. The
+result that replaces the quantum Bochner theorem there is the characterization of states by their
+characteristic functions quoted in that remark, which requires no continuity of $\chi$.}
+\reve{This Fourier transform acts on the phase-space variable $u$ and is not used below; it is to be
+distinguished from the lattice Fourier transform $x\mapsto k$ of
+Subsection~\ref{sec:gs-fourier}, which acts on the site variable of a vector.}
+\end{remark}
+
+\noindent\motiv{\reve{Two properties of characteristic functions suffice for the evolution of
+states: a state is determined by its characteristic function, and pulling a state back along an
+automorphism that relabels the Weyl operators composes the characteristic function with the
+relabelling.}}
+
+\begin{proposition}[Pullback along automorphisms]\label{prop:gs-pullback}
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Two states with the same characteristic function are equal.
+\item If $\alpha$ is a $*$-automorphism of $\CCR(V,\sigma)$ and $\omega$ a state, then
+$\omega\circ\alpha$ is a state. If in addition $\alpha(W(u))=W(Qu)$ for a map $Q\colon V\to V$, then
+$\chi_{\omega\circ\alpha}=\chi_\omega\circ Q$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Two continuous linear functionals that agree on the Weyl operators agree on their linear
+span, and hence on its closure, which is the whole algebra.
+\item A $*$-automorphism of a C*-algebra is isometric, so that $\omega\circ\alpha$ is continuous
+as well as linear; it is normalized because $\alpha(1)=1$, and positive because
+$\omega(\alpha(a^*a))=\omega(\alpha(a)^*\alpha(a))\ge0$. Finally
+$\chi_{\omega\circ\alpha}(u)=\omega(W(Qu))=\chi_\omega(Qu)$.
+\end{enumerate}}
+\end{proof}
+
+\begin{corollary}[Translation invariance]\label{cor:gs-transl}
+\reve{A state $\omega$ satisfies $\omega\circ\alpha_a=\omega$ for every $a\in G$ if and only if
+$\chi_\omega\circ\kappa_{a*}=\chi_\omega$ for every $a\in G$.}
+\end{corollary}
+
+\begin{proof}
+\reve{By Proposition~\ref{prop:gs-pullback}(b) with $Q=\kappa_{a*}$, the state $\omega\circ\alpha_a$
+has the characteristic function $\chi_\omega\circ\kappa_{a*}$, and by
+Proposition~\ref{prop:gs-pullback}(a) it equals $\omega$ exactly when the two characteristic
+functions agree.}
+\end{proof}
+
+\subsection{Gaussian states}
+
+\noindent\motiv{\reve{In classical probability a Gaussian measure is one whose characteristic
+function is the exponential of a quadratic polynomial, and the quantum definition takes over this
+description word for word; on the CCR algebra these are the quasi-free states of Manuceau and
+Verbeure~\cite{manuceau-verbeure}. The factor $\tfrac14$ in the exponent is the normalization in which the
+vacuum of a single oscillator has covariance $1$, as Example~\ref{ex:gs-vacuum} below shows; it
+agrees with the finite-mode convention in which the covariance matrix is twice the matrix of
+symmetrized second moments.}}
+
+\begin{definition}[Gaussian state]\label{def:gs-gaussian}
+\reve{A \emph{Gaussian state} is a state $\omega$ together with a symmetric bilinear form $\gamma$ on
+$V$, its \emph{covariance form}, and a linear form $d$ on $V$, its \emph{displacement}, such that
+\[\chi_\omega(u)=\exp\bigl(\ii\,d(u)-\tfrac14\gamma(u,u)\bigr)\qquad\text{for all }u\in V.\]}
+\end{definition}
+
+\noindent\reve{Every result below concerns a Gaussian state given together with its data
+$(\gamma,d)$. That a state with prescribed data exists is not proved in these notes, and no result
+below depends on it; the examples of the chapter are accordingly covariance forms satisfying the
+state condition of Definition~\ref{def:gs-statecond}, which by Theorem~\ref{thm:gs-necessity} is
+necessary for a Gaussian state, and Remark~\ref{rem:gs-existence} explains why existence cannot
+simply be read off from the construction of the algebra.}
+
+\begin{remark}[The data are determined by the state]\label{rem:gs-data}
+\reve{Although the definition lists $\gamma$ and $d$ as data, a state admits at most one pair of
+them. Indeed, $|\chi_\omega(u)|=\exp(-\tfrac14\gamma(u,u))$ determines $\gamma(u,u)$ for every $u$,
+and hence the symmetric form $\gamma$ by polarization; then
+$\chi_\omega(tu)/|\chi_\omega(tu)|=e^{\ii t\,d(u)}$ for all $t\in\R$, and two real numbers $r,r'$
+with $e^{\ii tr}=e^{\ii tr'}$ for every real $t$ are equal, as one sees by taking
+$|t(r-r')|<2\pi$ with $t\neq0$, so that $d(u)$ is determined as well.}
+\end{remark}
+
+\begin{remark}[Normalizations]\label{rem:gs-normalization}
+\reve{In the normalization of these notes $\chi_\omega(u)=\exp(\ii d(u)-\tfrac14\gamma(u,u))$, and
+for one mode the corresponding covariance matrix $\gamma_B$ is twice the matrix of symmetrized
+second moments, as the paragraph before Example~\ref{ex:gs-squeezed} shows. Other normalizations of the literature write the exponent with a
+different constant, for instance as $-\tfrac12\gamma'(u,u)$, and then $\gamma=2\gamma'$; such a
+rescaling of $\gamma$ by a constant makes conditions such as $\sigma(u,w)^2\le\gamma(u,u)\gamma(w,w)$
+acquire factors, here $\tfrac14\sigma(u,w)^2\le\gamma'(u,u)\gamma'(w,w)$, without changing their
+content. The sign of $\ii\Omega$ is likewise a matter of convention: for a real symmetric matrix
+$\gamma_B$ of $M$ modes the matrices $\gamma_B-\ii\Omega_M$ and $\gamma_B+\ii\Omega_M$, with
+$\Omega_M$ the symplectic matrix of Section~\ref{sec:gs-regions}, are complex conjugates of each
+other, and the complex conjugate of a positive semidefinite matrix is positive semidefinite, so
+that $\gamma_B-\ii\Omega_M\ge0$ and $\gamma_B+\ii\Omega_M\ge0$ are equivalent and either may be called
+the finite-mode condition.}
+\end{remark}
+
+\begin{remark}[Existence and regularity]\label{rem:gs-existence}
+\reve{The representation of $\CCR(V,\sigma)$ on $\ell^2(V)$ by which the algebra was constructed
+contains no Gaussian state. For $u\neq0$ and $t\neq0$, the vector $W(tu)\delta_v$ is a multiple of
+$\delta_{v-tu}$, which is orthogonal to $\delta_v$, so that $\|W(tu)\delta_v-\delta_v\|=\sqrt2$ and
+$t\mapsto W(tu)$ is not strongly continuous, and the representation is therefore not regular.
+Let $\rho=\sum_ip_i|\psi_i\rangle\langle\psi_i|$ be a density operator on $\ell^2(V)$ and $u\neq0$. Each
+$\psi_i$ has countable support $\operatorname{supp}\psi_i$, and
+$\langle\psi_i,W(tu)\psi_i\rangle=\sum_v\overline{\psi_i(v)}\,e^{\ii\sigma(tu,v)/2}\psi_i(v+tu)$
+vanishes unless $tu\in\operatorname{supp}\psi_i-\operatorname{supp}\psi_i$, which happens for only countably many $t$. Hence
+$\operatorname{tr}(\rho\,W(tu))=0$ for all but countably many $t\in\R$, whereas a Gaussian
+characteristic function vanishes nowhere, and no normal state of this representation is Gaussian.}
+
+\reve{That a Gaussian function with a covariance form satisfying the state condition nevertheless
+defines a state follows from the theorem that a function $\chi$ on $V$ with $\chi(0)=1$ and positive
+semidefinite twisted kernels is the characteristic function of a unique state on the CCR
+algebra~\cite{mstv},}~\cite[\S5.2]{bratteli-robinson}\reve{. Its proof passes through
+the GNS construction on the group algebra of $V$ twisted by $\sigma$ and through the uniqueness of
+the CCR algebra, and it is not reproduced here. The uniqueness of the CCR algebra, and with it the
+theorem, requires the form $\sigma$ to be nondegenerate, and this is the one place where
+nondegeneracy enters the existence question: if $\sigma(u,w)=0$ for every $w\in V$, then pairing
+with $w=e_{x,i}$ gives $u(x)^{\mathsf T}\Omega=0$, hence $u(x)=0$, at every site, so that $u=0$.
+Continuity of $\chi$, by contrast, is not needed. The elementary half, that the state condition makes
+the Gaussian twisted kernels positive semidefinite, is Remark~\ref{rem:gs-converse}.}
+\end{remark}
+
+\subsection{The state condition and its necessity}
+
+\noindent\motiv{\reve{For finitely many modes, a real symmetric matrix $\gamma_B$ is the covariance matrix of a
+Gaussian state exactly when $\gamma_B-\ii\Omega_M\ge0$ (equivalently $\gamma_B+\ii\Omega_M\ge0$), a form of the uncertainty
+principle. On the lattice there is no matrix, but the condition can be imposed on every finite
+family of vectors, and on a real vector space it can be rewritten without complex numbers in two
+ways, the second of which makes it evident that the sign in front of $\ii\sigma$ plays no
+role.}}
+
+\begin{definition}[State condition]\label{def:gs-statecond}
+\reve{Let $\gamma$ be a symmetric and $\sigma$ an alternating bilinear form on a real vector space
+$V$. The pair $(\gamma,\sigma)$ satisfies
+\begin{enumerate}[label=(\alph*)]
+\item the \emph{state condition} if for every finite family $(u_j)_{j\in I}$ in $V$ the complex
+matrix $\bigl(\gamma(u_j,u_k)+\ii\sigma(u_j,u_k)\bigr)_{j,k}$ is positive semidefinite;
+\item the state condition \emph{in pair form} if $\gamma(a,a)+\gamma(b,b)\ge2\sigma(a,b)$ for all $a,b\in V$;
+\item the state condition \emph{in real-pair form} if $\gamma(u,u)\ge0$ and $\sigma(u,w)^2\le\gamma(u,u)\,\gamma(w,w)$
+for all $u,w\in V$.
+\end{enumerate}}
+\end{definition}
+
+\noindent\reve{Condition~(a) can equally be read on complex vectors: if $\gamma_\C$ and $\sigma_\C$
+denote the sesquilinear extensions to $V_\C=V\otimes\C$, then for $\mu=\sum_kc_ku_k$ the quadratic
+form of the matrix in~(a) at $c$ is $\gamma_\C(\mu,\mu)+\ii\sigma_\C(\mu,\mu)$, and every
+$\mu=a+\ii b$ arises in this way from the family $(a,b)$ with $c=(1,\ii)$.}
+
+\begin{proposition}[Equivalent forms]\label{prop:gs-statecond}
+\reve{For symmetric $\gamma$ and alternating $\sigma$, the three conditions of
+Definition~\ref{def:gs-statecond} are equivalent, and they are also equivalent to condition~(a)
+with $\gamma-\ii\sigma$ in place of $\gamma+\ii\sigma$.}
+\end{proposition}
+
+\begin{proof}
+\reve{The matrix in (a) is Hermitian, since $\gamma$ is symmetric and $\sigma$ antisymmetric, and we
+first compute its quadratic form. For the family $(a,b)$ and $c=(1,\ii)$, the diagonal contributes
+$\gamma(a,a)+\gamma(b,b)$, since $\sigma(a,a)=\sigma(b,b)=0$, while the off-diagonal terms
+contribute $\ii\bigl(\gamma(a,b)-\gamma(b,a)\bigr)=0$ from $\gamma$ and
+$\ii\cdot\ii\bigl(\sigma(a,b)-\sigma(b,a)\bigr)=-2\sigma(a,b)$ from $\sigma$. For a general family
+and general coefficients, bilinearity reduces the computation to this case with
+$a=\sum_k(\operatorname{Re}c_k)u_k$ and $b=\sum_k(\operatorname{Im}c_k)u_k$, and therefore
+\begin{equation}\label{eq:gs-pair}
+\sum_{j,k}\bar c_jc_k\,(\gamma+\ii\sigma)(u_j,u_k)=\gamma(a,a)+\gamma(b,b)-2\sigma(a,b).
+\end{equation}
+The quadratic forms in (a) are thus non-negative for all families and coefficients exactly when
+(b) holds, which proves (a)$\Leftrightarrow$(b).}
+
+\reve{Assume (b). Taking $b=0$ gives $\gamma(a,a)\ge0$. Given $u,w$ and $s>0$, (b) applied to $a=su$
+and $b=\pm w/s$ gives $s^2\gamma(u,u)+s^{-2}\gamma(w,w)\ge2|\sigma(u,w)|$. When $\gamma(u,u)$ and
+$\gamma(w,w)$ are both positive, the choice $s^2=\sqrt{\gamma(w,w)/\gamma(u,u)}$ yields
+$\sqrt{\gamma(u,u)\gamma(w,w)}\ge|\sigma(u,w)|$, which is (c); when $\gamma(u,u)=0$, the inequality
+$s^{-2}\gamma(w,w)\ge2|\sigma(u,w)|$ holds for every $s>0$ and forces $\sigma(u,w)=0$ as
+$s\to\infty$, so that (c) holds in the form $0\le0$, and the case $\gamma(w,w)=0$ is the same with
+$s\to0$. Conversely, (c) and the inequality between the geometric and the arithmetic mean give
+$2\sigma(a,b)\le2\sqrt{\gamma(a,a)\gamma(b,b)}\le\gamma(a,a)+\gamma(b,b)$, which is (b).}
+
+\reve{Condition (c) does not change when $\sigma$ is replaced by $-\sigma$, and condition (a) for
+$-\sigma$ is condition (a) with $\gamma-\ii\sigma$, which proves the last statement.}
+\end{proof}
+
+\noindent\motiv{\reve{The necessity of the state condition is the statement that positivity of a
+Gaussian state forces the uncertainty relation on its covariance form. The argument below uses
+positivity only on elements of the form $\sum_kb_k\delta_k^{-1}(W(su_k)-1)$ and lets $s$ tend to zero; the
+subtraction of the identity removes the constant term of the exponential, which would otherwise
+dominate, and the limit is controlled by an explicit bound, so that no derivatives are needed.}}
+
+\begin{theorem}[Necessity of the state condition]\label{thm:gs-necessity}
+\reve{The covariance form $\gamma$ of every Gaussian state satisfies the state condition with
+$\sigma$, in each of the three equivalent forms of Definition~\ref{def:gs-statecond}.}
+\end{theorem}
+
+\begin{proof}
+\reve{Let $(\omega,\gamma,d)$ be a Gaussian state, $u_1,\dots,u_J\in V$ and $b\in\C^J$, and put
+$H_{jk}=\tfrac12\bigl(\gamma(u_j,u_k)+\ii\sigma(u_j,u_k)\bigr)$. The matrix $H$ is Hermitian, so that
+$h=\sum_{j,k}\bar b_jb_kH_{jk}$ is real, and it has to be shown that $h\ge0$.}
+
+\reve{For $s>0$ consider the family $v_0=0$ and $v_k=su_k$ for $1\le k\le J$, and put $\delta_0=1$
+and $\delta_k=\exp\bigl(\ii s\,d(u_k)-\tfrac14s^2\gamma(u_k,u_k)\bigr)$. Expanding
+$\gamma(v_k-v_j,v_k-v_j)=\gamma(v_j,v_j)+\gamma(v_k,v_k)-2\gamma(v_j,v_k)$ by symmetry and using the
+linearity of $d$, the twisted kernel of $\chi_\omega$ on this family factorizes as
+\[K_{jk}=e^{\ii\sigma(v_j,v_k)/2}\exp\bigl(\ii d(v_k-v_j)-\tfrac14\gamma(v_k-v_j,v_k-v_j)\bigr)
+=\overline{\delta_j}\,\delta_k\,e^{s^2H_{jk}},\]
+where $H_{0k}=H_{j0}=0$. We apply Proposition~\ref{prop:gs-twisted}(a) with the coefficients
+$c_0=-B$, where $B=\sum_{k\ge1}b_k$, and $c_k=b_k/\delta_k$ for $k\ge1$, which is possible because
+$\delta_k\neq0$. Then $c_k\delta_k=b_k$ for $k\ge1$ and $c_0\delta_0=-B$, and the terms of the
+quadratic form with $j=k=0$, with $j=0<k$, with $k=0<j$ and with $j,k\ge1$ contribute $|B|^2$,
+$-|B|^2$, $-|B|^2$ and $\sum_{j,k\ge1}\bar b_jb_ke^{s^2H_{jk}}$ respectively. Since
+$\sum_{j,k\ge1}\bar b_jb_k=|B|^2$, this gives, with $\tau=s^2$,
+\begin{equation}\label{eq:gs-schur}
+0\le\sum_{j,k=1}^J\bar b_jb_k\bigl(e^{\tau H_{jk}}-1\bigr)\qquad\text{for every }\tau>0,
+\end{equation}
+which in terms of the algebra is $\omega(X^*X)\ge0$ for $X=\sum_kb_k\delta_k^{-1}(W(su_k)-1)$.}
+
+\reve{For a complex number $z$ with $|z|\le1$ one has
+$|e^z-1-z|\le\sum_{r\ge2}|z|^r/r!\le|z|^2$. Choose $\tau_0>0$ with $\tau_0|H_{jk}|\le1$ for all
+$j,k$, and let $0<\tau\le\tau_0$. Writing $e^{\tau H_{jk}}-1=\tau H_{jk}+\rho_{jk}$ with
+$|\rho_{jk}|\le\tau^2|H_{jk}|^2$ and taking real parts in~\eqref{eq:gs-schur}, we obtain
+\[0\le\tau h+\tau^2C,\qquad C=\sum_{j,k}|b_j|\,|b_k|\,|H_{jk}|^2,\]
+so that $h\ge-\tau C$ for every $\tau\in(0,\tau_0]$, and hence $h\ge0$. Since $2h$ is the quadratic
+form of condition (a) of Definition~\ref{def:gs-statecond}, this proves (a), and the other two forms
+follow from Proposition~\ref{prop:gs-statecond}.}
+\end{proof}
+
+\begin{remark}[The converse for twisted kernels]\label{rem:gs-converse}
+\reve{Conversely, if $\gamma$ is symmetric and satisfies the state condition, and $d$ is linear, then
+the Gaussian function $\chi(u)=\exp\bigl(\ii d(u)-\tfrac14\gamma(u,u)\bigr)$ has positive
+semidefinite twisted kernels. By the factorization in the proof above with $s=1$, the kernel on a
+family $(u_k)$ is $K=D^\dagger ED$ with $D=\operatorname{diag}(\delta_k)$ and $E_{jk}=e^{H_{jk}}$,
+and $E=\sum_{r\ge0}H^{\circ r}/r!$ is a convergent sum of entrywise powers of the positive
+semidefinite matrix $H$, each of which is positive semidefinite by the Schur product theorem.
+Together with the theorem cited in Remark~\ref{rem:gs-existence}, this yields a Gaussian state for
+every symmetric $\gamma$ satisfying the state condition and every linear $d$.}
+\end{remark}
+
+\subsection{Finite regions and the covariance matrix}\label{sec:gs-regions}
+
+\noindent\motiv{\reve{A finite region $O\subseteq G$ carries $n_O=n|O|$ modes, and a Gaussian state
+of finitely many modes is described by a real $2n_O\times2n_O$ covariance matrix $\gamma_B$, which
+is twice the matrix of symmetrized second moments of the canonical coordinates, ordered with all
+positions before all momenta. Such a matrix is called \emph{admissible} if it is symmetric and
+$\gamma_B-\ii\Omega_{n_O}\ge0$, where
+$\Omega_{M}=\begin{psmallmatrix}0&I_M\\-I_M&0\end{psmallmatrix}$ is the symplectic matrix of $M$
+modes in the same order. The covariance form of a lattice state, restricted to a finite region, is
+exactly such a covariance matrix, and the state condition on the region is exactly admissibility,
+once two differences of bookkeeping are accounted for: the site coordinates of a region come site
+by site, whereas the finite-mode convention puts all positions first, and the form $\gamma$ is evaluated on the labels $u$ of the Weyl operators
+$W(u)$, as a two-point function is evaluated on test functions, whereas $\gamma_B$ is a matrix of
+moments of the canonical coordinates, the two being related by a conjugation with $\Omega$.}}
+
+\noindent\reve{We write $\loc(O)$ for the subspace of vectors supported in $O$, as in
+Chapter~\ref{sec:ccrautomata}, and say that $\gamma$ satisfies the state condition \emph{on $O$} if
+the restrictions of $\gamma$ and $\sigma$ to $\loc(O)$ satisfy it; by
+Proposition~\ref{prop:gs-statecond} this may be taken in the real-pair form, $\gamma(u,u)\ge0$ and
+$\sigma(u,w)^2\le\gamma(u,u)\gamma(w,w)$ for $u,w\in\loc(O)$.}
+
+\begin{definition}[Covariance matrix of a region]\label{def:gs-covmat}
+\reve{Let $O\subseteq G$ be finite and fix an enumeration $r\colon O\times\{1,\dots,n\}\to
+\{1,\dots,n_O\}$ of its modes. The \emph{site vectors} of $O$ in the finite-mode order are
+\[f_{q_{r(x,i)}}=e_{x,i},\qquad f_{p_{r(x,i)}}=e_{x,n+i}\qquad(x\in O,\ 1\le i\le n),\]
+so that the position coordinate of the mode $r(x,i)$ belongs to the $i$-th position of the site $x$,
+and its momentum coordinate to the $i$-th momentum. For a bilinear form $\beta$ on $V$, the
+\emph{restricted matrix} $R_O(\beta)$ is the real $2n_O\times2n_O$ matrix with entries
+$\beta(f_a,f_b)$, rows and columns ordered $q_1,\dots,q_{n_O},p_1,\dots,p_{n_O}$. The
+\emph{covariance matrix} of $\gamma$ on $O$ is
+\[\cov_O(\gamma)=\Omega_{n_O}^{\mathsf T}\,R_O(\gamma)\,\Omega_{n_O}.\]}
+\end{definition}
+
+\noindent\reve{The matrix $R_O(\gamma)$ is the matrix of $\gamma$ on the site vectors of $O$ taken
+site by site, conjugated by the permutation matrix that puts positions first, and the conjugation
+by $\Omega_{n_O}$ is the passage from forms on labels to moments, $\gamma_B=\Omega^{\mathsf
+T}\gamma\,\Omega$, which the paragraph before Example~\ref{ex:gs-squeezed} derives for one mode. A different enumeration
+of the modes conjugates $\cov_O(\gamma)$ by $P\oplus P$ for a permutation matrix $P$ of the modes;
+since $(P\oplus P)\Omega_{n_O}(P\oplus P)^{\mathsf T}=\Omega_{n_O}$, this preserves admissibility, and
+none of the statements below depends on the enumeration.}
+
+\begin{lemma}[Coordinates on a region]\label{lem:gs-reorder}
+\reve{Let $O$ be finite.
+\begin{enumerate}[label=(\alph*)]
+\item $R_O(\sigma)=\Omega_{n_O}$, and $\Omega_{n_O}^{\mathsf T}\Omega_{n_O}=1$.
+\item Every $u\in\loc(O)$ is $u=\sum_a\xi_af_a$ for the coordinate vector $\xi\in\R^{2n_O}$ with $\xi_a$ the corresponding entry $u(x)_i$,
+and for $w=\sum_a\eta_af_a$ one has $\beta(u,w)=\xi^{\mathsf T}R_O(\beta)\,\eta$ for every bilinear
+form $\beta$.
+\item For $n=1$ and a one-point region $\{x\}$, $\cov_{\{x\}}(\gamma)=\Omega^{\mathsf
+T}R_{\{x\}}(\gamma)\,\Omega$, where $R_{\{x\}}(\gamma)$ is the matrix of $\gamma$ on the site
+vectors $e_{x,1},e_{x,2}$; and $\Omega^{\mathsf
+T}\operatorname{diag}(\alpha,\beta)\,\Omega=\operatorname{diag}(\beta,\alpha)$.
+\end{enumerate}}
+\end{lemma}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Since $\sigma(e_{x,i},e_{y,j})=\delta_{xy}\Omega_{ij}$, the only nonzero values of $\sigma$ on
+the site vectors are $\sigma(f_{q_r},f_{p_r})=1$ and $\sigma(f_{p_r},f_{q_r})=-1$, which are the
+entries of $\Omega_{n_O}$. The second statement is the block computation
+$\begin{psmallmatrix}0&-I\\I&0\end{psmallmatrix}\begin{psmallmatrix}0&I\\-I&0\end{psmallmatrix}=1$.
+\item The vectors $f_a$ are the vectors $e_{x,i}$ with $x\in O$, each listed once, and these form a
+basis of $\loc(O)$, so that $u$ is the sum of its entries times these vectors; the formula for $\beta$ is bilinearity.
+\item For one site and one mode, $f_{q_1}=e_{x,1}$ and $f_{p_1}=e_{x,2}$, and $\Omega_1=\Omega$.
+The identity is the product
+$\begin{psmallmatrix}0&-1\\1&0\end{psmallmatrix}\begin{psmallmatrix}0&\alpha\\-\beta&0\end{psmallmatrix}
+=\operatorname{diag}(\beta,\alpha)$.
+\end{enumerate}}
+\end{proof}
+
+\begin{proposition}[Restriction to a region]\label{prop:gs-admissible}
+\reve{Let $\gamma$ be a symmetric bilinear form on $V$ and $O$ a finite region. Then $\gamma$
+satisfies the state condition on $O$ if and only if $\cov_O(\gamma)$ is admissible. In particular,
+the covariance form of a Gaussian state has an admissible covariance matrix on every finite
+region.}
+\end{proposition}
+
+\begin{proof}
+\reve{By Lemma~\ref{lem:gs-reorder}(b), the coordinates identify $\loc(O)$ with $\R^{2n_O}$ and carry
+$\gamma$ and $\sigma$ to the forms of the matrices $R_O(\gamma)$ and $R_O(\sigma)=\Omega_{n_O}$. A
+complex combination of vectors of $\loc(O)$ has a complex coordinate vector $\zeta$, and by
+\eqref{eq:gs-pair} the quadratic form of condition (a) of Definition~\ref{def:gs-statecond} at it is
+$\zeta^\dagger\bigl(R_O(\gamma)+\ii\Omega_{n_O}\bigr)\zeta$. The state condition on $O$ is therefore
+equivalent to $R_O(\gamma)+\ii\Omega_{n_O}\ge0$ and, by the last statement of
+Proposition~\ref{prop:gs-statecond}, to $R_O(\gamma)-\ii\Omega_{n_O}\ge0$. Since $R_O(\gamma)$ is
+symmetric, this says that $R_O(\gamma)$ is admissible.}
+
+\reve{It remains to pass from $R_O(\gamma)$ to $\cov_O(\gamma)$. If $S$ is an invertible real matrix
+with $S\Omega_{n_O}S^{\mathsf T}=\Omega_{n_O}$, then
+$S(A-\ii\Omega_{n_O})S^{\mathsf T}=SAS^{\mathsf T}-\ii\Omega_{n_O}$, and since a congruence by an
+invertible matrix preserves positive semidefiniteness in both directions, $A$ is admissible if and
+only if $SAS^{\mathsf T}$ is. The matrix $S=\Omega_{n_O}^{\mathsf T}$ is of this kind, because
+$\Omega_{n_O}^{\mathsf T}\Omega_{n_O}\Omega_{n_O}=\Omega_{n_O}$ by Lemma~\ref{lem:gs-reorder}(a),
+and $SR_O(\gamma)S^{\mathsf T}=\cov_O(\gamma)$. The last statement follows from
+Theorem~\ref{thm:gs-necessity}, since the state condition on $V$ implies it on $\loc(O)$.}
+\end{proof}
+
+\noindent\reve{The conjugation by $\Omega_{n_O}$ plays no role for admissibility, since
+$\Omega_{n_O}^{\mathsf T}$ preserves the symplectic matrix; it is there so that $\cov_O(\gamma)$ is
+the physical covariance matrix of the region and the finite-mode examples below mean the same states
+on both sides. The step from $\gamma+\ii\sigma$ to $\gamma-\ii\sigma$ is the complex conjugation of
+Proposition~\ref{prop:gs-statecond}.}
+
+\noindent\motiv{\reve{The familiar operations on covariance matrices of finitely many modes, the
+passage to a subsystem and the direct sum of independent systems, correspond on the lattice to the
+passage to a smaller region and to the union of two regions without correlations between them.}}
+
+\begin{corollary}[Sub-regions and unions]\label{cor:gs-regions}
+\reve{Let $\gamma$ be a symmetric bilinear form on $V$.
+\begin{enumerate}[label=(\alph*)]
+\item If $\gamma$ satisfies the state condition on a finite region $O$, it satisfies it on every
+$O'\subseteq O$.
+\item Let $O_1$ and $O_2$ be disjoint finite regions with $\gamma(u,w)=0$ for $u\in\loc(O_1)$ and
+$w\in\loc(O_2)$. Then $\gamma$ satisfies the state condition on $O_1\cup O_2$ if and only if it
+satisfies it on $O_1$ and on $O_2$.
+\end{enumerate}}
+\end{corollary}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item The real-pair form on $\loc(O)$ implies it on the subspace $\loc(O')\subseteq\loc(O)$.
+\item The direction ($\Rightarrow$) is (a). Conversely, every $a\in\loc(O_1\cup O_2)$ splits as
+$a=a_1+a_2$ with $a_i\in\loc(O_i)$, and similarly $b=b_1+b_2$. The cross terms of $\gamma$ vanish
+by hypothesis and by symmetry, and those of $\sigma$ vanish because $\sigma(u,w)=0$ whenever $u$ and
+$w$ have disjoint supports. Hence
+\[\gamma(a,a)+\gamma(b,b)-2\sigma(a,b)=\sum_{i=1,2}\bigl(\gamma(a_i,a_i)+\gamma(b_i,b_i)
+-2\sigma(a_i,b_i)\bigr),\]
+and the pair form on $O_1$ and on $O_2$ gives it on $O_1\cup O_2$; by
+Proposition~\ref{prop:gs-statecond}, applied to the restrictions, the pair form is equivalent to the
+state condition.
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{In terms of covariance matrices, (a) says that $\cov_{O'}(\gamma)$, which is the
+submatrix of $\cov_O(\gamma)$ on the modes of $O'$ when the enumerations are chosen compatibly, is
+admissible whenever $\cov_O(\gamma)$ is, and (b) says that under the hypothesis $\cov_O(\gamma)$ is,
+up to a permutation of modes, the direct sum of $\cov_{O_1}(\gamma)$ and $\cov_{O_2}(\gamma)$, which
+is admissible exactly when both summands are.}
+
+\begin{remark}[Definiteness]\label{rem:gs-posdef}
+\reve{If $\gamma$ is symmetric and satisfies the state condition on a finite region $O$, then
+$\gamma(u,u)>0$ for every nonzero $u\in\loc(O)$, so that $R_O(\gamma)$ and the congruent matrix
+$\cov_O(\gamma)$ are positive definite. Indeed, if $\gamma(u,u)=0$, the real-pair form gives $\sigma(u,w)=0$ for every
+$w\in\loc(O)$, and pairing with $w=e_{x,i}$ for $x\in O$ shows that $\Omega^{\mathsf T}u(x)=0$, so
+that $u(x)=0$ for every $x\in O$ and $u=0$.}
+\end{remark}
+
+\noindent\motiv{\reve{The two basic examples of the finite-mode theory, the vacuum and the squeezed
+states, are products over the sites. Each is given here by its covariance form, which by
+Theorem~\ref{thm:gs-necessity} and Proposition~\ref{prop:gs-admissible} is what a Gaussian state
+with these correlations must have.}}
+
+\begin{example}[The vacuum]\label{ex:gs-vacuum}
+\reve{The \emph{vacuum form} is $\gamma(u,w)=\sum_xu(x)^{\mathsf T}w(x)$. It satisfies the state
+condition on $V$: since $\Omega$ is orthogonal,
+\[\gamma(a,a)+\gamma(b,b)-2\sigma(a,b)=\sum_x\bigl|a(x)-\Omega\,b(x)\bigr|^2\ge0,\]
+which is the pair form. On every finite region $R_O(\gamma)=1$, since the site vectors are
+orthonormal, and hence $\cov_O(\gamma)=\Omega_{n_O}^{\mathsf T}\Omega_{n_O}=1$; for one mode and one
+site this is the covariance matrix $\operatorname{diag}(1,1)$ of the ground state of the harmonic
+oscillator in natural units, whose characteristic function is $\exp\bigl(-\tfrac14|u|^2\bigr)$.}
+\end{example}
+
+\noindent\motiv{\reve{Let $n=1$. On one mode, $W(u)=\exp\bigl(\ii(u_pX-u_qP)\bigr)$ realizes the Weyl relations of
+these notes, and a centred Gaussian state with covariance matrix $\gamma_B$ has
+$\chi(u)=\exp\bigl(-\tfrac14(\Omega u)^{\mathsf T}\gamma_B(\Omega u)\bigr)$, since $\Omega
+u=(u_p,-u_q)$. Comparing with Definition~\ref{def:gs-gaussian} gives $\gamma=\Omega^{\mathsf
+T}\gamma_B\Omega$, or equivalently $\gamma_B=\Omega\gamma\Omega^{\mathsf T}=\Omega^{\mathsf
+T}\gamma\,\Omega$, the last because $\Omega^{\mathsf T}=-\Omega$. For the vacuum both sides are the
+identity, and it is the squeezed state that makes the conjugation visible: for
+$\gamma_B=\operatorname{diag}(\vartheta,1/\vartheta)$ with $\vartheta>0$ the characteristic function is
+$\exp\bigl(-\tfrac14(u_q^2/\vartheta+\vartheta u_p^2)\bigr)$, so that $\gamma=\operatorname{diag}(1/\vartheta,\vartheta)$ on one
+site.}}
+
+\begin{example}[Squeezed product states]\label{ex:gs-squeezed}
+\reve{Let $n=1$ and $\vartheta>0$. The \emph{squeezed form} is
+\[\gamma(u,w)=\sum_xu(x)^{\mathsf T}\operatorname{diag}(1/\vartheta,\vartheta)\,w(x).\]
+By Lemma~\ref{lem:gs-reorder}(c) its covariance matrix on a one-point region is
+$\operatorname{diag}(\vartheta,1/\vartheta)$. It satisfies the state condition on $V$, because
+for $a(x)=(q,p)$ and $b(x)=(q',p')$ the contribution of the site $x$ to the pair form is
+\[\frac{q^2+q'^2}{\vartheta}+\vartheta(p^2+p'^2)-2(qp'-pq')
+=\Bigl(\frac{q}{\sqrt\vartheta}-\sqrt\vartheta\,p'\Bigr)^2+\Bigl(\sqrt\vartheta\,p+\frac{q'}{\sqrt\vartheta}\Bigr)^2\ge0 .\]}
+\end{example}
+
+\subsection{The Fourier criterion}\label{sec:gs-fourier}
+
+\noindent\motiv{\reve{From here on $G=\Z$. A translation-invariant covariance form is determined by
+the correlations between the site $0$ and every other site, a family of $2n\times2n$ matrices, just
+as a rule is determined by its coefficients. The Fourier transform then diagonalizes the
+translations, and the state condition, which involves arbitrarily large families of vectors,
+reduces to a condition on one $2n\times2n$ Hermitian matrix at each wave number~$k$.}}
+
+\begin{definition}[Cell coefficients and symbol]\label{def:gs-cells}
+\reve{A family $(\gamma_x)_{x\in\Z}$ of real $2n\times2n$ matrices is \emph{cell data} if
+it is absolutely summable, $\sum_x\|\gamma_x\|<\infty$, and symmetric, $\gamma_{-x}=\gamma_x^{\mathsf
+T}$. Its \emph{covariance form} and its \emph{symbol} are
+\[\gamma(u,w)=\sum_{x,y\in\Z}u(x)^{\mathsf T}\gamma_{x-y}\,w(y),\qquad
+\hat\gamma(k)=\sum_{x\in\Z}\gamma_x\,e^{-\ii kx}\quad(k\in\R).\]
+The family has \emph{range} $\Lambda\in\mathbb N$ if $\gamma_x=0$ for $|x|>\Lambda$.}
+\end{definition}
+
+\noindent\reve{The sign in the exponent is that of the Fourier symbol of a rule,
+$\hat L(k)=\sum_g\ell_ge^{-\ii kg}$ of the paragraph after Lemma~\ref{lem:qca-circle}; in this chapter the coefficients
+of a rule are indexed by $g\in\Z$, because the letter $m$ is needed for the mass in
+Example~\ref{ex:gs-leapfrog}. The cell data of this definition are not required to satisfy the
+state condition, and admissibility, which concerns covariance matrices of finite regions, is a
+different notion. The vacuum
+form of Example~\ref{ex:gs-vacuum} has the cells $\gamma_0=1$ and $\gamma_x=0$ for $x\neq0$, so
+that $\hat\gamma(k)=1$, and the squeezed form has $\gamma_0=\operatorname{diag}(1/\vartheta,\vartheta)$ and
+$\gamma_x=0$ otherwise; both have range $0$.}
+
+\begin{lemma}[Cell forms]\label{lem:gs-cells}
+\reve{Let $(\gamma_x)$ be cell data.
+\begin{enumerate}[label=(\alph*)]
+\item The covariance form is a well-defined symmetric bilinear form on $V$, invariant under
+translations.
+\item The series for $\hat\gamma(k)$ converges absolutely, the function
+$\hat\gamma$ is continuous, and $\hat\gamma(k)$ is Hermitian with
+$\hat\gamma(-k)=\overline{\hat\gamma(k)}$.
+\end{enumerate}}
+\end{lemma}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item The double sum is finite because $u$ and $w$ are finitely supported, and it is bilinear. It
+is symmetric because
+$\gamma(w,u)=\sum_{x,y}u(y)^{\mathsf T}\gamma_{x-y}^{\mathsf T}w(x)=\sum_{x,y}u(y)^{\mathsf
+T}\gamma_{y-x}w(x)=\gamma(u,w)$, and translation invariance follows from the substitution
+$x\mapsto x+a$, $y\mapsto y+a$.
+\item The terms are bounded by $\|\gamma_x\|$, so that the Weierstrass test gives absolute and uniform
+convergence of continuous functions, and hence continuity. Since the $\gamma_x$ are real,
+$\hat\gamma(k)^\dagger=\sum_x\gamma_x^{\mathsf T}e^{\ii kx}=\sum_x\gamma_{-x}e^{\ii kx}=\hat\gamma(k)$
+and $\overline{\hat\gamma(k)}=\sum_x\gamma_xe^{\ii kx}=\hat\gamma(-k)$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{The convergence in (b) is uniform in $k$, and each term is $2\pi$-periodic, so that $\hat\gamma$ is a continuous function on the circle.}
+
+\noindent\reve{The state condition concerns complex combinations of vectors, that is, finitely
+supported functions $\mu\colon\Z\to\C^{2n}$, with Fourier transform
+$\hat\mu(k)=\sum_x\mu(x)e^{-\ii kx}$. By the discussion after Definition~\ref{def:gs-statecond},
+$(\gamma,\sigma)$ satisfies the state condition if and only if $Q(\mu)\ge0$ for every such $\mu$,
+where
+\[Q(\mu)=\sum_{x,y\in\Z}\mu(x)^\dagger a_{x-y}\,\mu(y),\qquad a_g=\gamma_g+\ii\delta_{g,0}\Omega,\]
+and $\sum_ga_ge^{-\ii kg}=\hat\gamma(k)+\ii\Omega$.}
+
+\begin{lemma}[Parseval identity]\label{lem:gs-parseval}
+\reve{For cell data and every finitely supported $\mu\colon\Z\to\C^{2n}$,
+\[Q(\mu)=\frac1{2\pi}\int_{-\pi}^{\pi}\hat\mu(k)^\dagger\bigl(\hat\gamma(k)+\ii\Omega\bigr)\hat\mu(k)\,dk .\]}
+\end{lemma}
+
+\begin{proof}
+\reve{For fixed $k$,
+\[\hat\mu(k)^\dagger\bigl(\hat\gamma(k)+\ii\Omega\bigr)\hat\mu(k)
+=\sum_{x,y}\sum_g\mu(x)^\dagger a_g\mu(y)\,e^{\ii k(x-y-g)},\]
+a finite sum over $x,y$ of series in $g$ that converge uniformly in $k$, the terms being bounded by
+$|\mu(x)|\,|\mu(y)|\,\|a_g\|$. The series may therefore be integrated term by term, and since
+$\frac1{2\pi}\int_{-\pi}^\pi e^{\ii kj}\,dk=\delta_{j,0}$ for $j\in\Z$, exactly the terms with
+$g=x-y$ remain, whose sum is $Q(\mu)$.}
+\end{proof}
+
+\begin{theorem}[Fourier criterion]\label{thm:gs-fourier}
+\reve{Let $(\gamma_x)$ be cell data with covariance form $\gamma$.
+\begin{enumerate}[label=(\alph*)]
+\item If $\hat\gamma(k)+\ii\Omega\ge0$ for every $k\in\R$, then $(\gamma,\sigma)$ satisfies the
+state condition.
+\item If $(\gamma_x)$ has finite range and $(\gamma,\sigma)$ satisfies the state condition, then
+$\hat\gamma(k)+\ii\Omega\ge0$ for every $k\in\R$.
+\end{enumerate}}
+\end{theorem}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item The integrand in Lemma~\ref{lem:gs-parseval} is non-negative for every $k$, hence so is
+$Q(\mu)$.
+\item Suppose that $v^\dagger\bigl(\hat\gamma(k_0)+\ii\Omega\bigr)v=-\varepsilon<0$ for some $k_0$
+and $v\in\C^{2n}$, and let $\Lambda$ be the range. For $N>\Lambda$ let $\mu_N(x)=e^{\ii k_0x}v$ for $0\le x<N$
+and $\mu_N(x)=0$ otherwise. The number of pairs $(x,y)\in\{0,\dots,N-1\}^2$ with $x-y=g$ is
+$N-|g|$ for $|g|<N$, and $a_g=0$ for $|g|>\Lambda$, so that
+\[Q(\mu_N)=\sum_{|g|\le\Lambda}(N-|g|)\,e^{-\ii k_0g}\,v^\dagger a_gv
+=-N\varepsilon-\sum_{|g|\le\Lambda}|g|\,e^{-\ii k_0g}\,v^\dagger a_gv .\]
+The last sum is bounded in absolute value by $C=\sum_{|g|\le\Lambda}|g|\,|v^\dagger a_gv|$, which does
+not depend on $N$, and for $N>\max(\Lambda,C/\varepsilon)$ we obtain $Q(\mu_N)\le-N\varepsilon+C<0$,
+contradicting the state condition.
+\end{enumerate}}
+\end{proof}
+
+\begin{remark}[Necessity for all cell data]\label{rem:gs-fourier-general}
+\reve{The hypothesis of finite range in part~(b) can be dropped: for all cell data, the state
+condition holds if and only if $\hat\gamma(k)+\ii\Omega\ge0$ for every $k\in\R$. Only necessity
+needs proof. Assume the state condition, fix $k_0\in\R$ and $v\in\C^{2n}$, and define $\mu_N$ as in
+the proof of~(b) for every $N\ge1$. The state condition gives $Q(\mu_N)\ge0$ for every $N$, and
+counting the pairs $(x,y)$ with $x-y=g$ as there, now without any restriction on $g$,
+\[\frac{Q(\mu_N)}N=\sum_{|g|<N}\Bigl(1-\frac{|g|}N\Bigr)e^{-\ii k_0g}\,v^\dagger a_gv .\]
+The $g$-th term tends to $e^{-\ii k_0g}\,v^\dagger a_gv$ as $N\to\infty$ and is bounded in absolute
+value by $|v^\dagger a_gv|\le|v|^2\|a_g\|$, which is summable over $g$ because the cells are
+absolutely summable. By dominated convergence for series, $Q(\mu_N)/N$ tends to
+$\sum_ge^{-\ii k_0g}\,v^\dagger a_gv=v^\dagger\bigl(\hat\gamma(k_0)+\ii\Omega\bigr)v$, which is
+therefore a limit of non-negative numbers and non-negative. As $v$ and $k_0$ were arbitrary,
+$\hat\gamma(k)+\ii\Omega\ge0$ for every $k$, and together with part~(a) the criterion is an
+equivalence for all cell data.}
+\end{remark}
+
+\begin{remark}[The other sign]\label{rem:gs-minus}
+\reve{By Lemma~\ref{lem:gs-cells}(b), $\hat\gamma(k)-\ii\Omega=\overline{\hat\gamma(-k)+\ii\Omega}$,
+and the complex conjugate of a positive semidefinite matrix is positive semidefinite. If
+$\hat\gamma(k)+\ii\Omega\ge0$ for every $k$, therefore, both $\hat\gamma(k)\pm\ii\Omega$ are positive
+semidefinite at every $k$, and so is their average $\hat\gamma(k)$.}
+\end{remark}
+
+\subsection{Saturation of the state condition}
+
+\noindent\reve{Purity of a state is not defined in these notes, and nothing in this subsection
+proves that a state is pure. What is proved is the equivalence of three matrix conditions on the
+symbol which, by analogy with finitely many modes, are candidates for the characterization of the
+pure translation-invariant Gaussian states.}
+
+\noindent\motiv{\reve{A Gaussian state of finitely many modes is pure exactly when its covariance
+matrix saturates the uncertainty relation, which for one mode means $\det\gamma_B=1$. For a
+translation-invariant state on the chain with one mode per site, the Fourier criterion suggests
+that saturation should be read at every wave number, where it can be expressed in three ways,
+namely that $\hat\gamma(k)+\ii\Omega$ is singular, that $\det\hat\gamma(k)=1$, and that $\Omega\hat
+\gamma(k)$ squares to $-1$, as $\Omega\gamma_B$ does for a pure state of finitely many modes. For a single $2\times2$
+matrix the first is weaker than the others unless both signs of $\ii\Omega$ are taken into
+account.}}
+
+\begin{lemma}[Two-by-two matrices]\label{lem:gs-twobytwo}
+\reve{Let $n=1$ and let $A=\begin{psmallmatrix}a&c\\\bar c&b\end{psmallmatrix}$ be a Hermitian
+$2\times2$ matrix with $A+\ii\Omega\ge0$ and $A-\ii\Omega\ge0$. Then $\det A\ge1+2|\operatorname{Im}
+c|$, and the following are equivalent:
+\begin{enumerate}[label=(\alph*)]
+\item $(\Omega A)^2=-1$;
+\item $\det A=1$;
+\item $A+\ii\Omega$ and $A-\ii\Omega$ are both singular.
+\end{enumerate}}
+\end{lemma}
+
+\begin{proof}
+\reve{Since
+$A\pm\ii\Omega=\begin{psmallmatrix}a&c\pm\ii\\\bar c\mp\ii&b\end{psmallmatrix}$ and
+$(c\pm\ii)(\bar c\mp\ii)=|c|^2+1\pm2\operatorname{Im}c$,
+\begin{equation}\label{eq:gs-detpm}
+\det(A\pm\ii\Omega)=\det A-1\mp2\operatorname{Im}c ,
+\end{equation}
+and both determinants are non-negative by hypothesis, which gives the bound.}
+
+\reve{By \eqref{eq:gs-detpm}, condition (c) says $\det A=1+2\operatorname{Im}c=1-2\operatorname{Im}c$,
+that is, $\operatorname{Im}c=0$ and $\det A=1$, so that (c) implies (b); conversely, $\det A=1$
+forces $\operatorname{Im}c=0$ by the bound, and then both determinants vanish, which proves
+(b)$\Leftrightarrow$(c).}
+
+\reve{For (a)$\Leftrightarrow$(b), put $M=\Omega A=\begin{psmallmatrix}\bar
+c&b\\-a&-c\end{psmallmatrix}$, so that $\operatorname{tr}M=-2\ii\operatorname{Im}c$ and $\det
+M=\det A$; by the Cayley--Hamilton theorem, $M^2=(\operatorname{tr}M)M-(\det M)1$. If (b) holds,
+then $\operatorname{Im}c=0$, as just shown, so that $\operatorname{tr}M=0$ and $M^2=-1$. Suppose
+conversely that $M^2=-1$. If $\operatorname{tr}M\neq0$, the relation $(\operatorname{tr}M)M=(\det
+M-1)1$ makes $M$ a scalar $\lambda1$ with $\lambda^2=-1$, and $A=\Omega^{-1}M=-\lambda\Omega$; for
+$\lambda=\ii$ this gives $A-\ii\Omega=-2\ii\Omega$, and for $\lambda=-\ii$ it gives
+$A+\ii\Omega=2\ii\Omega$, and either matrix has the eigenvalues $2$ and $-2$, contrary to the
+hypothesis. Hence $\operatorname{tr}M=0$, and $M^2=-(\det M)1=-1$ gives $\det A=1$.}
+\end{proof}
+
+\noindent\reve{Both signs are needed for (b)$\Rightarrow$(a): the matrix
+$A=\begin{psmallmatrix}\sqrt2&-\ii\\\ii&\sqrt2\end{psmallmatrix}$ has $\det A=1$ and
+$A+\ii\Omega=\sqrt2\cdot1\ge0$, but $(\Omega A)^2=\begin{psmallmatrix}-3&2\sqrt2\,\ii\\
+-2\sqrt2\,\ii&-3\end{psmallmatrix}$. The example does not contradict the lemma, because it
+violates its hypothesis: $A-\ii\Omega=\begin{psmallmatrix}\sqrt2&-2\ii\\2\ii&\sqrt2\end{psmallmatrix}$
+has determinant $-2$ and is therefore not positive semidefinite. For a real matrix $A$ the two hypotheses coincide, and for the
+symbol of cell data they coincide by Remark~\ref{rem:gs-minus}.}
+
+\begin{corollary}[Saturation at every wave number]\label{cor:gs-purity}
+\reve{Let $n=1$ and let $(\gamma_x)$ be cell data with $\hat\gamma(k)+\ii\Omega\ge0$ for
+every $k$. The following are equivalent:
+\begin{enumerate}[label=(\alph*)]
+\item $\hat\gamma(k)+\ii\Omega$ is singular for every $k$;
+\item $\det\hat\gamma(k)=1$ for every $k$;
+\item $(\Omega\hat\gamma(k))^2=-1$ for every $k$.
+\end{enumerate}}
+\end{corollary}
+
+\begin{proof}
+\reve{By Remark~\ref{rem:gs-minus}, Lemma~\ref{lem:gs-twobytwo} applies to $A=\hat\gamma(k)$ for every
+$k$, and it gives (b)$\Leftrightarrow$(c) at each $k$ as well as (b)$\Rightarrow$(a). For
+(a)$\Rightarrow$(b), note that $\hat\gamma(-k)+\ii\Omega=\overline{\hat\gamma(k)-\ii\Omega}$, so
+that (a) at $-k$ says that $\hat\gamma(k)-\ii\Omega$ is singular; both $\hat\gamma(k)\pm\ii\Omega$
+are then singular, and Lemma~\ref{lem:gs-twobytwo} gives $\det\hat\gamma(k)=1$.}
+\end{proof}
+
+\noindent\reve{The equivalence holds for the conditions over all $k$ together and not wave number by
+wave number: at a single $k$, singularity of $\hat\gamma(k)+\ii\Omega$ does not imply
+$\det\hat\gamma(k)=1$ when $\operatorname{Im}\hat\gamma(k)_{12}>0$, which can happen when the cells
+$\gamma_x$ with $x\neq0$ are not symmetric matrices. For example, the cell data
+$\gamma_0=2\cdot1$, $\gamma_1=\tfrac12\begin{psmallmatrix}0&-1\\1&0\end{psmallmatrix}$,
+$\gamma_{-1}=\gamma_1^{\mathsf T}$ and $\gamma_x=0$ otherwise have the symbol
+$\hat\gamma(k)=\begin{psmallmatrix}2&\ii\sin k\\-\ii\sin k&2\end{psmallmatrix}$, so that
+$\det(\hat\gamma(k)+\ii\Omega)=4-(1+\sin k)^2\ge0$ and, the diagonal being positive,
+$\hat\gamma(k)+\ii\Omega\ge0$ for every $k$; at $k=\pi/2$ this matrix is singular, whereas
+$\det\hat\gamma(\pi/2)=3$.}
+
+\noindent\reve{Both product examples satisfy the conditions of Corollary~\ref{cor:gs-purity}. For the vacuum, $1+\ii\Omega$ has the
+eigenvalues $0$ and $2$ and $(\Omega\cdot1)^2=\Omega^2=-1$; the squeezed form has the constant symbol
+$\operatorname{diag}(1/\vartheta,\vartheta)$, whose determinant is $1$.}
+
+\subsection{Evolution}
+
+\noindent\motiv{\reve{A symplectic rule acts on states by pullback along its automorphism, and on
+the data of a Gaussian state by composition with the rule, so that Gaussian states evolve into
+Gaussian states. On a finite region an on-site rule acts on the covariance matrix by the symplectic
+congruence familiar from finitely many modes, and on the chain the evolution of the cell data is
+a congruence of the symbol at each wave number. Until the symbol is computed, $G$ is again an arbitrary abelian
+group.}}
+
+\begin{proposition}[Evolved states]\label{prop:gs-evolve}
+\reve{Let $L$ be a symplectic rule and $\omega$ a state.
+\begin{enumerate}[label=(\alph*)]
+\item $\omega\circ\alpha_L$ is a state with $\chi_{\omega\circ\alpha_L}=\chi_\omega\circ L$.
+\item If $(\omega,\gamma,d)$ is a Gaussian state, then so is
+$\bigl(\omega\circ\alpha_L,\ \gamma(L\cdot,L\cdot),\ d\circ L\bigr)$.
+\item If $\omega$ is translation invariant, so is $\omega\circ\alpha_L$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Proposition~\ref{prop:gs-pullback}(b) with $\alpha=\alpha_L$ and $Q=L$.
+\item Since $L$ is linear, $\gamma(L\cdot,L\cdot)$ is a symmetric bilinear form and $d\circ L$ a
+linear form, and by (a)
+$\chi_{\omega\circ\alpha_L}(u)=\exp\bigl(\ii d(Lu)-\tfrac14\gamma(Lu,Lu)\bigr)$.
+\item By Proposition~\ref{prop:alpha}(c), $\alpha_L\alpha_a=\alpha_a\alpha_L$, so that
+$(\omega\circ\alpha_L)\circ\alpha_a=(\omega\circ\alpha_a)\circ\alpha_L=\omega\circ\alpha_L$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\motiv{\reve{The automorphisms of rules compose as the rules do, so that iterating an
+automaton on a state amounts to multiplying symbols.}}
+
+\begin{proposition}[Composition of rules]\label{prop:gs-hom}
+\reve{The symplectic symbols form a submonoid of the matrices over the group algebra $\R[G]$, and
+$\hat L\mapsto\alpha_L$ is a monoid homomorphism from it into the $*$-automorphisms of
+$\CCR(V,\sigma)$ under composition, which restricts to a group homomorphism on the units.}
+\end{proposition}
+
+\begin{proof}
+\reve{The identity is symplectic, and if $\hat L^{\star\mathsf T}\Omega\hat L=\Omega$ and $\hat
+N^{\star\mathsf T}\Omega\hat N=\Omega$, then, since $\hat M\mapsto\hat M^{\star\mathsf T}$ reverses
+products (the involution is a ring homomorphism of the commutative ring $\R[G]$, and
+transposition reverses products), $(\hat L\hat N)^{\star\mathsf T}\Omega\hat L\hat N=\hat
+N^{\star\mathsf T}(\hat L^{\star\mathsf T}\Omega\hat L)\hat N=\Omega$. The homomorphism property is
+Proposition~\ref{prop:alpha}(b), and a monoid homomorphism maps units to units.}
+\end{proof}
+
+\noindent\reve{By Corollary~\ref{cor:qca-group}, every symplectic symbol is invertible, with a
+symplectic inverse, so that the submonoid of symplectic symbols is a group and the statement about
+units applies to all of it.}
+
+\noindent\motiv{\reve{On a finite region, the simplest rules are those acting at each site by the
+same symplectic matrix, and for them the evolution of the covariance matrix can be written down
+explicitly.}}
+
+\begin{corollary}[On-site evolution]\label{cor:gs-onsite}
+\reve{Let $S$ be a real $2n\times2n$ matrix with $S^{\mathsf T}\Omega S=\Omega$, let $L_S$ be the
+on-site rule $(L_Su)(x)=Su(x)$, and let $O$ be a finite region. For every bilinear form $\gamma$,
+\[\cov_O\bigl(\gamma(L_S\cdot,L_S\cdot)\bigr)=T_O\,\cov_O(\gamma)\,T_O^{\mathsf T},\]
+where $T_O$ is the matrix of $u\mapsto S^{-1}u$ applied at each site of $O$, written in the
+coordinates of Definition~\ref{def:gs-covmat}. If $\gamma$ is symmetric and satisfies the state
+condition on $O$, so does $\gamma(L_S\cdot,L_S\cdot)$.}
+\end{corollary}
+
+\begin{proof}
+\reve{Let $S_O$ be the matrix of $L_S$ on $\loc(O)$ in the coordinates of
+Lemma~\ref{lem:gs-reorder}(b), so that $R_O(\gamma(L_S\cdot,L_S\cdot))=S_O^{\mathsf T}R_O(\gamma)S_O$
+and $S_O^{\mathsf T}\Omega_{n_O}S_O=\Omega_{n_O}$, the latter because $L_S$ preserves $\sigma$ and
+$R_O(\sigma)=\Omega_{n_O}$. From $S^{\mathsf T}\Omega S=\Omega$ and $\Omega\Omega^{\mathsf T}=1$ it
+follows that $\Omega^{\mathsf T}S^{\mathsf T}\Omega=S^{-1}$, and site by site the same computation
+gives $\Omega_{n_O}^{\mathsf T}S_O^{\mathsf T}\Omega_{n_O}=S_O^{-1}=T_O$. Inserting
+$\Omega_{n_O}\Omega_{n_O}^{\mathsf T}=1$ twice,
+\[\Omega_{n_O}^{\mathsf T}S_O^{\mathsf T}R_O(\gamma)S_O\Omega_{n_O}
+=\bigl(\Omega_{n_O}^{\mathsf T}S_O^{\mathsf T}\Omega_{n_O}\bigr)
+\bigl(\Omega_{n_O}^{\mathsf T}R_O(\gamma)\Omega_{n_O}\bigr)
+\bigl(\Omega_{n_O}^{\mathsf T}S_O\Omega_{n_O}\bigr)=T_O\,\cov_O(\gamma)\,T_O^{\mathsf T},\]
+which is the formula. For the last statement, $L_S$ maps $\loc(O)$ into itself and preserves
+$\sigma$, so that for $u,w\in\loc(O)$ the real-pair form for $\gamma$ at $L_Su,L_Sw$ gives
+$\gamma(L_Su,L_Su)\ge0$ and $\sigma(u,w)^2=\sigma(L_Su,L_Sw)^2\le\gamma(L_Su,L_Su)\gamma(L_Sw,L_Sw)$.}
+\end{proof}
+
+\noindent\reve{The covariance matrix transforms with $S^{-1}$ and not with $S$. The state
+$\omega\circ\alpha_{L_S}$ is the evolution in the Heisenberg picture, in which the Weyl operators are
+moved by $S$, and the moments of the canonical coordinates are then moved by the inverse. The
+two congruences agree only in special cases, for instance for a rotation acting on the vacuum, where
+both leave the identity unchanged, and in general they differ: for one site and one mode,
+$S=\operatorname{diag}(2,1/2)$ takes the vacuum covariance $1$ to $S^{-1}S^{-\mathsf
+T}=\operatorname{diag}(1/4,4)$, whereas $SS^{\mathsf T}=\operatorname{diag}(4,1/4)$; and a rotation
+$S$ by an angle $\varphi$ with $\sin2\varphi\neq0$, acting on the squeezed covariance
+$\operatorname{diag}(\vartheta,1/\vartheta)$ with $\vartheta\neq1$, gives two matrices whose
+off-diagonal entries have opposite signs. By Proposition~\ref{prop:gs-admissible}, the admissibility of
+$T_O\cov_O(\gamma)T_O^{\mathsf T}$ is the familiar invariance of admissibility under symplectic
+congruences.}
+
+\begin{example}[On-site rotations]\label{ex:gs-rotation}
+\reve{Let $n=1$ and let $R_\varphi$ be the rotation of Example~\ref{ex:ccr-onsite}; the letter
+$R$ here denotes a rotation matrix and not a restricted matrix $R_O$. Since
+$R_\varphi^{\mathsf T}R_\varphi=1$, the vacuum form is invariant under the on-site rule,
+$\gamma(L_{R_\varphi}u,L_{R_\varphi}w)=\gamma(u,w)$. By Proposition~\ref{prop:gs-evolve}(b), the free
+evolution of uncoupled oscillators therefore takes a Gaussian state with the vacuum covariance to one
+with the same covariance and a rotated displacement; on a finite region this is
+Corollary~\ref{cor:gs-onsite} with $T_O\cdot1\cdot T_O^{\mathsf T}=1$.}
+\end{example}
+
+\noindent\motiv{\reve{On the chain, the covariance form of translation-invariant data evolves into
+another such form, and its cells and symbol can be computed from those of the rule.}}
+
+\begin{theorem}[Evolution of the covariance]\label{thm:gs-evolution}
+\reve{Let $G=\Z$, let $L$ be a rule with coefficients $\ell_g$, finitely many nonzero, and let
+$(\gamma_x)$ be cell data with covariance form $\gamma$. Put
+\[\gamma'_j=\sum_{g,g'}\ell_g^{\mathsf T}\,\gamma_{j+g-g'}\,\ell_{g'}\qquad(j\in\Z).\]
+Then $(\gamma'_j)$ is cell data whose covariance form is $\gamma(L\cdot,L\cdot)$, and
+\[\hat\gamma'(k)=\hat L(-k)^{\mathsf T}\,\hat\gamma(k)\,\hat L(k)=\hat L(k)^\dagger\,\hat\gamma(k)\,\hat L(k).\]
+If $L$ is reflection symmetric, $\ell_{-g}=\ell_g$ for all $g$, then $\hat L(-k)=\hat L(k)$ and
+$\hat\gamma'(k)=\hat L(k)^{\mathsf T}\hat\gamma(k)\hat L(k)$.}
+\end{theorem}
+
+\begin{proof}
+\reve{The cells $\gamma'_j$ are finite combinations of shifts of $(\gamma_x)$ and are therefore
+absolutely summable. They are symmetric, since $(\gamma'_j)^{\mathsf T}=\sum_{g,g'}\ell_{g'}^{\mathsf
+T}\gamma_{-j-g+g'}\ell_g$, which after exchanging the names $g$ and $g'$ is $\gamma'_{-j}$. For the
+form,
+\[\gamma(Lu,Lw)=\sum_{x,y}\sum_{g,g'}u(x-g)^{\mathsf T}\ell_g^{\mathsf T}\gamma_{x-y}\ell_{g'}w(y-g'),\]
+and the substitution $x'=x-g$, $y'=y-g'$ turns $\gamma_{x-y}$ into $\gamma_{x'-y'+g-g'}$, so that the
+inner sum over $g,g'$ is $\gamma'_{x'-y'}$. For the symbol, the substitution $p=j+g-g'$ gives
+$e^{-\ii kj}=e^{\ii kg}e^{-\ii kp}e^{-\ii kg'}$, and since the sums over $g,g'$ are finite and the
+sum over $p$ converges absolutely, the series may be rearranged into
+$\bigl(\sum_g\ell_g^{\mathsf T}e^{\ii kg}\bigr)\hat\gamma(k)\bigl(\sum_{g'}\ell_{g'}e^{-\ii kg'}\bigr)
+=\hat L(-k)^{\mathsf T}\hat\gamma(k)\hat L(k)$. As the $\ell_g$ are real,
+$\hat L(-k)^{\mathsf T}=\overline{\hat L(k)}^{\mathsf T}=\hat L(k)^\dagger$, and the last statement
+is immediate.}
+\end{proof}
+
+\noindent\reve{The second form shows that the evolution is a congruence at each wave number. If $L$ is
+symplectic, then $\hat L(k)^\dagger\Omega\hat L(k)=\Omega$ by Example~\ref{ex:qca-modes}, so that
+$\hat\gamma'(k)+\ii\Omega=\hat L(k)^\dagger\bigl(\hat\gamma(k)+\ii\Omega\bigr)\hat L(k)$, and the
+evolution preserves the Fourier criterion, in accordance with Proposition~\ref{prop:gs-evolve}(b)
+and Theorem~\ref{thm:gs-necessity}. The formula with $\hat L(-k)^{\mathsf T}=\hat L(k)^\dagger$ is
+the general form of the evolution law, and without reflection symmetry the transpose alone cannot
+replace the conjugate transpose: for the rule with $\ell_0=1$, $\ell_1=\begin{psmallmatrix}0&1\\0&0
+\end{psmallmatrix}$ and all other coefficients zero, the vacuum symbol is taken to $\hat L(k)^\dagger
+\hat L(k)=\begin{psmallmatrix}1&e^{-\ii k}\\e^{\ii k}&2\end{psmallmatrix}$, whereas $\hat
+L(k)^{\mathsf T}\hat L(k)=\begin{psmallmatrix}1&e^{-\ii k}\\e^{-\ii k}&1+e^{-2\ii k}\end{psmallmatrix}$
+is not even Hermitian.}
+
+\begin{example}[The leapfrog applied to the vacuum]\label{ex:gs-leapfrog}
+\reve{The leapfrog $F$ of Example~\ref{ex:qca-leapfrog-rule} has the coefficients
+$\ell_0=\begin{psmallmatrix}0&1\\-1&-m^2\end{psmallmatrix}$ and
+$\ell_{\pm1}=\begin{psmallmatrix}0&0\\0&1\end{psmallmatrix}$, so that it is reflection symmetric,
+with $\hat F(k)=\begin{psmallmatrix}0&1\\-1&c_k\end{psmallmatrix}$ and $c_k=2\cos k-m^2$, where $m$
+is the mass. By Proposition~\ref{prop:time-direction}, the rule that moves Cauchy data forward is $F^{-1}$, and
+reading $\alpha_{F^{-1}}$ as the forward time step of the lattice field is the heuristic reading that
+follows that proposition. The rule $F^{-1}$ has the symbol $\hat
+F^{-1}(k)=\begin{psmallmatrix}c_k&-1\\1&0\end{psmallmatrix}$, that is, the coefficients
+$\ell_0=\begin{psmallmatrix}-m^2&-1\\1&0\end{psmallmatrix}$ and
+$\ell_{\pm1}=\begin{psmallmatrix}1&0\\0&0\end{psmallmatrix}$, and it is again reflection symmetric.
+By Theorem~\ref{thm:gs-evolution}, one forward step takes the vacuum symbol $\hat\gamma(k)=1$ to
+\[\hat\gamma'(k)=\hat F^{-1}(k)^{\mathsf T}\hat F^{-1}(k)=\begin{pmatrix}1+c_k^2&-c_k\\-c_k&1\end{pmatrix},\]
+whose cells are
+\[\gamma'_0=\begin{pmatrix}3+m^4&m^2\\m^2&1\end{pmatrix},\qquad
+\gamma'_{\pm1}=\begin{pmatrix}-2m^2&-1\\-1&0\end{pmatrix},\qquad
+\gamma'_{\pm2}=\begin{pmatrix}1&0\\0&0\end{pmatrix},\]
+and zero otherwise, as the formula $\gamma'_j=\sum_g\ell_g^{\mathsf T}\ell_{g+j}$ for the
+coefficients of $F^{-1}$ confirms directly together with $1+c_k^2=3+m^4-4m^2\cos k+2\cos2k$. Since
+$\det\hat\gamma'(k)=1$ for every $k$, the evolved covariance again satisfies the equivalent conditions of
+Corollary~\ref{cor:gs-purity}, while its correlations, absent in the vacuum, now reach to the second
+neighbour: a single step of range~$1$ creates correlations of range~$2$, because the covariance is
+quadratic in the rule. The backward step $\alpha_F$ gives in the same way
+$\hat F(k)^{\mathsf T}\hat F(k)=\begin{psmallmatrix}1&-c_k\\-c_k&1+c_k^2\end{psmallmatrix}$, the same
+matrix with its two diagonal entries exchanged.}
+\end{example}
+
+\subsection{Notes and references}\label{sec:gs-notes}
+
+\begin{enumerate}
+\item \reve{\emph{States and Gaussian states.} In~\cite[p.~77]{krueger}, states are positive,
+normalized linear functionals, equivalently described by their characteristic functions, and a
+state is Gaussian when its characteristic function is
+$\exp\bigl(-\tfrac14\gamma(\xi,\xi)+\ii\sum_x\xi_x^{\mathsf T}d_x\bigr)$, with the same factor
+$\tfrac14$ as Definition~\ref{def:gs-gaussian}. The thesis does not discuss the existence of
+Gaussian states on the lattice CCR algebra; Remarks~\ref{rem:gs-existence}
+and~\ref{rem:gs-converse} record what is involved.}
+\item \reve{\emph{State condition.} Condition (a) of Definition~\ref{def:gs-statecond} is the
+thesis's (4.5), $\gamma(\bar\mu,\mu)+\ii\sigma(\bar\mu,\mu)\ge0$, and $Q$ in
+Subsection~\ref{sec:gs-fourier} is its form (4.6)~\cite[pp.~77--78]{krueger}. The thesis obtains the
+necessity of the state condition ``by a direct generalization of the argument leading to (2.22)'';
+the proof of Theorem~\ref{thm:gs-necessity} is a different, derivative-free argument. The thesis
+works throughout with $\gamma+\ii\sigma$, which corresponds to the finite-mode condition written
+with $\gamma_B-\ii\Omega$; by Proposition~\ref{prop:gs-statecond} and
+Remark~\ref{rem:gs-normalization} the sign is immaterial, and either sign may be called the
+finite-mode condition.}
+\item \reve{\emph{Finite regions.} The thesis's correlation matrix of a region is the matrix of
+the form $\gamma$ on the site vectors, ordered site by site, whereas the finite-mode covariance
+matrix is ordered positions first and is conjugated by $\Omega$; the normalization, fixed by the
+factor $\tfrac14$, is the same. The Notation section lists the conventions.
+Definition~\ref{def:gs-covmat} and Proposition~\ref{prop:gs-admissible} make the translation between
+the two explicit; they have no counterpart in the thesis.}
+\item \reve{\emph{Fourier criterion.} The Fourier convention is the thesis's (4.14), the cell indexing
+$\gamma_{x-y}$ is that of (4.4), and Lemma~\ref{lem:gs-parseval} is (4.16)~\cite[pp.~77,
+81]{krueger}. Theorem~\ref{thm:gs-fourier} is Lemma~4.5(i) of the thesis~\cite[p.~82]{krueger},
+which asserts both directions for summable cell data and argues the direction (b) with the
+``sharply peaked Fourier transform of a flat Gaussian''~\cite[p.~81]{krueger}; here (b) is proved
+by the same idea with a rectangular window, first for finite range and then, in
+Remark~\ref{rem:gs-fourier-general}, for all summable cell data.}
+\item \reve{\emph{Purity.} Lemma~4.5(ii) of~\cite[p.~82]{krueger} states, for one mode per site, that
+the correlation function ``corresponds to a pure Gaussian state if and only if
+$\hat\gamma(k)+\ii\sigma_s$ is not strictly positive for any $k\in[-\pi,\pi]$, i.e.\ if
+$(\sigma_s\hat\gamma(k))^2=-1$''. Corollary~\ref{cor:gs-purity} proves the equivalence of the two
+matrix conditions, which holds for all $k$ together; the ``i.e.''\ is not an equivalence of the
+pointwise conditions, as the remark after the corollary explains. The first clause, the
+characterization of purity, is not proved here. The vacuum is the thesis's ``coherent product
+state'' $\hat\gamma_0(k)=1$.}
+\item \reve{\emph{Evolution.} The cells $\gamma'_j$ of Theorem~\ref{thm:gs-evolution} are the thesis's
+(4.17a), $\gamma_t(x)=\sum_{y,z}\Gamma_t(y)^{\mathsf T}\gamma_0(x+y-z)\Gamma_t(z)$, and the printed
+symbol formula (4.17b), \reve{$\hat\gamma_t(k)=\overline{\hat\Gamma_t^{\mathsf T}(k)}\,\hat\gamma_0(k)\,\hat\Gamma_t(k)$
+\cite[p.~82]{krueger}, with the conjugate transpose, is the general form $\hat\gamma_t(k)=\hat\Gamma_t(k)^\dagger\hat\gamma_0(k)\hat\Gamma_t(k)$ of Theorem~\ref{thm:gs-evolution}. For the rules of the thesis, which are reflection symmetric by (4.12)~\cite[p.~80]{krueger} and have real symbols, the conjugate transpose is the transpose.}}
+\item \reve{\emph{Existence of states.} Quasi-free states of the CCR algebra, of which the Gaussian
+states of this chapter are the lattice instance, were introduced by Manuceau and
+Verbeure~\cite{manuceau-verbeure}. The theorem that a normalized function with positive
+semidefinite twisted kernels is the characteristic function of a unique state is due to Manuceau,
+Sirugue, Testard and Verbeure~\cite{mstv}; see also~\cite[\S5.2]{bratteli-robinson}. The quantum
+Bochner theorem of Remark~\ref{rem:gs-bochner} is due to Kastler~\cite{kastler} and to Loupias and
+Miracle-Sole~\cite{lms}.}
+\end{enumerate}

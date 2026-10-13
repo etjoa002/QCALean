@@ -1,0 +1,36 @@
+\section*{Roadmap}
+\addcontentsline{toc}{section}{Roadmap}
+
+\noindent\motiv{\reve{These notes are also the blueprint of the Lean library, and their chapters
+are ordered by logical dependence. Dashed boxes are chapters not yet written.}}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  done/.style={draw, rounded corners=2pt, fill=Blue!6, text width=3.5cm, align=center,
+    minimum height=1.05cm, inner sep=3pt},
+  plan/.style={done, dashed, fill=none},
+  dep/.style={-{Stealth[length=2mm]}, thick},
+  node distance=0.9cm and 0.7cm]
+  \node[done] (c1) {\hyperref[sec:gaussianqca]{Q1\quad Translation-invariant maps and their symbols}};
+  \node[done, right=of c1] (c2) {\hyperref[sec:ccrautomata]{Q2\quad Gaussian cellular automata}};
+  \node[done, right=of c2] (c3) {\hyperref[sec:gaussianstates]{Q3\quad Gaussian states on the lattice}};
+  \node[done, below=of c3] (c4)
+    {\hyperref[sec:stationary]{Q4a\quad The example system and its stationary states}};
+  \node[done, below=of c4] (c4b) {\hyperref[sec:convergence]{Q4b\quad Convergence to the stationary states}};
+  \node[done, below=of c2] (c5) {\hyperref[sec:channels]{Q5a\quad Gaussian channels}};
+  \node[done, below=of c5] (c5b)
+    {\hyperref[sec:chain]{Q5b\quad Irreversible Gaussian automata on the chain}};
+  \draw[dep] (c1) -- (c2);
+  \draw[dep] (c2) -- (c3);
+  \draw[dep] (c3) -- (c4);
+  \draw[dep] (c4) -- (c4b);
+  \draw[dep] (c2) -- (c5);
+  \draw[dep] (c3) -- (c5);
+  \draw[dep] (c5) -- (c5b);
+  \draw[dep] (c4) -- (c5b);
+\end{tikzpicture}
+\caption{Milestones and their dependence. Each box links to its chapter.}
+\label{fig:roadmap}
+\end{figure}

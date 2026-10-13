@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+% Preamble adapted from LinearAQFT's docs/lecture-notes/LinearAQFT.tex (commit deaff11).
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\numberwithin{equation}{section}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage{enumitem}
+\usepackage{booktabs,longtable,array}
+% Motivating paragraphs; set \motiv to \textcolor{Blue}{#1} to highlight them while vetting.
+\newcommand{\motiv}[1]{#1}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{plain}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\CCR}{\operatorname{CCR}}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\loc}{loc}
+\DeclareMathOperator{\cov}{cov}
+% Passages for the user to vet; set to {#1} once accepted.
+\newcommand{\vet}[1]{#1}
+\newcommand{\reve}[1]{#1}
+\newcommand{\revtag}[1]{#1}
+\newcommand{\vetsource}[1]{#1}
+\title{Quantum cellular automata on lattice phase space}
+\author{}
+\date{}
+\input{lean-links}
+\input{checked-labels}
+\begin{document}
+\QCAEnableLinks
+\sloppy
+\maketitle
+\vspace{-2em}
+\noindent\motiv{\reve{A quantum cellular automaton is a discrete-time dynamics of an infinite
+lattice of quantum systems that commutes with the lattice translations and moves observables by
+at most a fixed distance per step~\cite{schumacher-werner}. These notes are the mathematical
+account of the Lean library QCALean. They begin with the Gaussian case, following Chapter~4
+of~\cite{krueger}, in which each step acts on the Weyl operators through a linear map of the
+classical phase space.}}
+
+{\small\tableofcontents}
+\medskip
+
+\section*{About these notes}
+\noindent\motiv{\textbf{Reading conventions.} C*-algebras are unital and complex. Inner products
+are linear in the second argument. The CCR algebra and its relabellings, states on it, the cell
+index and the symplectic matrix of a cell are those of the library BosonicLean; nets of algebras
+are those of the library LinearAQFT.}
+
+\medskip
+\noindent\motiv{A statement marked \revtag{\QCALeanTag{}} has a checked proof in QCALean or in
+the library BosonicLean on which it builds, whose correspondence with the statement here has been
+independently reviewed\revtag{; the declaration index at the end names the checked declarations}.
+\revtag{Every Example carries exactly one status: \QCALeanTag{} as above, \QCAScriptTag{} when a
+check script verifies it exhaustively, or \QCAPaperTag{} when it is checked on paper only.
+Definitions, Remarks and paragraphs of motivation carry no marks. A sentence tagged \QCAArtefactTag{} records a choice made for the
+formalization that a proof on paper would not need.}}
+
+\section*{Notation}
+\noindent Each symbol has one meaning throughout, shared with LinearAQFT and BosonicLean where
+they have one, with one exception: $N$ denotes a neighbourhood of a rule, and $N(k)$, always with its
+argument, the matrix of the example system below.\par\medskip\noindent \reve{Letters that serve only within one proof,
+example or remark, such as scalars, indices and auxiliary matrices, are introduced where they appear
+and may differ from the table. Second meanings over a longer stretch are these: $\mu$ is a complex
+combination of vectors in the discussion after Definition~\ref{def:gs-statecond} and in
+Subsection~\ref{sec:gs-fourier}; $S$ is a symplectic matrix in
+Chapters~\ref{sec:gaussianqca}--\ref{sec:stationary} \reve{and a symmetric invariant matrix in the part of Chapter~\ref{sec:stationary} on invariant forms}; $K$ is a second rule and the twisted kernel in
+Chapters~\ref{sec:ccrautomata} and~\ref{sec:gaussianstates}; $T_O$ is the matrix of
+Corollary~\ref{cor:gs-onsite}; and in Chapter~\ref{sec:channels} the letters $V$, $\sigma$ and $L$
+denote a general real vector space, an alternating form on it and a linear map of it, of which the
+lattice data are one instance.}
+\begin{center}\small
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.74\textwidth}@{}}
+$G$, $x$ & the lattice (an abelian group; $\Z$ for chains) and a point of it \\
+$n$ & the number of modes per cell \\
+$\Omega$ & the symplectic matrix of a cell, $\begin{psmallmatrix}0&I\\-I&0\end{psmallmatrix}$, positions first \\
+$V$, $u,w$ & finitely supported phase space $G\to\R^{2n}$, its vectors \\
+$\sigma$ & the symplectic form $\sigma(u,w)=\sum_x u(x)^{\mathsf T}\Omega\,w(x)$ \\
+$W(u)$, $\CCR(V,\sigma)$ & a Weyl operator, the C*-algebra they generate \\
+$O$, $N$, $\cA(O)$ & a region, a neighbourhood (a finite set of sites), the local algebra of $O$ \\
+$\kappa_{a*}$, $\alpha_a$ & translation by $a$ on $V$, $(\kappa_{a*}u)(x)=u(x-a)$, and on $\CCR(V,\sigma)$ \\
+$L$, $\alpha_L$ & a rule (translation-invariant linear map of $V$), its automorphism when symplectic \\
+$\ell_m$, $\hat L(z)$ & the coefficients of a rule, $(Lu)(x)=\sum_m\ell_m u(x-m)$; its symbol $\sum_m\ell_m z^m$ \\
+$\lambda$ & the coupling of a nearest-neighbour rule \\
+$F$ & the leapfrog step of the lattice Klein--Gordon field \\
+$\omega$, $\gamma$, $d$ & a state, its covariance form on $V$, its displacement \\
+$\chi_\omega$ & the characteristic function $\chi_\omega(u)=\omega(W(u))$ \\
+\reve{$\tfrac14$} & \reve{the normalization $\chi_\omega(u)=\exp(\ii d(u)-\tfrac14\gamma(u,u))$ of a Gaussian state; the vacuum has $\gamma=1$} \\
+\reve{$e_{x,i}$, $\loc(O)$} & \reve{the site vector ($i$-th unit vector at $x$), the vectors supported in $O$} \\
+\reve{$n_O$, $\Omega_M$} & \reve{the number $n|O|$ of modes of a region, the symplectic matrix of $M$ modes, positions first} \\
+\reve{$R_O(\beta)$} & \reve{the matrix of a bilinear form $\beta$ on the site vectors of $O$, positions first} \\
+\reve{$\gamma_B$} & \reve{a covariance matrix of finitely many modes, positions first, $\gamma_B=2\times$(symmetrized second moments)} \\
+\reve{$\cov_O(\gamma)$} & \reve{the covariance matrix $\Omega_{n_O}^{\mathsf T}R_O(\gamma)\,\Omega_{n_O}$ of $\gamma$ on $O$; a matrix $\gamma_B$ is admissible if $\gamma_B-\ii\Omega_{n_O}\ge0$} \\
+\reve{$\gamma_x$, $\hat\gamma(k)$} & \reve{the cells of a translation-invariant covariance form, its symbol $\sum_x\gamma_xe^{-\ii kx}$} \\
+\reve{$\tau(k)$, $\theta(k)$} & \reve{half the trace of the example system's symbol, $\cos\varphi+\lambda\cos k\sin\varphi$, and the rotation angle $\arccos\tau(k)$} \\
+\reve{$N(k)$, $P_k$} & \reve{the real matrix $(\cos\theta(k)1-\hat L(k))/\sin\theta(k)$ with $N(k)^2=-1$, and the projector $\tfrac12(1+\ii N(k))$} \\
+\reve{$\hat\varepsilon(k)$, $\eta(k)$} & \reve{the invariant form of the example system, and the factor of a stationary state, $\hat\gamma=\eta\hat\varepsilon$} \\
+\reve{$C(k)$, $\gamma_{\infty,x}$, $\gamma_\infty$} & \reve{the limit symbol $\frac12(\hat\gamma+N^{\mathsf T}\hat\gamma N)$, its Fourier coefficients (the limit cells), and their covariance form} \\
+\reve{$f_{\rm crit}$} & \reve{the critical coupling $(1-|\cos\varphi|)/|\sin\varphi|$} \\
+\reve{$T$} & \reve{the map of observables of an automaton or of a Gaussian channel} \\
+\reve{$\nu$} & \reve{the noise form of a Gaussian channel} \\
+\reve{$\mu$, $\Delta_T$} & \reve{the displacement of a Gaussian channel $T$, its dissipation form $\nu+\ii(\sigma-\sigma(L\cdot,L\cdot))$} \\
+\reve{$\zeta$} & \reve{the amplitude transmission $0<\zeta<1$ of the attenuator, the running example of Chapter~\ref{sec:channels}}\reve{, and of the lossy chain of Chapter~\ref{sec:chain}} \\
+\reve{$(X,Y)$} & \reve{the channel matrices of a Gaussian channel on finitely many modes, $\gamma_B\mapsto X\gamma_BX^{\mathsf T}+Y$} \\
+\reve{$S_{11}$, $S_{21}$} & \reve{the system and ancilla parts of a dilation $S$, $S(u,0)=(S_{11}u,S_{21}u)$} \\
+\reve{$N'$} & \reve{the separation set in the factorization condition of} \reve{a linear map} \\
+\reve{$N_L$} & \reve{the range $\{m:\ell_m\neq0\}$ of a rule $L$} \\
+\reve{$(L_*\nu)_j$, $(L_*\sigma)_j$} & \reve{the pull-back cells (also $L_*\gamma$ in Chapters~\ref{sec:stationary} and~\ref{sec:convergence}) $\sum_{m,m'}\ell_m^{\mathsf T}\nu_{j+m-m'}\ell_{m'}$ of cells $(\nu_x)$, and those of the on-site cells $\Omega\delta_{x,0}$ of $\sigma$} \\
+\reve{$n'$} & \reve{the number of ancilla modes per site of a dilation}
+\end{tabular}
+\end{center}
+
+\section*{Notation of Kr\"uger's thesis}
+\noindent Formulas of~\cite{krueger} are quoted in its own letters; elsewhere these notes use
+the letters above.
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Object & \cite{krueger} & here \\
+\midrule
+phase space, vectors & $\Xi$; $\xi,\eta$ & $V$; $u,w$ \\
+one-mode symplectic matrix & $\sigma_0$, $\sigma_s$ & $\Omega$ \\
+modes per cell & $f$ & $n$ \\
+region & $\Lambda$ & $O$ \\
+translation & $\tau_\Delta$, $(\tau_\Delta\xi)_x=\xi_{x+\Delta}$ & $\kappa_{a*}$ with $a=-\Delta$ \\
+rule, global rule & $\Gamma$, $T$ & $L$, $\alpha_L$ \\
+\reve{rotation angle, noise factor} & \reve{$\alpha(k)$, $g(k)$} & \reve{$\theta(k)$, $\eta(k)$} \\
+coefficients, symbol & $\Gamma_x$, $\hat\Gamma(k)$ & $\ell_x$ (same index, (4.8)), $\hat L(z)$ with $z=e^{-\ii k}$ \\
+coupling & $f$ & $\lambda$ \\
+noise form & $g$ & $\nu$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\input{reading}
+\input{roadmap}
+\input{gaussianqca}
+\input{ccrautomata}
+\input{gaussianstates}
+\input{stationary}
+\input{convergence}
+\input{channels}
+\input{chain}
+\input{references}
+\input{lean-index}
+\end{document}

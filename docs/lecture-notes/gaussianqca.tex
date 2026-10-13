@@ -1,0 +1,442 @@
+\clearpage
+\section{Translation-invariant maps and their symbols}\label{sec:gaussianqca}
+
+\noindent\motiv{\reve{A Gaussian cellular automaton acts on Weyl operators through a linear map $L$
+of the classical phase space of a lattice. Three properties are required of $L$: it preserves the
+symplectic form, so that it defines an automorphism of the CCR algebra; it commutes with the
+lattice translations; and it moves each vector by a bounded distance.}}
+
+\medskip
+\noindent\motiv{\reve{This chapter shows that translation invariance turns $L$ into a matrix over
+a ring of Laurent polynomials, its \emph{symbol}, and that preservation of the form becomes a
+matrix identity for the symbol. For one mode per site and nearest-neighbour coupling the identity
+is solved completely. The running example is one time step of the lattice Klein--Gordon
+field.}}
+
+\medskip
+\noindent\motiv{\reve{The first three subsections work over a commutative ring $R$ and an abelian
+group $G$, since the same algebra describes Clifford cellular automata over finite
+fields~\cite{svw}. From Subsection~\ref{sec:nn} on, $R=\R$ and $G=\Z$.}}
+
+\subsection{Lattice phase space}
+
+\noindent\motiv{\reve{The \emph{cell} is a finite set $\iota$ indexing the degrees of freedom at one
+site; for $n$ bosonic modes, $\iota=\{q_1,\dots,q_n,p_1,\dots,p_n\}$. The group algebra $R[G]$ is the
+ring of finite sums
+\[c=\sum_{a\in G}c_a\,z^a,\qquad c_a\in R,\qquad z^az^b=z^{a+b}.\]
+For $G=\Z$ these are the Laurent polynomials in $z$. The coefficient at the origin is
+written $\varepsilon(c)=c_0$.}}
+
+\begin{definition}[Lattice phase space]\label{def:qca-space}
+The \emph{lattice phase space} is $V=R[G]^\iota$, the vectors $u=(u_i)_{i\in\iota}$ with
+$u_i\in R[G]$. The \emph{value} of $u$ at $x\in G$ is $u(x)=\big((u_i)_x\big)_{i\in\iota}\in
+R^\iota$, and the \emph{support} of $u$ is the finite set $\supp u=\{x\in G:u(x)\neq0\}$.
+Translation by $a\in G$ is multiplication by $z^a$, written $\kappa_{a*}u=z^au$.
+\end{definition}
+
+\noindent\motiv{\reve{Reading $u$ through its values identifies $V$ with the finitely supported
+functions $G\to R^\iota$. Multiplication by $z^a$ shifts the values forward:
+\[(\kappa_{a*}u)(x)=u(x-a).\]
+For example, with one mode and $G=\Z$, the vector with position $1$ at the site $0$ and momentum $2$
+at the site $3$ is $u=(1,\,2z^3)$, and $\kappa_{1*}u=(z,\,2z^4)$ has the same values at the sites
+$1$ and $4$.}}
+
+\subsection{Translation-invariant maps and symbols}
+
+\begin{definition}\label{def:qca-invariant}
+An $R$-linear map $L\colon V\to V$ is \emph{translation invariant} if
+$L\kappa_{a*}=\kappa_{a*}L$ for every $a\in G$.
+\end{definition}
+
+\begin{theorem}[Symbols]\label{thm:qca-symbol}
+\begin{enumerate}[label=(\alph*)]
+\item An $R$-linear map $L\colon V\to V$ is translation invariant if and only if it is
+$R[G]$-linear.
+\item The $R[G]$-linear maps $V\to V$ are the maps $u\mapsto\hat Lu$ with $\hat L\in
+M_\iota(R[G])$, and $L\mapsto\hat L$ is an isomorphism of $R[G]$-algebras. In particular the
+symbol of a composite $L_2L_1$ is the product $\hat L_2\hat L_1$.
+\item Write $\hat L=\sum_m\ell_mz^m$ with coefficient matrices $\ell_m\in M_\iota(R)$, finitely
+many nonzero. Then
+\[(Lu)(x)=\sum_{m\in G}\ell_m\,u(x-m).\]
+\end{enumerate}
+The matrix $\hat L$ is the \emph{symbol} of $L$.
+\end{theorem}
+
+\begin{proof}\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item Multiplication by $z^a$ is $\kappa_{a*}$, so an $R[G]$-linear map is translation invariant.
+Conversely, if $L$ is translation invariant and $c=\sum_ac_az^a$, then
+$L(cu)=\sum_ac_aL(z^au)=\sum_ac_az^aLu=c\,Lu$.
+\item $V$ is a free $R[G]$-module with basis $(e_i)_{i\in\iota}$. The endomorphisms of a free
+module of finite rank over a commutative ring are the square matrices, and composition is the
+matrix product.
+\item $(Lu)_i=\sum_j\hat L_{ij}u_j$, and the coefficient at $x$ of a product in $R[G]$ is
+$(\hat L_{ij}u_j)_x=\sum_m(\hat L_{ij})_m(u_j)_{x-m}$.
+\end{enumerate}
+\end{proof}
+
+\noindent\motiv{\reve{By (c), the coefficient $\ell_m$ carries the value at $x-m$ to the value at
+$x$. The simplest example is the shift $(Lu)(x)=u(x-1)$, with $\ell_1=1$ and symbol $z\cdot1$.}}
+
+\begin{example}[The leapfrog rule]\label{ex:qca-leapfrog-rule}
+The lattice Klein--Gordon equation for $\varphi\colon\Z^2\to\R$, with points $(t,x)$ and a
+parameter $m^2\in\R$, is
+\[\varphi(t+1,x)+\varphi(t-1,x)-\varphi(t,x+1)-\varphi(t,x-1)+m^2\varphi(t,x)=0 .\]
+Given the values on two consecutive time slices,
+\[d_0(x)=\varphi(t,x),\qquad d_1(x)=\varphi(t+1,x),\]
+the equation at time $t+1$ determines the next slice:
+\[d_2(x)=\varphi(t+2,x)=-d_0(x)+d_1(x+1)+d_1(x-1)-m^2d_1(x).\]
+One time step is the map $F\colon(d_0,d_1)\mapsto(d_1,d_2)$. Take one mode per site with the cell
+$u(x)=(d_0(x),d_1(x))$. Comparing
+\[(Fu)(x)=\begin{pmatrix}d_1(x)\\-d_0(x)-m^2d_1(x)+d_1(x+1)+d_1(x-1)\end{pmatrix}\]
+with Theorem~\ref{thm:qca-symbol}(c), the term $d_1(x+1)=u(x-(-1))_2$ comes from $\ell_{-1}$ and
+$d_1(x-1)$ from $\ell_{+1}$, so
+\[\ell_0=\begin{pmatrix}0&1\\-1&-m^2\end{pmatrix},\qquad
+\ell_{-1}=\ell_{+1}=\begin{pmatrix}0&0\\0&1\end{pmatrix},\qquad
+\hat F=\begin{pmatrix}0&1\\-1&z+z^{-1}-m^2\end{pmatrix}.\]
+\end{example}
+
+\noindent\motiv{\reve{Since only finitely many $\ell_m$ are nonzero, a translation-invariant map
+moves every vector by a bounded distance.}}
+
+\begin{corollary}[Finite range]\label{cor:qca-range}
+Let $N=\bigcup_{i,j}\supp\hat L_{ij}$. Then $\supp Lu\subseteq\supp u+N$ for every $u\in V$.
+\end{corollary}
+
+\begin{proof}
+If $(Lu)(x)\neq0$, then by Theorem~\ref{thm:qca-symbol}(c) some $\ell_mu(x-m)$ is nonzero, so
+$m\in N$ and $x-m\in\supp u$.
+\end{proof}
+
+\noindent\motiv{\reve{For the leapfrog, $N=\{-1,0,1\}$: one step changes the Cauchy data only
+within distance one of their support.}}
+
+\subsection{Forms preserved by symbols}
+
+\noindent\motiv{\reve{A form on one cell, given by a matrix $B\in M_\iota(R)$, defines a form on
+$V$ by summing over sites. Writing it through symbols needs the \emph{involution} of $R[G]$, the
+$R$-algebra automorphism
+\[c\mapsto c^\star,\qquad (z^a)^\star=z^{-a}.\]
+For a matrix $M$ over $R[G]$, $M^{\star\mathsf T}$ is the transpose of the matrix with entries
+$M_{ij}^\star$. Since $R[G]$ is commutative, $(MN)^{\star\mathsf T}=N^{\star\mathsf T}M^{\star\mathsf
+T}$.}}
+
+\begin{definition}[Lifted form]\label{def:qca-lift}
+For $B\in M_\iota(R)$, the \emph{lifted form} on $V$ is
+\[\tilde B(u,w)=\sum_{x\in G}u(x)^{\mathsf T}B\,w(x)
+=\varepsilon\Big(\sum_{i,j\in\iota}u_i^\star B_{ij}w_j\Big).\]
+The matrix $B$ is \emph{alternating} if $v^{\mathsf T}Bv=0$ for every $v\in R^\iota$.
+\end{definition}
+
+\noindent\motiv{\reve{The two expressions agree because the coefficient of $u_i^\star w_j$ at the
+origin is $\sum_x(u_i)_x(w_j)_x$. If $B$ is alternating, so is $\tilde B$. For $n$ bosonic modes
+and $B=\Omega=\begin{psmallmatrix}0&I\\-I&0\end{psmallmatrix}$, the lifted form
+$\sigma=\tilde\Omega$ is the symplectic form of the Notation table. (Alternating is stronger than
+$B^{\mathsf T}=-B$ only when $2$ is not invertible, as for Clifford automata over $\Z/2$.)}}
+
+\begin{theorem}[Twisted criterion]\label{thm:qca-criterion}
+Let $B\in M_\iota(R)$ and let $L$ be translation invariant with symbol $\hat L$. Then
+$\tilde B(Lu,Lw)=\tilde B(u,w)$ for all $u,w\in V$ if and only if
+\[\hat L^{\star\mathsf T}B\,\hat L=B.\]
+\end{theorem}
+
+\begin{proof}
+For $P\in M_\iota(R[G])$ put $\langle u,Pw\rangle=\varepsilon\big(\sum_{i,j}u_i^\star
+P_{ij}w_j\big)$, so that $\tilde B(u,w)=\langle u,Bw\rangle$. The involution is a ring homomorphism
+fixing $R$, so $(\hat Lu)_i^\star=\sum_k\hat L_{ik}^\star u_k^\star$, and therefore
+$\tilde B(Lu,Lw)=\langle u,\hat L^{\star\mathsf T}B\hat Lw\rangle$. Invariance thus says
+$\langle u,Qw\rangle=0$ for all $u,w$, where $Q=\hat L^{\star\mathsf T}B\hat L-B$. If $Q=0$ this
+holds. Conversely, $u=e_i$ and $w=z^ke_j$ give
+$\langle u,Qw\rangle=\varepsilon(Q_{ij}z^k)=(Q_{ij})_{-k}$, so every coefficient of every entry of
+$Q$ vanishes.
+\end{proof}
+
+\noindent\motiv{\reve{Without the involution the criterion would fail for rules that move
+vectors. For the shift $\hat L=z\cdot1$ one has $\hat L^{\star\mathsf T}B\hat L=z^{-1}Bz=B$, so the
+shift preserves every lifted form; the plain transpose would give $z^2B$. Expanding
+$\hat L^{\star\mathsf T}=\sum_m\ell_m^{\mathsf T}z^{-m}$ and collecting the coefficient of $z^k$
+gives the criterion in coefficients:
+\begin{equation}\label{eq:qca-coeff}
+\sum_{m}\ell_m^{\mathsf T}B\,\ell_{m+k}=\delta_{k0}B\qquad\text{for every }k\in G.
+\end{equation}}}
+
+\begin{example}[On-site rules]\label{ex:qca-onsite}
+Let $\hat L=S$ be constant, with $n$ modes per cell and $S$ a real $2n\times2n$ matrix. Then
+$\hat L^{\star\mathsf T}=S^{\mathsf T}$, so $L$ preserves $\sigma$ if and only if
+$S^{\mathsf T}\Omega S=\Omega$. This is equivalent to $S\Omega S^{\mathsf T}=\Omega$: if
+$S^{\mathsf T}\Omega S=\Omega$, then $S$ is invertible with $S^{\mathsf T}=\Omega S^{-1}\Omega^{-1}$,
+and
+\[S\Omega S^{\mathsf T}=S\Omega^2S^{-1}\Omega^{-1}=-\Omega^{-1}=\Omega,\]
+using $\Omega^2=-1$; the converse is the same computation for $S^{\mathsf T}$.
+\end{example}
+
+\noindent\motiv{\reve{Under the condition $S\Omega S^{\mathsf T}=\Omega$ the map
+$\gamma\mapsto S\gamma S^{\mathsf T}$ preserves the uncertainty relation $\gamma-\ii\Omega\geq0$ of
+real symmetric covariance matrices.}}
+
+\begin{example}[Coefficient form of the criterion]\label{ex:qca-coeff}
+For $n$ modes and $\hat L=\sum_mz^m\ell_m$, put $\ell_m^+=\Omega^{-1}\ell_m^{\mathsf T}\Omega$, the
+symplectic adjoint. Multiplying~\eqref{eq:qca-coeff} with $B=\Omega$ on the left by $\Omega^{-1}$,
+$\hat L$ is symplectic if and only if
+\[\sum_m\ell_m^+\ell_{m+k}=\delta_{k0}1\qquad\text{for every }k\in\Z.\]
+\end{example}
+
+\begin{theorem}[Inverse]\label{thm:qca-inverse}
+Let $B$ be invertible and $\hat L^{\star\mathsf T}B\hat L=B$. Then $L$ is bijective. Its inverse
+is translation invariant with symbol $B^{-1}\hat L^{\star\mathsf T}B$, preserves $\tilde B$, and
+has finite range.
+\end{theorem}
+
+\begin{proof}
+$(B^{-1}\hat L^{\star\mathsf T}B)\hat L=B^{-1}B=1$, so $B^{-1}\hat L^{\star\mathsf T}B$ is a left
+inverse. A square matrix over a commutative ring with a left inverse has invertible determinant,
+since $\det(PM)=\det P\det M=1$, so the left inverse is two-sided. The inverse $\hat N$ satisfies
+$\hat N^{\star\mathsf T}B\hat N=\hat N^{\star\mathsf T}(\hat L^{\star\mathsf T}B\hat L)\hat N
+=(\hat L\hat N)^{\star\mathsf T}B(\hat L\hat N)=B$, and it has finite range by
+Corollary~\ref{cor:qca-range}.
+\end{proof}
+
+\noindent\motiv{\reve{On an infinite-dimensional phase space, a map preserving a nondegenerate
+form is injective but need not be onto. For translation-invariant maps the theorem gives an
+inverse, and the inverse again has finite range.}}
+
+\begin{corollary}[The group of rules]\label{cor:qca-group}
+For invertible $B$, the symbols $\hat L$ with $\hat L^{\star\mathsf T}B\hat L=B$ form a group under
+multiplication.
+\end{corollary}
+
+\begin{proof}
+They are invertible by Theorem~\ref{thm:qca-inverse}, which also shows that the inverse satisfies
+the identity. The identity matrix satisfies it, and if $\hat L$ and $\hat N$ do, then
+$(\hat L\hat N)^{\star\mathsf T}B\hat L\hat N=\hat N^{\star\mathsf T}(\hat L^{\star\mathsf T}B\hat L)\hat N=B$.
+\end{proof}
+
+\noindent\motiv{\reve{A rule preserving $\sigma$ satisfies $\sigma(Lu,Lw)=\sigma(u,w)$ for all
+$u,w$, which is exactly what is needed for $W(u)\mapsto W(Lu)$ to extend to an automorphism of
+$\CCR(V,\sigma)$.}}
+
+\subsection{Nearest-neighbour rules on one mode}\label{sec:nn}
+
+\noindent\motiv{\reve{From now on $R=\R$, $G=\Z$, and there is one mode per site, $\iota=\{q,p\}$, with
+\[\Omega=\begin{pmatrix}0&1\\-1&0\end{pmatrix}.\]
+A symbol is \emph{symplectic} if $\hat L^{\star\mathsf T}\Omega\hat L=\Omega$, and
+\emph{nearest-neighbour} if
+\[\hat L=\ell_-z^{-1}+\ell_0+\ell_+z,\qquad \ell_-,\ell_0,\ell_+\in M_2(\R),\]
+so that $(Lu)(x)=\ell_-u(x+1)+\ell_0u(x)+\ell_+u(x-1)$. The leapfrog is of this form. For
+$2\times2$ matrices the symplectic condition is governed by the adjugate
+\[\operatorname{adj}\begin{pmatrix}a&b\\c&d\end{pmatrix}=\begin{pmatrix}d&-b\\-c&a\end{pmatrix},
+\qquad A\operatorname{adj}A=\operatorname{adj}(A)A=(\det A)\,1.\]}}
+
+\begin{lemma}[$2\times2$ identities]\label{lem:qca-2x2}
+For $A,A'\in M_2(\R)$:
+\begin{enumerate}[label=(\alph*)]
+\item $A^{\mathsf T}\Omega A'=\Omega\operatorname{adj}(A)A'$, and in particular
+$A^{\mathsf T}\Omega A=(\det A)\,\Omega$;
+\item $\operatorname{adj}$ is additive, $\operatorname{adj}(AA')=\operatorname{adj}(A')\operatorname{adj}(A)$ and
+$\operatorname{adj}\operatorname{adj}A=A$;
+\item $\det(A+A')=\det A+\det A'+\operatorname{tr}(\operatorname{adj}(A)A')$;
+\item if $\operatorname{adj}A=A$, then $A$ is a multiple of $1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item For $A=\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}$, both $A^{\mathsf T}\Omega$ and
+$\Omega\operatorname{adj}(A)$ equal $\begin{psmallmatrix}-c&a\\-d&b\end{psmallmatrix}$; multiply on the
+right by $A'$. For $A'=A$, use $\operatorname{adj}(A)A=(\det A)1$.
+\item The entries of $\operatorname{adj}A$ are linear in those of $A$; the other two identities are
+checked on entries.
+\item Checked on entries.
+\item $\operatorname{adj}A=A$ says $-A_{12}=A_{12}$, $-A_{21}=A_{21}$ and $A_{22}=A_{11}$.
+\end{enumerate}
+\end{proof}
+
+\noindent\motiv{\reve{Part~(d) uses $2\neq0$; over $\Z/2$ every matrix with equal diagonal entries
+equals its adjugate. The classification below is therefore proved over $\R$ (any field of
+characteristic other than $2$ would do).}}
+
+\begin{proposition}[Coefficient equations]\label{prop:qca-C}
+A nearest-neighbour symbol is symplectic if and only if the coefficients of $z^{2},z^{-2},z,
+z^{-1},z^0$ in $\hat L^{\star\mathsf T}\Omega\hat L-\Omega$ vanish:
+\begin{align*}
+&(C_2)\ \ \ell_-^{\mathsf T}\Omega\ell_+=0,\qquad (C_{-2})\ \ \ell_+^{\mathsf T}\Omega\ell_-=0,\qquad
+(C_1)\ \ \ell_-^{\mathsf T}\Omega\ell_0+\ell_0^{\mathsf T}\Omega\ell_+=0,\\
+&(C_{-1})\ \ \ell_0^{\mathsf T}\Omega\ell_-+\ell_+^{\mathsf T}\Omega\ell_0=0,\qquad
+(C_0)\ \ \ell_-^{\mathsf T}\Omega\ell_-+\ell_0^{\mathsf T}\Omega\ell_0+\ell_+^{\mathsf T}\Omega\ell_+=\Omega.
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+$\hat L^{\star\mathsf T}=\ell_-^{\mathsf T}z+\ell_0^{\mathsf T}+\ell_+^{\mathsf T}z^{-1}$; multiply out
+and collect powers of $z$.
+\end{proof}
+
+\noindent\motiv{\reve{By Lemma~\ref{lem:qca-2x2}(a), $(C_{\pm2})$ say
+$\operatorname{adj}(\ell_\mp)\ell_\pm=0$, and $(C_0)$ says $\det\ell_-+\det\ell_0+\det\ell_+=1$.
+Two families of solutions can be read off:
+\begin{itemize}
+\item the \emph{pure shifts} $Sz^{-1}$ and $Sz$ with $\det S=1$, where $\ell_0=0$;
+\item $\ell_0\in SL_2(\R)$ and $\ell_+=\ell_-=\ell$ with $\det\ell=0$; then $(C_{\pm2})$ and $(C_0)$
+hold, and $(C_{\pm1})$ is one remaining condition on $\ell$.
+\end{itemize}
+The next proposition shows that there are no others.}}
+
+\begin{proposition}[Classification of nearest-neighbour rules]\label{prop:qca-nn}
+A nearest-neighbour symbol is symplectic if and only if one of the following holds:
+\begin{enumerate}[label=(\roman*)]
+\item $\ell_0=0$, and either $\ell_+=0$ and $\det\ell_-=1$, or $\ell_-=0$ and $\det\ell_+=1$;
+\item $\det\ell_0=1$, $\ell_+=\ell_-$, $\det\ell_+=0$, and
+$\ell_+^{\mathsf T}\Omega\ell_0+\ell_0^{\mathsf T}\Omega\ell_+=0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The two families above show that (i) and (ii) are symplectic; in (ii), $(C_{-1})$ is $(C_1)$ with
+the two terms exchanged. Conversely, assume the equations $(C)$.
+
+\emph{$\ell_-$ invertible.} $(C_2)$ gives $\ell_+=0$. Then $(C_1)$ reads
+$\operatorname{adj}(\ell_-)\ell_0=0$, so $\ell_0=0$, and $(C_0)$ gives $\det\ell_-=1$: case (i).
+
+\emph{$\ell_+$ invertible.} The same argument with $(C_{-2})$ and $(C_{-1})$ gives the other half
+of case (i).
+
+\emph{$\ell_-$ and $\ell_+$ both singular.} $(C_0)$ gives $\det\ell_0=1$, so
+$\ell_0\operatorname{adj}\ell_0=1$. Put $D=\ell_--\ell_+$. Subtracting $(C_1)$ from $(C_{-1})$, in
+the adjugate form of Lemma~\ref{lem:qca-2x2}(a), gives
+$\operatorname{adj}(\ell_0)D=\operatorname{adj}(D)\ell_0$. For $K=\operatorname{adj}(\ell_0)D$,
+Lemma~\ref{lem:qca-2x2}(b) and this identity give
+\[\operatorname{adj}K=\operatorname{adj}(D)\,\ell_0=\operatorname{adj}(\ell_0)D=K,\]
+so $K=c1$ for some $c\in\R$ by Lemma~\ref{lem:qca-2x2}(d), and $D=\ell_0K=c\,\ell_0$. Hence
+$\det D=c^2$. On the other hand, Lemma~\ref{lem:qca-2x2}(c) with $A=\ell_-$, $A'=-\ell_+$ and
+$(C_2)$ gives $\det D=\det\ell_-+\det\ell_+-\operatorname{tr}(\operatorname{adj}(\ell_-)\ell_+)=0$.
+So $c=0$ and $\ell_+=\ell_-$: case (ii).
+\end{proof}
+
+\noindent\motiv{\reve{In case (ii) the last condition is one scalar equation. The identity
+$\operatorname{adj}(A)A'+\operatorname{adj}(A')A=\operatorname{tr}(\operatorname{adj}(A)A')\,1$,
+checked on entries, and Lemma~\ref{lem:qca-2x2}(a) give
+$\ell^{\mathsf T}\Omega\ell_0+\ell_0^{\mathsf T}\Omega\ell=\operatorname{tr}(\operatorname{adj}(\ell_0)\ell)\,\Omega$,
+so the condition is $\operatorname{tr}(\operatorname{adj}(\ell_0)\ell)=0$.}}
+
+\begin{remark}[Pure shifts]\label{rem:qca-shift}
+\reve{Case (i) contains the translation $z^{\pm1}\cdot1$, which moves the state of every cell one site
+along the chain. It is a symplectic nearest-neighbour rule with one mode per site and $\ell_0=0$,
+and it is not of the form (ii).}
+\end{remark}
+
+\noindent\motiv{\reve{In case (ii), $\det\ell=0$, so $\ell=va^{\mathsf T}$ for some vectors $v,a$, with
+$v\neq0$ if $\ell\neq0$. A change of basis in the cell reduces to $v=e_1=(1,0)$, the position
+direction: for $S\in SL_2(\R)$, the conjugation $\hat L\mapsto S\hat LS^{-1}$ maps symplectic symbols
+to symplectic symbols (Corollary~\ref{cor:qca-group} with Example~\ref{ex:qca-onsite}), replaces
+$v$ by $Sv$, and replaces $\ell_0$ by $S\ell_0S^{-1}$. For $v=e_1$ the last condition fixes $a$.}}
+
+\begin{proposition}[Coupling in a fixed direction]\label{prop:qca-form}
+Let $\det\ell_0=1$ and let $r$ be the second row of $\ell_0$. For $a\in\R^2$, the symbol with
+$\ell_+=\ell_-=e_1a^{\mathsf T}$, which satisfies all conditions of case (ii) except the last, is
+symplectic if and only if $a=\lambda r$ for some $\lambda\in\R$.
+\end{proposition}
+
+\begin{proof}
+Write $\ell=e_1a^{\mathsf T}$. Since $e_1^{\mathsf T}\Omega=e_2^{\mathsf T}$ and $\Omega e_1=-e_2$,
+\[\ell^{\mathsf T}\Omega\ell_0=a\,e_2^{\mathsf T}\ell_0=ar^{\mathsf T},\qquad
+\ell_0^{\mathsf T}\Omega\ell=-\ell_0^{\mathsf T}e_2a^{\mathsf T}=-ra^{\mathsf T}.\]
+So the last condition of case (ii) reads $ar^{\mathsf T}=ra^{\mathsf T}$, which holds if and only if
+$a=\lambda r$, since $r\neq0$. The other conditions of case (ii) hold because
+$\det(e_1a^{\mathsf T})=0$.
+\end{proof}
+
+\noindent\motiv{\reve{The number $\lambda$ is the \emph{coupling} of the rule.}}
+
+\begin{example}[The leapfrog step is symplectic]\label{ex:qca-leapfrog}
+For every real $m^2$, the leapfrog symbol $\hat F$ of Example~\ref{ex:qca-leapfrog-rule} and
+\[\hat F^{-1}=\begin{pmatrix}z+z^{-1}-m^2&-1\\1&0\end{pmatrix}\]
+are symplectic, and $\hat F\hat F^{-1}=1$.
+\end{example}
+
+\noindent\motiv{\reve{Both lie in case (ii) of Proposition~\ref{prop:qca-nn}: for $\hat F$,
+$\det\ell_0=1$, $\det\ell_\pm=0$, and the last condition holds; the same computation applies to
+$\hat F^{-1}$. In the Cauchy data $(d_0,d_1)$, the form
+$\sigma(u,u')=\sum_x\big(d_0(x)d_1'(x)-d_1(x)d_0'(x)\big)$ is the conserved Wronskian of the lattice
+Klein--Gordon equation, so $d_0$ plays the role of position and $d_1$ of momentum. The inverse
+$\hat F^{-1}$ has $\ell_\pm=e_1e_1^{\mathsf T}$; it is Proposition~\ref{prop:qca-form} with $r=e_1$
+and $\lambda=1$. For $\hat F$ itself, $\ell_\pm=e_2e_2^{\mathsf T}$ points in the momentum direction, so
+Proposition~\ref{prop:qca-form} applies to it only after the change of basis described before
+that proposition.}}
+
+\subsection{Fourier modes}
+
+\noindent\motiv{\reve{Evaluating a symbol on the unit circle gives its Fourier transform: the
+formula of Theorem~\ref{thm:qca-symbol}(c), applied to a plane wave $u(x)=e^{\ii kx}v$ with
+$v\in\C^\iota$, gives $(Lu)(x)=e^{\ii kx}\hat L(e^{-\ii k})v$.}}
+
+\begin{lemma}[Evaluation on the circle]\label{lem:qca-circle}
+For $k\in\R$, evaluation at $z=e^{-\ii k}$ is a ring homomorphism from the Laurent polynomials
+$\R[z,z^{-1}]$ to $\C$, with $p(e^{-\ii k})=\sum_mp_me^{-\ii km}$, and it carries the involution to
+complex conjugation: $p^\star(e^{-\ii k})=\overline{p(e^{-\ii k})}$.
+\end{lemma}
+
+\begin{proof}
+$e^{-\ii k}$ is a unit of $\C$, and a Laurent polynomial ring maps to any ring by sending $z$ to a
+unit. On monomials, $(z^m)^\star=z^{-m}\mapsto e^{\ii km}=\overline{e^{-\ii km}}$, and the
+coefficients are real.
+\end{proof}
+
+\noindent\motiv{\reve{The \emph{Fourier symbol} is $\hat L(k)=\hat L(e^{-\ii k})\in M_\iota(\C)$,
+evaluated entrywise. By the lemma, $\hat L^{\star\mathsf T}$ evaluates to the conjugate transpose
+$\hat L(k)^\dagger$.}}
+
+\begin{example}[Fourier modes]\label{ex:qca-modes}
+If $\hat L$ is symplectic, then
+\[\hat L(k)^\dagger\,\Omega\,\hat L(k)=\Omega\qquad\text{for every }k\in\R.\]
+For the leapfrog, $\operatorname{tr}\hat F(k)=2\cos k-m^2$.
+\end{example}
+
+\noindent\motiv{\reve{The conjugate transpose cannot be replaced by the transpose: for the shift
+$\hat L=z\cdot1$, $\hat L(k)^{\mathsf T}\Omega\hat L(k)=e^{-2\ii k}\Omega$. The converse also holds:
+if $\hat L(k)^\dagger\Omega\hat L(k)=\Omega$ for all $k$, each entry of
+$\hat L^{\star\mathsf T}\Omega\hat L-\Omega$ is a Laurent polynomial vanishing at infinitely many points,
+hence zero.}}
+
+\begin{example}[Rotation with symmetric coupling]\label{ex:qca-rotation}
+Let $\ell_0$ be the rotation by $\varphi$, with second row $r=(\sin\varphi,\cos\varphi)$, and
+$\ell_\pm=\lambda\,e_1r^{\mathsf T}$ as in Proposition~\ref{prop:qca-form}:
+\[\ell_0=\begin{pmatrix}\cos\varphi&-\sin\varphi\\ \sin\varphi&\cos\varphi\end{pmatrix},\qquad
+\ell_\pm=\lambda\begin{pmatrix}\sin\varphi&\cos\varphi\\0&0\end{pmatrix}.\]
+The rule is symplectic for all $\varphi$ and $\lambda$, and
+\[\operatorname{tr}\hat L(k)=2\cos\varphi+2\lambda\cos k\sin\varphi.\]
+\end{example}
+
+\noindent\motiv{\reve{The trace comes from $\hat L(k)=\ell_0+2\cos k\,\ell_\pm$. Since $\det\hat L(k)=1$, writing $\operatorname{tr}\hat L(k)=2\cos\theta(k)$
+gives the dispersion relation \reve{$\cos\theta(k)=\cos\varphi+\lambda\cos k\sin\varphi$}.}}
+
+\subsection{Notes and references}\label{sec:qca-thesis}
+
+\noindent\motiv{\reve{The material of this chapter is the phase-space part of Chapter~4
+of~\cite{krueger}; the Notation section at the front lists the correspondence of symbols.}}
+
+\begin{enumerate}
+\item \reve{\emph{Conventions.} In~\cite{krueger} a rule is written
+$(\Gamma\xi)_x=\sum_z\Gamma_z\xi_{x-z}$ (4.8), so $\Gamma_z=\ell_z$, and its Fourier transform
+$\hat\Gamma(k)=\sum_x\Gamma_xe^{-\ii kx}$ (4.14)--(4.15) is $\hat L(e^{-\ii k})$. Translations there
+act by $(\tau_\Delta\xi)_x=\xi_{x+\Delta}$ (p.~78), which is $\kappa_{a*}$ with $a=-\Delta$.}
+\item \reve{\emph{Corresponding equations.} Theorem~\ref{thm:qca-symbol}(b),(c) are (4.13) and (4.8)
+of~\cite{krueger}; Proposition~\ref{prop:qca-C} is (4.11); Example~\ref{ex:qca-coeff} is (4.10),
+with $\Gamma^+$ the symplectic adjoint (2.1); Proposition~\ref{prop:qca-form} is (4.12), in the basis
+of footnote~6 (p.~80), with the coupling written $f$; Example~\ref{ex:qca-rotation} is
+(4.18)--(4.19); Example~\ref{ex:qca-modes} is the statement on p.~82 that $\hat\Gamma(k)$ ``induces a
+symplectic transformation on every single mode $k$''.}
+\item \reve{\emph{Range.} In~\cite[p.~92]{krueger} the condition $\Gamma_x=0$ for $x\notin N$ is
+imposed on a rule. By Theorem~\ref{thm:qca-symbol}(c) it holds for every translation-invariant map,
+with $N$ as in Corollary~\ref{cor:qca-range}.}
+\item \reve{\emph{Invertibility.} \cite[p.~78]{krueger} states that $\Gamma$ is invertible ``as a
+symplectic transformation''; Theorem~\ref{thm:qca-inverse} proves this for translation-invariant
+rules.}
+\item \reve{\emph{Pure shifts.} Proposition~4.4 of~\cite{krueger} derives from $(C_{\pm2})$ that
+``$\Gamma_-$ and $\Gamma_+$ project onto the same, one-dimensional subspace'' (p.~80), which assumes
+that both are nonzero, and so omits case (i) of Proposition~\ref{prop:qca-nn}. The Remark after it,
+``the left- and right-shifter mentioned as examples in the introduction cannot be realized with one
+mode per site'' (p.~80; the shifters are listed on p.~70), is contradicted by
+Remark~\ref{rem:qca-shift}.}
+\item \reve{\emph{Direction of time.} For the lattice Klein--Gordon field, the forward rule in the
+convention of~\cite{krueger} corresponds to $F^{-1}$; this is made precise in \reve{Proposition~\ref{prop:time-direction}}.}
+\end{enumerate}

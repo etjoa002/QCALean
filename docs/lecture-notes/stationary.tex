@@ -1,0 +1,655 @@
+\clearpage
+\section{The example system and its stationary states}\label{sec:stationary}
+
+\noindent\motiv{\reve{The automaton of Example~\ref{ex:qca-rotation} rotates each oscillator of the
+chain by a fixed angle and couples neighbouring oscillators through their momenta. It is the example
+on which Kr\"uger demonstrates that a reversible Gaussian automaton can drive every finite region of
+the chain towards equilibrium~\cite{krueger}, and this chapter prepares that result by describing the
+automaton completely at each wave number and by determining its stationary covariances. At a single
+wave number the automaton acts by a real $2\times2$ matrix of determinant one, and the analysis
+rests on the elementary dichotomy for such matrices. When the trace lies strictly between $-2$ and
+$2$, the matrix is conjugate to a rotation, its powers stay bounded, and it preserves exactly one
+positive definite form up to a factor; when the absolute value of the trace exceeds two, it
+squeezes, and the traces $\pm2$, which belong to $\pm1$ and to the parabolic matrices, separate the
+two cases. Determining the parameters for which every wave number is of the
+first kind, the rotation angle as a function of the wave number, and the invariant form, one arrives
+at a complete description of the stationary reflection-symmetric covariances: their symbols are the
+invariant form multiplied, wave number by wave number, by a factor not less than one.}}
+
+\medskip
+\noindent\motiv{\reve{The chapter closes with the observation that the massless lattice field of the
+earlier chapters is the example system at the edge of the admissible parameters, so that it is not
+covered by the analysis.}}
+
+\medskip
+\noindent\motiv{\reve{Throughout, $G=\Z$ and each site carries one mode, so that cells and symbols
+are real or complex $2\times2$ matrices, and
+$\Omega=\begin{psmallmatrix}0&1\\-1&0\end{psmallmatrix}$. Cell data, their covariance form and their
+symbol are those of Definition~\ref{def:gs-cells}; for a rule $L$ and cell data $(\gamma_x)$ we
+write $L_*\gamma$ for the cell data $(\gamma'_j)$ of Theorem~\ref{thm:gs-evolution}, whose covariance
+form is $\gamma(L\cdot,L\cdot)$. Besides the identity $A^{\mathsf T}\Omega A=(\det A)\,\Omega$ of
+Lemma~\ref{lem:qca-2x2}, one further identity for $2\times2$ matrices over a commutative ring is used
+repeatedly,
+\begin{equation}\label{eq:es-twobytwo}
+\Omega A+A^{\mathsf T}\Omega=(\operatorname{tr}A)\,\Omega,
+\end{equation}
+which holds because, for $A=\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}$, the left side is
+antisymmetric with upper right entry $a+d$; so is the Cayley--Hamilton relation
+$A^2=(\operatorname{tr}A)A-(\det A)1$.}}
+
+\subsection{Iterated evolution}
+
+\noindent\motiv{\reve{The dynamics after $t$ steps is the automaton of the $t$-th power of the rule,
+whose symbol is the $t$-th power of the symbol by Theorem~\ref{thm:qca-symbol}.}}
+
+\begin{proposition}[Powers and iterates]\label{prop:es-iterate}
+\reve{Let $L$, $L_1$, $L_2$ be rules and $(\gamma_x)$ cell data.
+\begin{enumerate}[label=(\alph*)]
+\item $\hat L(k+2\pi)=\hat L(k)$ and $\hat\gamma(k+2\pi)=\hat\gamma(k)$ for every $k\in\R$, and
+$\widehat{L^t}(k)=\hat L(k)^t$ for every $t\in\mathbb N$.
+\item $1_*\gamma=\gamma$ and $(L_1L_2)_*\gamma=L_{2*}(L_{1*}\gamma)$; hence $(L_*)^t\gamma=(L^t)_*\gamma$
+for every $t\in\mathbb N$, and these are again cell data.
+\item If $L$ is symplectic, so is $L^t$ for every $t$, and for a real matrix $S$ with
+$S^{\mathsf T}\Omega S=\Omega$ the on-site rule $L_S$ is symplectic.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item The evaluation points $e^{-\ii(k+2\pi)}$ and $e^{-\ii k}$ coincide, and the series for
+$\hat\gamma(k+2\pi)$ and $\hat\gamma(k)$ agree term by term. Evaluation at $z=e^{-\ii k}$ is a ring
+homomorphism (Lemma~\ref{lem:qca-circle}), and so is its entrywise application to matrices, which
+therefore preserves powers.
+\item Cell data are determined by their covariance form, because the form takes the value
+$(\gamma_x)_{ij}$ on the site vectors $e_{x,i}$ and $e_{0,j}$. The rule $1$ is the identity, and
+the form of $(L_1L_2)_*\gamma$ is $\gamma(L_1L_2\cdot,L_1L_2\cdot)$, which, since the rule of
+$L_1L_2$ is $u\mapsto L_1(L_2u)$, is the form of $L_{1*}\gamma$ evaluated at $(L_2u,L_2w)$, that is,
+the form of $L_{2*}(L_{1*}\gamma)$. The statement about iterates follows by induction on $t$ from
+$(L_*)^{t+1}\gamma=L_*((L^t)_*\gamma)=(L^tL)_*\gamma$, and Theorem~\ref{thm:gs-evolution} shows at
+each step that the result is cell data.
+\item The symplectic symbols form a submonoid (Proposition~\ref{prop:gs-hom}), which contains the
+powers of its elements. The involution fixes constant symbols and the constant embedding is a ring
+homomorphism, so that the symplecticity condition for $L_S$ is the constant symbol of
+$S^{\mathsf T}\Omega S=\Omega$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\motiv{\reve{Cell data can be recovered from their symbol by the inversion formula of
+Fourier series, and two cell data with the same symbol therefore coincide; this is how
+stationarity will be read off from the symbol.}}
+
+\begin{proposition}[Fourier inversion]\label{prop:es-inversion}
+\reve{Let $(\gamma_x)$ and $(\gamma'_x)$ be cell data.
+\begin{enumerate}[label=(\alph*)]
+\item For every $x\in\Z$, $\displaystyle\gamma_x=\frac1{2\pi}\int_{-\pi}^{\pi}e^{\ii kx}\,\hat\gamma(k)\,dk$,
+entrywise.
+\item If $\hat\gamma'(k)=\hat\gamma(k)$ for every $k$, then $\gamma'=\gamma$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Each entry $\sum_g(\gamma_g)_{ab}e^{-\ii kg}$ of $\hat\gamma(k)$ is an absolutely convergent
+Fourier series, which may be integrated term by term against $e^{\ii kx}$, and since
+$\frac1{2\pi}\int_{-\pi}^\pi e^{\ii k(x-g)}\,dk=\delta_{g,x}$ only the term $g=x$ remains, as in
+the proof of Lemma~\ref{lem:gs-parseval}.
+\item By (a), both families are the same integrals of the same function.
+\end{enumerate}}
+\end{proof}
+
+\begin{lemma}[Reflection-symmetric cells]\label{lem:es-refl}
+\reve{Let $(\gamma_x)$ be cell data with $\gamma_{-x}=\gamma_x$ for every $x$. Then
+$\hat\gamma(-k)=\hat\gamma(k)$, and $\hat\gamma(k)$ is a real symmetric matrix for every $k$.}
+\end{lemma}
+
+\begin{proof}
+\reve{The substitution $x\mapsto-x$ gives
+$\hat\gamma(-k)=\sum_x\gamma_{-x}e^{-\ii kx}=\hat\gamma(k)$, and by Lemma~\ref{lem:gs-cells}(b)
+$\overline{\hat\gamma(k)}=\hat\gamma(-k)=\hat\gamma(k)$, so that every entry is real. A Hermitian
+matrix with real entries is symmetric.}
+\end{proof}
+
+\subsection{The example system}
+
+\noindent\motiv{\reve{We now fix the rule of Example~\ref{ex:qca-rotation}. Its coefficient at the
+origin rotates each oscillator by an angle $\varphi$, and the coefficients at $\pm1$ couple each
+site to its neighbours through the momentum row of that rotation, with strength $\lambda$.}}
+
+\begin{definition}[The example system]\label{def:es-example}
+\reve{For $\varphi,\lambda\in\R$, the \emph{example system} is the nearest-neighbour rule
+$L=L_{\varphi,\lambda}$ of Example~\ref{ex:qca-rotation}, with coefficients
+\[\ell_0=\begin{pmatrix}\cos\varphi&-\sin\varphi\\ \sin\varphi&\cos\varphi\end{pmatrix},\qquad
+\ell_{1}=\ell_{-1}=\ell_\pm=\lambda\begin{pmatrix}\sin\varphi&\cos\varphi\\0&0\end{pmatrix},\]
+and all other coefficients zero. We write
+$\tau(k)=\cos\varphi+\lambda\cos k\sin\varphi$.}
+\end{definition}
+
+\begin{proposition}[The symbol]\label{prop:es-symbol}
+\reve{For all $\varphi,\lambda,k\in\R$, the Fourier symbol of $L_{\varphi,\lambda}$ is the real
+matrix
+\[\hat L(k)=\ell_0+2\cos k\,\ell_\pm=
+\begin{pmatrix}\cos\varphi+2\lambda\cos k\sin\varphi&-\sin\varphi+2\lambda\cos k\cos\varphi\\
+\sin\varphi&\cos\varphi\end{pmatrix},\]
+and
+\begin{enumerate}[label=(\alph*)]
+\item $\hat L(-k)=\hat L(k)$, and the rule is reflection symmetric, $\ell_{-g}=\ell_g$ for all $g$;
+\item $\det\hat L(k)=1$, $\operatorname{tr}\hat L(k)=2\tau(k)$ and
+$\hat L(k)^{\mathsf T}\Omega\hat L(k)=\Omega$;
+\item the rule is symplectic;
+\item for cell data $(\gamma_x)$, the evolved cell data have the symbol
+$\widehat{L_*\gamma}(k)=\hat L(k)^{\mathsf T}\,\hat\gamma(k)\,\hat L(k)$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}
+\reve{The symbol is $\ell_\pm e^{\ii k}+\ell_0+\ell_\pm e^{-\ii k}=\ell_0+2\cos k\,\ell_\pm$, which is
+real.
+\begin{enumerate}[label=(\alph*)]
+\item The cosine is even, and the only nonzero coefficients are $\ell_0$ and the equal coefficients
+at $\pm1$.
+\item The determinant is
+$(\cos\varphi+2\lambda\cos k\sin\varphi)\cos\varphi-\sin\varphi(-\sin\varphi+2\lambda\cos k\cos\varphi)
+=\cos^2\varphi+\sin^2\varphi$, the trace is read off, and the last identity is
+Lemma~\ref{lem:qca-2x2} with $\det\hat L(k)=1$.
+\item This is Example~\ref{ex:qca-rotation}.
+\item This is Theorem~\ref{thm:gs-evolution}, whose reflection-symmetric form applies because
+$L$ is reflection symmetric by (a); since $\hat L(k)$ is real, its transpose is its conjugate
+transpose.
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{In the regime the symbol is not symmetric, its off-diagonal entries being
+$-\sin\varphi+2\lambda\cos k\cos\varphi$ and $\sin\varphi$, which would be equal only if
+$\lambda\cos k\cos\varphi=\sin\varphi$, contrary to Lemma~\ref{lem:es-sign}; so the transpose in
+(d) cannot be omitted.}
+
+\begin{example}[The running example]\label{ex:es-running}
+\reve{For $\varphi=\pi/2$ the on-site rotation is by a quarter turn, $\tau(k)=\lambda\cos k$, and
+\[\hat L(k)=\begin{pmatrix}2\lambda\cos k&-1\\1&0\end{pmatrix}.\]
+The rule maps the label $u(x)=(u_q,u_p)$ of a Weyl operator to
+$\bigl(-u_p(x)+\lambda(u_q(x-1)+u_q(x+1)),\,u_q(x)\bigr)$; under the heuristic reading of
+Proposition~\ref{prop:time-direction}, the field itself then moves by $L^{-1}$. For $\lambda=1$ the
+rule is the inverse leapfrog of the massless lattice field, as the last section shows.}
+\end{example}
+
+\subsection{The regime of rotations}
+
+\noindent\motiv{\reve{A real $2\times2$ matrix of determinant one with trace in $(-2,2)$ has the
+eigenvalues $e^{\pm\ii\theta}$ with $\theta\in(0,\pi)$ and is conjugate to a rotation by $\theta$,
+while a matrix of determinant one whose trace has absolute value greater than two has real
+eigenvalues inverse to each other and stretches one direction while compressing another. Since
+$\operatorname{tr}\hat L(k)=2\tau(k)$, every wave number is a rotation exactly when $|\tau|<1$
+everywhere.}}
+
+\begin{lemma}[Maximum of $|\tau|$]\label{lem:es-max}
+\reve{For all $\varphi,\lambda,k$, $|\tau(k)|\le|\cos\varphi|+|\lambda\sin\varphi|$, with equality
+for some $k$.}
+\end{lemma}
+
+\begin{proof}
+\reve{The inequality is the triangle inequality with $|\cos k|\le1$. Equality holds at $k=0$ if
+$\cos\varphi$ and $\lambda\sin\varphi$ are not of opposite signs, and at $k=\pi$ otherwise, since then
+$\cos\varphi$ and $-\lambda\sin\varphi$ are not of opposite signs.}
+\end{proof}
+
+\noindent\motiv{\reve{Besides the rotation of every wave number, the convergence of Section~\ref{sec:convergence}
+needs the chain to be coupled, since without coupling a squeezed initial state simply rotates for
+ever at each site.}}
+
+\begin{definition}[The regime]\label{def:es-regime}
+\reve{The pair $(\varphi,\lambda)$ lies in the \emph{regime} if
+\[|\cos\varphi|+|\lambda\sin\varphi|<1\qquad\text{and}\qquad\lambda\sin\varphi\neq0 .\]}
+\end{definition}
+
+\noindent\reve{The first condition already forces $\sin\varphi\neq0$ (Lemma~\ref{lem:es-sign} below),
+so that the second only excludes the uncoupled chain $\lambda=0$. Every numbered statement below
+that assumes the regime remains true under the first condition alone; the second is used in the
+remarks after Propositions~\ref{prop:es-alpha} and~\ref{prop:es-projectors} and in
+Example~\ref{ex:es-running-stat}.}
+
+\begin{proposition}[Forms of the regime]\label{prop:es-regime}
+\reve{Let $\varphi,\lambda\in\R$.
+\begin{enumerate}[label=(\alph*)]
+\item $|\cos\varphi|+|\lambda\sin\varphi|<1$ if and only if $|\operatorname{tr}\hat L(k)|<2$ for
+every $k$.
+\item If $\sin\varphi\neq0$, then $|\cos\varphi|+|\lambda\sin\varphi|<1$ if and only if
+$|\lambda|<f_{\rm crit}$, where
+\[f_{\rm crit}=\frac{1-|\cos\varphi|}{|\sin\varphi|}.\]
+\item $f_{\rm crit}=\tan(\varphi/2)$ for $0<\varphi\le\pi/2$, and $f_{\rm crit}=\cot(\varphi/2)$ for
+$\pi/2<\varphi<\pi$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Since $|\operatorname{tr}\hat L(k)|=2|\tau(k)|$, Lemma~\ref{lem:es-max} shows that the maximum
+over $k$ of $|\operatorname{tr}\hat L(k)|$ is $2(|\cos\varphi|+|\lambda\sin\varphi|)$ and is attained,
+which is the claim.
+\item Divide $|\lambda|\,|\sin\varphi|<1-|\cos\varphi|$ by $|\sin\varphi|>0$.
+\item For $0<\varphi<\pi$ write $\varphi=2x$ with $\sin x,\cos x>0$, so that $\sin\varphi=2\sin
+x\cos x>0$ while $1-\cos\varphi=2\sin^2x$ and $1+\cos\varphi=2\cos^2x$. If $\varphi\le\pi/2$, then
+$\cos\varphi\ge0$ and $f_{\rm crit}=(1-\cos\varphi)/\sin\varphi=\sin x/\cos x$, and if
+$\varphi>\pi/2$, then $\cos\varphi<0$ and $f_{\rm crit}=(1+\cos\varphi)/\sin\varphi=\cos x/\sin x$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{For negative $\varphi$ the same computation, with $|\sin\varphi|=-\sin\varphi$,
+gives $f_{\rm crit}=|\tan(\varphi/2)|$ for $-\pi/2\le\varphi<0$ and $|\cot(\varphi/2)|$ for
+$-\pi<\varphi<-\pi/2$. In the running example $f_{\rm crit}=1$, and the regime is
+$0<|\lambda|<1$.}
+
+\noindent\motiv{\reve{Whether the invariant form of Section~\ref{sec:es-eps} is written with the
+projector $P_k$ or with its conjugate depends on the sign of $\sin\varphi-\lambda\cos k\cos\varphi$
+(Proposition~\ref{prop:es-eps}(d)), and the regime fixes this sign. The bound it needs goes beyond
+the triangle inequality, because the regime bounds $|\lambda\sin\varphi|$ while the sign depends on
+$|\lambda\cos\varphi|$.}}
+
+\begin{lemma}[A sign]\label{lem:es-sign}
+\reve{If $|\cos\varphi|+|\lambda\sin\varphi|<1$, then $\sin\varphi\neq0$,
+$|\lambda\cos\varphi|<|\sin\varphi|$, and $\sin\varphi-\lambda\cos k\cos\varphi$ has the sign of
+$\sin\varphi$ for every $k$.}
+\end{lemma}
+
+\begin{proof}
+\reve{Write $a=|\cos\varphi|$ and $b=|\sin\varphi|$. Since $a<1$ and $a^2+b^2=1$, we have $b>0$.
+Multiplying $|\lambda|b<1-a$ by $a\ge0$ gives $|\lambda|b\,a\le(1-a)a$, and since $1-a>0$ and
+$a<1+a$, also $(1-a)a<(1-a)(1+a)=b^2$. Hence $|\lambda|a\,b<b^2$, and division by $b$ gives
+$|\lambda\cos\varphi|<b$. Then $|\lambda\cos k\cos\varphi|\le|\lambda\cos\varphi|<|\sin\varphi|$, so
+that $\sin\varphi-\lambda\cos k\cos\varphi$ differs from $\sin\varphi$ by less than
+$|\sin\varphi|$ and therefore has the sign of $\sin\varphi$.}
+\end{proof}
+
+\subsection{The rotation angle}
+
+\noindent\motiv{\reve{In the regime each $\hat L(k)$ is a rotation in suitable coordinates, and its
+angle, which depends on $k$ unless $\lambda=0$, is determined by the trace.}}
+
+\begin{definition}[Rotation angle]\label{def:es-alpha}
+\reve{For $(\varphi,\lambda)$ in the regime,
+$\theta(k)=\arccos\tau(k)=\arccos(\cos\varphi+\lambda\cos k\sin\varphi)$.}
+\end{definition}
+
+\begin{proposition}[The angle]\label{prop:es-alpha}
+\reve{Let $(\varphi,\lambda)$ lie in the regime. Then $|\tau(k)|<1$, $\cos\theta(k)=\tau(k)$,
+$\operatorname{tr}\hat L(k)=2\cos\theta(k)$, $\theta(k)\in(0,\pi)$ and $\sin\theta(k)>0$ for every
+$k$, and
+\begin{enumerate}[label=(\alph*)]
+\item $\theta(-k)=\theta(k)$, and $\theta$ is continuous;
+\item $\theta$ is differentiable, with $\theta'(k)=\lambda\sin\varphi\sin k/\sin\theta(k)$;
+\item on $[0,\pi]$, $\theta$ is strictly increasing if $\lambda\sin\varphi>0$ and strictly decreasing
+if $\lambda\sin\varphi<0$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}
+\reve{By Lemma~\ref{lem:es-max} and the regime, $|\tau(k)|<1$. On $[-1,1]$ the arccosine inverts the
+cosine and maps $(-1,1)$ into $(0,\pi)$, where the sine is positive, and the trace is
+Proposition~\ref{prop:es-symbol}(b).
+\begin{enumerate}[label=(\alph*)]
+\item $\tau$ is even and continuous, and the arccosine is continuous.
+\item The arccosine has the derivative $-1/\sqrt{1-x^2}$ at $|x|<1$, and
+$\sqrt{1-\tau(k)^2}=\sin\theta(k)$; with $\tau'(k)=-\lambda\sin\varphi\sin k$ the chain rule
+gives the formula.
+\item The cosine is strictly decreasing on $[0,\pi]$, so that $\tau$ is strictly decreasing there if
+$\lambda\sin\varphi>0$ and strictly increasing if $\lambda\sin\varphi<0$, and its values lie in
+$(-1,1)$, where the arccosine is strictly decreasing.
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{Although (c) follows without derivatives, (b) adds, through $\lambda\sin\varphi\neq0$,
+that $\theta'$ vanishes on $[0,\pi]$ only at the end points, so that $\theta$ is a change of
+variables on each half of the circle, which is what the convergence argument will use. In the
+running example, $\theta(k)=\arccos(\lambda\cos k)$ and $\sin\theta(k)=\sqrt{1-\lambda^2\cos^2k}$.}
+
+\subsection{Powers of the symbol}
+
+\noindent\motiv{\reve{After $t$ steps the symbol is $\hat L(k)^t$, and a matrix of determinant one
+has powers of a simple closed form, since by the Cayley--Hamilton relation each power is a
+combination of the matrix and the identity.}}
+
+\begin{lemma}[Powers]\label{lem:es-chebyshev}
+\reve{Let $A$ be a real $2\times2$ matrix with $\det A=1$ and $\operatorname{tr}A=2\cos a$, where
+$\sin a\neq0$. Then for every $t\in\mathbb N$,
+\[A^t=\frac{\sin(ta)}{\sin a}\,A-\frac{\sin((t-1)a)}{\sin a}\,1 .\]
+In the regime this holds for $A=\hat L(k)$ and $a=\theta(k)$.}
+\end{lemma}
+
+\begin{proof}
+\reve{Put $U_t=\sin(ta)/\sin a$, so that $U_0=0$ and $U_{-1}=-1$, and the formula
+$A^t=U_tA-U_{t-1}1$ holds for $t=0$. If it holds for $t$, then by $A^2=2\cos a\,A-1$,
+\[A^{t+1}=U_tA^2-U_{t-1}A=(2\cos a\,U_t-U_{t-1})A-U_t1,\]
+and $2\cos a\,U_t-U_{t-1}=U_{t+1}$ is the identity $\sin((t+1)a)+\sin((t-1)a)=2\sin(ta)\cos a$. The
+last statement follows from Propositions~\ref{prop:es-symbol}(b) and~\ref{prop:es-alpha}.}
+\end{proof}
+
+\noindent\motiv{\reve{The same powers can be written through the spectral projectors of $\hat L(k)$,
+in terms of which Proposition~\ref{prop:es-eps}(e) expresses the invariant form. They are built from the real matrix
+\[N(k)=\frac{\cos\theta(k)\,1-\hat L(k)}{\sin\theta(k)},\]
+defined in the regime, which squares to $-1$ because, by the Cayley--Hamilton relation,
+$(\cos\theta\,1-\hat L)^2=\cos^2\theta\,1-2\cos\theta\,\hat L+\hat L^2=-\sin^2\theta\,1$. The letter
+$N$ also denotes neighbourhoods in these notes; with the argument $k$ it always means this matrix.}}
+
+\begin{proposition}[Spectral projectors]\label{prop:es-projectors}
+\reve{Let $(\varphi,\lambda)$ lie in the regime, let $P_k=\frac12\bigl(1+\ii N(k)\bigr)$, a complex
+$2\times2$ matrix, and let $\bar P_k$ be its complex conjugate. Then $P_k+\bar P_k=1$, and
+\begin{enumerate}[label=(\alph*)]
+\item $P_k^2=P_k$ and $P_k\bar P_k=\bar P_kP_k=0$;
+\item $\hat L(k)=e^{\ii\theta(k)}P_k+e^{-\ii\theta(k)}\bar P_k$, and $\hat L(k)P_k=e^{\ii\theta(k)}P_k$;
+\item $\hat L(k)^t=e^{\ii t\theta(k)}P_k+e^{-\ii t\theta(k)}\bar P_k$ for every $t\in\mathbb N$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}
+\reve{Since $N=N(k)$ is real, $\bar P_k=\frac12(1-\ii N)$, and $P_k+\bar P_k=1$ uses nothing else.
+\begin{enumerate}[label=(\alph*)]
+\item With $N^2=-1$, $P_k^2=\frac14(1+2\ii N-N^2)=\frac12(1+\ii N)=P_k$, and
+$P_k\bar P_k=\bar P_kP_k=\frac14(1+N^2)=0$, the two factors being polynomials in $N$.
+\item $e^{\ii\theta}P_k+e^{-\ii\theta}\bar P_k=\cos\theta\,1-\sin\theta\,N=\hat L(k)$ by the
+definition of $N$, and multiplying on the right by $P_k$ gives the second identity by (a).
+\item By induction on $t$, the cross terms of the product with (b) vanishing by (a).
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{Expanding (c) gives $\hat L(k)^t=\cos(t\theta)1-\sin(t\theta)N(k)$, which is
+Lemma~\ref{lem:es-chebyshev} again, and it is this real form that the convergence argument will use.
+The projector $P_k$ is Hermitian exactly when $N(k)$ is antisymmetric, which in the regime happens
+only at $\cos k=0$, where the diagonal of $\tau(k)1-\hat L(k)$, namely
+$(-\lambda\cos k\sin\varphi,\lambda\cos k\sin\varphi)$, vanishes; at every other wave number the two
+projectors are not orthogonal.}
+
+\subsection{The invariant form}\label{sec:es-eps}
+
+\noindent\motiv{\reve{A rotation preserves the identity form, and a matrix conjugate to a rotation
+preserves the transported form. For $\hat L(k)$ this form can be written down directly: since
+$\hat L^{\mathsf T}\Omega\hat L=\Omega$, the matrix $\Omega(a1-\hat L)$ is preserved for every scalar
+$a$, and by \eqref{eq:es-twobytwo} the choice $a=\cos\theta(k)=\frac12\operatorname{tr}\hat L(k)$ makes
+it symmetric. Normalized to determinant one and oriented to be positive definite, it is the form of
+the following definition.}}
+
+\begin{definition}[Invariant form]\label{def:es-eps}
+\reve{For $(\varphi,\lambda)$ in the regime,
+\[\hat\varepsilon(k)=-\frac{\operatorname{sgn}(\sin\varphi)}{\sin\theta(k)}\,
+\Omega\bigl(\cos\theta(k)\,1-\hat L(k)\bigr)=-\operatorname{sgn}(\sin\varphi)\,\Omega N(k).\]}
+\end{definition}
+
+\noindent\reve{Since $\cos\theta=\tau$, the entries of $\hat L(k)$ give
+\begin{equation}\label{eq:es-eps}
+\hat\varepsilon(k)=\frac{\operatorname{sgn}(\sin\varphi)}{\sin\theta(k)}
+\begin{pmatrix}\sin\varphi&-\lambda\cos k\sin\varphi\\-\lambda\cos k\sin\varphi&\sin\varphi-2\lambda\cos
+k\cos\varphi\end{pmatrix},
+\end{equation}
+and
+\begin{equation}\label{eq:es-sin2}
+\sin^2\theta(k)=1-\tau(k)^2=\sin^2\varphi-2\lambda\cos k\cos\varphi\sin\varphi-\lambda^2\cos^2k\sin^2\varphi
+\end{equation}
+is the determinant of the matrix in \eqref{eq:es-eps}. Without the factor
+$\operatorname{sgn}(\sin\varphi)$ the matrix would be negative definite for $\sin\varphi<0$.}
+
+\begin{proposition}[Properties of the invariant form]\label{prop:es-eps}
+\reve{Let $(\varphi,\lambda)$ lie in the regime. Then $\hat\varepsilon(-k)=\hat\varepsilon(k)$ and
+$\hat L(k)^{\mathsf T}\hat\varepsilon(k)\hat L(k)=\hat\varepsilon(k)$ for every $k$, and
+\begin{enumerate}[label=(\alph*)]
+\item $\hat\varepsilon(k)$ is real symmetric, and $\hat\varepsilon$ is continuous;
+\item $\det\hat\varepsilon(k)=1$ and $(\Omega\hat\varepsilon(k))^2=-1$;
+\item $\hat\varepsilon(k)$ is positive definite, with $\hat\varepsilon(k)_{11}=|\sin\varphi|/\sin\theta(k)$;
+\item $\operatorname{tr}(\ii\Omega P_k)=(\sin\varphi-\lambda\cos k\cos\varphi)/\sin\theta(k)$, a real
+number with the sign of $\sin\varphi$;
+\item $\hat\varepsilon(k)=\operatorname{sgn}(\sin\varphi)\,\ii\Omega(P_k-\bar P_k)$, and for
+$\sin\varphi>0$, $\hat\varepsilon(k)+\ii\Omega=2\ii\Omega P_k$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}
+\reve{Evenness follows from that of $\theta$ and $\hat L$. For the invariance, with $a=\cos\theta(k)$
+and $\hat L=\hat L(k)$, the identity $\hat L^{\mathsf T}\Omega\hat L=\Omega$ gives
+$\hat L^{\mathsf T}\Omega(a1-\hat L)\hat L=a\Omega-\Omega\hat L=\Omega(a1-\hat L)$, and
+$\hat\varepsilon(k)$ is a scalar multiple of $\Omega(a1-\hat L)$.
+\begin{enumerate}[label=(\alph*)]
+\item Symmetry is visible in \eqref{eq:es-eps}, and continuity holds because $\theta$ and $\hat L$
+are continuous and $\sin\theta$ does not vanish.
+\item By \eqref{eq:es-eps} and \eqref{eq:es-sin2},
+$\det\hat\varepsilon=\operatorname{sgn}(\sin\varphi)^2\sin^2\theta/\sin^2\theta=1$, since
+$\sin\varphi\neq0$ by Lemma~\ref{lem:es-sign}. Further,
+$\Omega\hat\varepsilon=-\operatorname{sgn}(\sin\varphi)\Omega^2N=\operatorname{sgn}(\sin\varphi)N$,
+whose square is $N^2=-1$.
+\item The $(1,1)$ entry is $\operatorname{sgn}(\sin\varphi)\sin\varphi/\sin\theta=|\sin\varphi|/\sin
+\theta>0$, and a real symmetric $2\times2$ matrix $E$ with $E_{11}>0$ and $\det E>0$ is positive
+definite, because $E_{11}\,v^{\mathsf T}Ev=(E_{11}v_1+E_{12}v_2)^2+(\det E)v_2^2$.
+\item Since $\ii\Omega P_k=\frac\ii2\Omega-\frac12\Omega N$ and $\operatorname{tr}\Omega=0$, the
+trace equals $-\frac12\operatorname{tr}(\Omega N)$, and the trace of $\Omega(\tau1-\hat L)$ is
+$-2\sin\varphi+2\lambda\cos k\cos\varphi$; the sign is that of Lemma~\ref{lem:es-sign}.
+\item Since $P_k-\bar P_k=\ii N$, we have $\ii\Omega(P_k-\bar P_k)=-\Omega N$, and for
+$\sin\varphi>0$ the relation $\bar P_k=1-P_k$ gives
+$\hat\varepsilon+\ii\Omega=\ii\Omega(P_k-\bar P_k+1)=2\ii\Omega P_k$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{In the running example,
+\[\hat\varepsilon(k)=\frac1{\sqrt{1-\lambda^2\cos^2k}}\begin{pmatrix}1&-\lambda\cos k\\-\lambda\cos
+k&1\end{pmatrix}.\]
+The entries of $\hat\varepsilon$ are real-analytic, $2\pi$-periodic
+functions of $k$, since $1-\tau(k)^2$ is a trigonometric polynomial that does not vanish; their Fourier
+coefficients therefore decay exponentially, and $\hat\varepsilon$ is the symbol of reflection-symmetric
+cell data, as is $\eta\hat\varepsilon$ for every real-analytic, even, $2\pi$-periodic $\eta$. By
+Corollary~\ref{cor:gs-purity}, (b) then says that these cell data saturate the state condition at
+every wave number.}
+
+\noindent\motiv{\reve{A factor multiplying $\hat\varepsilon(k)$ adds noise to the mode $k$, and the
+state condition becomes a threshold on the factor.}}
+
+\begin{proposition}[Threshold]\label{prop:es-threshold}
+\reve{Let $E$ be a real symmetric positive definite $2\times2$ matrix with $\det E=1$, and $\eta\in\R$.
+Then $\eta E+\ii\Omega\ge0$ if and only if $\eta\ge1$. In particular, in the regime,
+$\eta\,\hat\varepsilon(k)+\ii\Omega\ge0$ if and only if $\eta\ge1$.}
+\end{proposition}
+
+\begin{proof}
+\reve{Write $e_1=E_{11}>0$ and $e_2=E_{12}$. If $\eta E+\ii\Omega\ge0$, its $(1,1)$ entry $\eta e_1$
+is non-negative, so that $\eta\ge0$, and its determinant, which by \eqref{eq:gs-detpm} is
+$\eta^2\det E-1=\eta^2-1$, is non-negative; hence $\eta\ge1$. Conversely, for $w_\pm=\bigl(\sqrt{e_1},
+(e_2\mp\ii)/\sqrt{e_1}\bigr)$ a direct computation, using $e_1E_{22}-e_2^2=1$, gives
+$E\pm\ii\Omega=w_\pm w_\pm^\dagger$, and
+\[\eta E+\ii\Omega=\tfrac{\eta+1}2(E+\ii\Omega)+\tfrac{\eta-1}2(E-\ii\Omega)\]
+is a combination of positive semidefinite matrices with non-negative coefficients when $\eta\ge1$.
+The last statement is the case $E=\hat\varepsilon(k)$, by Proposition~\ref{prop:es-eps}.}
+\end{proof}
+
+\subsection{Invariant forms of a rotation}
+
+\noindent\motiv{\reve{To show that every reflection-symmetric stationary covariance is built from
+$\hat\varepsilon$, one needs that $\hat\varepsilon(k)$ spans the symmetric forms preserved by
+$\hat L(k)$, and this follows from the description of the real $2\times2$ matrices commuting with a
+given one.}}
+
+\begin{lemma}[Commutant]\label{lem:es-commutant}
+\reve{Let $A$ be a real $2\times2$ matrix that is not a multiple of the identity. Every real matrix
+$X$ with $XA=AX$ is of the form $X=p1+qA$ with $p,q\in\R$.}
+\end{lemma}
+
+\begin{proof}
+\reve{Subtracting multiples of the identity, we may take
+$A_0=\begin{psmallmatrix}a&b\\c&-a\end{psmallmatrix}\neq0$ and
+$X_0=\begin{psmallmatrix}x&y\\z&-x\end{psmallmatrix}$ with $X_0A_0=A_0X_0$. The commutator
+$X_0A_0-A_0X_0$ has the entries $yc-bz$, $2(xb-ya)$, $2(za-xc)$ and $bz-yc$, so that
+$(x,y,z)$ and $(a,b,c)$ have vanishing cross product, and $(x,y,z)=q(a,b,c)$ because
+$(a,b,c)\neq0$.}
+\end{proof}
+
+\begin{proposition}[Invariant forms]\label{prop:es-invariant}
+\reve{Let $A$ be a real $2\times2$ matrix with $\det A=1$ that is not a multiple of the identity.
+\begin{enumerate}[label=(\alph*)]
+\item A real symmetric matrix $S$ with $A^{\mathsf T}SA=S$ is of the form
+$S=q\,\Omega\bigl(A-\tfrac12(\operatorname{tr}A)1\bigr)$ with $q\in\R$.
+\item If $|\operatorname{tr}A|<2$ and $E\neq0$ is a real symmetric matrix with $A^{\mathsf T}EA=E$,
+then every such $S$ is $S=\eta E$ for a unique $\eta\in\R$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item By Lemma~\ref{lem:qca-2x2}, $A^{\mathsf T}\Omega=\Omega A^{-1}$, so that $A^{\mathsf T}SA=S$
+says that $X=\Omega^{-1}S$ commutes with $A$. By Lemma~\ref{lem:es-commutant}, $S=\Omega(p1+qA)$.
+Symmetry of $S$, with $\Omega^{\mathsf T}=-\Omega$ and \eqref{eq:es-twobytwo}, becomes
+$(2p+q\operatorname{tr}A)\Omega=0$, so that $p=-\frac12q\operatorname{tr}A$.
+\item By (a), both $S$ and $E$ are multiples of $\Omega(A-\frac12\operatorname{tr}A\,1)$, the multiple
+for $E$ being nonzero, and uniqueness holds because $E\neq0$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{The proof of (b) uses only (a), so that the hypothesis $|\operatorname{tr}A|<2$ is
+not needed there; it matters for the converse. Conversely, $\Omega(A-\frac12\operatorname{tr}A\,1)$ is
+symmetric and invariant by \eqref{eq:es-twobytwo}, and its determinant is
+$1-\frac14(\operatorname{tr}A)^2$, positive exactly in the elliptic case. If the forms are not required
+to be symmetric, the invariant ones span a plane, which also contains $\Omega$. This is why
+reflection symmetry, which makes symbols real, enters the theorem below: the cell data with symbol
+$2\hat\varepsilon(k)+\ii\sin k\,\Omega$ are stationary and satisfy the state condition, since
+$2\hat\varepsilon(k)+\ii s\Omega=s\bigl((2/s)\hat\varepsilon(k)+\ii\Omega\bigr)\ge0$ for
+$s=1+\sin k>0$ by Proposition~\ref{prop:es-threshold}, and trivially for $s=0$, but their symbol
+is not of the form $\eta\hat\varepsilon$.}
+
+\begin{corollary}[Coefficient]\label{cor:es-coeff}
+\reve{In the regime, put $h_k(S)=-\frac12\operatorname{tr}\bigl(\Omega\hat\varepsilon(k)\Omega S\bigr)$
+for a real matrix $S$. Then $h_k(\eta\,\hat\varepsilon(k))=\eta$, and every real symmetric $S$ with
+$\hat L(k)^{\mathsf T}S\hat L(k)=S$ equals $h_k(S)\,\hat\varepsilon(k)$.}
+\end{corollary}
+
+\begin{proof}
+\reve{By Proposition~\ref{prop:es-eps}(b),
+$h_k(\eta\hat\varepsilon)=-\frac\eta2\operatorname{tr}\bigl((\Omega\hat\varepsilon)^2\bigr)=
+-\frac\eta2\operatorname{tr}(-1)=\eta$. Since $|\operatorname{tr}\hat L(k)|<2$ and
+$\hat\varepsilon(k)\neq0$ is symmetric and invariant, Proposition~\ref{prop:es-invariant}(b) gives
+$S=\eta\hat\varepsilon(k)$ for some $\eta$, and then $\eta=h_k(S)$.}
+\end{proof}
+
+\subsection{The stationary states}
+
+\noindent\motiv{\reve{A Gaussian state $(\omega,\gamma,d)$ is stationary under the automaton when
+its covariance and its displacement are both preserved, $\gamma(L\cdot,L\cdot)=\gamma$ and $d\circ
+L=d$. The theorem concerns the covariance; the displacement is settled in the remark after it. By
+the preceding results, reflection-symmetric cell data are preserved exactly when their symbol is
+preserved at every wave number, a preserved real symbol is a multiple of $\hat\varepsilon(k)$ at each
+$k$, and the state condition then says that the multiple is at least one.}}
+
+\begin{theorem}[Stationary covariances]\label{thm:es-stationary}
+\reve{Let $(\varphi,\lambda)$ lie in the regime, and let $(\gamma_x)$ be cell data with
+$\gamma_{-x}=\gamma_x$ for every $x$. The following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $L_*\gamma=\gamma$, and $\hat\gamma(k)+\ii\Omega\ge0$ for every $k$;
+\item there is a continuous function $\eta\colon\R\to\R$ with $\eta(-k)=\eta(k)\ge1$ and
+$\hat\gamma(k)=\eta(k)\,\hat\varepsilon(k)$ for every $k$.
+\end{enumerate}}
+\end{theorem}
+
+\begin{proof}
+\reve{(ii)$\Rightarrow$(i). By Proposition~\ref{prop:es-symbol}(d) and the invariance of
+$\hat\varepsilon$, the evolved cell data have the symbol
+$\hat L^{\mathsf T}\eta\hat\varepsilon\hat L=\eta\hat\varepsilon=\hat\gamma$, and by
+Proposition~\ref{prop:es-inversion}(b) they equal $\gamma$. The state condition is
+Proposition~\ref{prop:es-threshold}.}
+
+\reve{(i)$\Rightarrow$(ii). By Lemma~\ref{lem:es-refl}, $S(k)=\hat\gamma(k)$ is real symmetric, even
+in $k$, and continuous by Lemma~\ref{lem:gs-cells}. Taking symbols in $L_*\gamma=\gamma$ gives
+$\hat L(k)^{\mathsf T}S(k)\hat L(k)=S(k)$, so that $S(k)=\eta(k)\hat\varepsilon(k)$ with
+$\eta(k)=h_k(S(k))$ by Corollary~\ref{cor:es-coeff}. This $\eta$ is continuous and even, being a
+trace of products of continuous even functions, and $\eta(k)\ge1$ by
+Proposition~\ref{prop:es-threshold}.}
+\end{proof}
+
+\noindent\reve{The proof of (ii)$\Rightarrow$(i) uses neither the continuity and evenness of $\eta$
+nor reflection symmetry, but these are automatic: if $\hat\gamma=\eta\hat\varepsilon$ for cell data
+with $\eta\ge1$, then $\eta=\hat\gamma_{11}\sin\theta/|\sin\varphi|$ is continuous, the symbol is real,
+and $\hat\gamma(-k)=\overline{\hat\gamma(k)}=\hat\gamma(k)$ makes $\eta$ even and, by
+Proposition~\ref{prop:es-inversion}(b), the cells reflection symmetric. A stationary covariance of this
+form has $\det\hat\gamma(k)=\eta(k)^2$. For $\eta\equiv1$ this is one at every wave number, the
+saturated covariance, while $\eta>1$ adds noise to the corresponding modes; $\eta(k)$ measures the
+excess noise of the mode $k$, as $\coth(\beta\omega/2)$ does for a thermal oscillator. For the
+displacement, a translation-invariant $d(u)=\sum_x\delta^{\mathsf T}u(x)$ satisfies $d\circ L=d$ exactly
+when $\hat L(0)^{\mathsf T}\delta=\delta$, and since $\hat L(0)$ is conjugate to a rotation by
+$\theta(0)\in(0,\pi)$, it has no eigenvalue one, which forces $\delta=0$.}
+
+\begin{example}[Stationary covariances of the running example]\label{ex:es-running-stat}
+\reve{For $\varphi=\pi/2$ and $0<|\lambda|<1$, the stationary reflection-symmetric cell data satisfying
+the Fourier criterion are exactly those with
+\[\hat\gamma(k)=\frac{\eta(k)}{\sqrt{1-\lambda^2\cos^2k}}\begin{pmatrix}1&-\lambda\cos k\\-\lambda\cos
+k&1\end{pmatrix},\qquad\eta(-k)=\eta(k)\ge1,\]
+where $\eta$ is continuous and such that this is the symbol of cell data, for instance
+real-analytic and $2\pi$-periodic.
+The vacuum, $\hat\gamma\equiv1$, is reflection symmetric and satisfies the Fourier criterion, so that
+by Theorem~\ref{thm:es-stationary} it would be stationary only if its symbol had this form; its
+off-diagonal entry vanishes, so it is not stationary, and whether it approaches one of these states is
+the question of convergence.}
+\end{example}
+
+\subsection{The massless field at the edge of the regime}
+
+\noindent\motiv{\reve{The lattice Klein--Gordon field of Example~\ref{ex:gs-leapfrog} is a
+nearest-neighbour rule, and one may ask whether every one of its wave numbers is a rotation. None of
+its masses makes every wave number elliptic, and only the massless field is an example system, which
+lies on the boundary of the regime.}}
+
+\begin{proposition}[The leapfrog and the regime]\label{prop:es-finding2}
+\reve{Let $c_k=2\cos k-m^2$ for a real $m^2$.
+\begin{enumerate}[label=(\alph*)]
+\item The symbols $\hat F$ and $\hat F^{-1}$ of the leapfrog and its inverse
+(Example~\ref{ex:gs-leapfrog}) have $\operatorname{tr}\hat F(k)=\operatorname{tr}\hat F^{-1}(k)=c_k$,
+and $|c_{k_0}|\ge2$ for $k_0=\pi$ if $m^2\ge0$ and $k_0=0$ if $m^2<0$.
+\item The inverse leapfrog at $m^2=0$ is the example system with $\varphi=\pi/2$ and $\lambda=1$.
+\item The pair $(\pi/2,1)$ is not in the regime: $|\cos\frac\pi2|+|\sin\frac\pi2|=1$, and
+$\lambda=1=f_{\rm crit}(\pi/2)$.
+\end{enumerate}}
+\end{proposition}
+
+\begin{proof}\leavevmode
+\reve{\begin{enumerate}[label=(\alph*)]
+\item Both traces are $c_k$ by Example~\ref{ex:gs-leapfrog}, and $|c_\pi|=2+m^2$ for $m^2\ge0$,
+while $|c_0|=2-m^2>2$ for $m^2<0$.
+\item At $m^2=0$ the inverse leapfrog has $\ell_0=\begin{psmallmatrix}0&-1\\1&0\end{psmallmatrix}$
+and $\ell_{\pm1}=\begin{psmallmatrix}1&0\\0&0\end{psmallmatrix}$, which are the coefficients of
+Definition~\ref{def:es-example} for $\varphi=\pi/2$ and $\lambda=1$.
+\item $\cos\frac\pi2=0$ and $\sin\frac\pi2=1$.
+\end{enumerate}}
+\end{proof}
+
+\noindent\reve{At $\lambda=1$ the running example has $\operatorname{tr}\hat L(0)=2$ and
+$\operatorname{tr}\hat L(\pi)=-2$, and neither $\hat L(0)$ nor $\hat L(\pi)$ is $\pm1$, so that the
+strict inequality of the regime fails exactly at the two parabolic modes $k=0$ and $k=\pi$. For
+$m^2\neq0$, part (a) gives a mode with $|\operatorname{tr}|>2$, which squeezes.}
+
+\subsection{Notes and references}\label{sec:es-notes}
+
+\begin{enumerate}
+\item \reve{\emph{The example system.} Definition~\ref{def:es-example} and
+Proposition~\ref{prop:es-symbol} are (4.18) of~\cite{krueger}, where the coupling is written $f$
+and the symbol $\hat\Gamma(k)=\Gamma_0+2f\cos k\,\Gamma_\pm$~\cite[p.~82]{krueger}. The evolved
+symbol is (4.17b), printed with the conjugate transpose, and for this real symbol the conjugate
+transpose and the transpose coincide.}
+\item \reve{\emph{The regime.} The trace formula and the angle are (4.19), and $f_{\rm crit}$ with its
+half-angle forms is (4.20)~\cite[p.~83]{krueger}, printed with absolute values, as here. The thesis
+states the regime with $|f|\le f_{\rm crit}$ and restricts to the nondegenerate case, which we read as
+the strict inequality of Definition~\ref{def:es-regime}~\cite[pp.~83--84]{krueger}. The thesis
+excludes $\sin\varphi=0$ as degenerate~\cite[p.~88]{krueger} but not $\lambda=0$, and its
+Proposition~4.7 does not hold as stated for $\lambda=0$, since an initial squeezed state then rotates
+for ever. Lemma~\ref{lem:es-sign} makes precise the appeal to ``the condition on $f$ from (4.20)''
+behind the sign statement of~\cite[p.~88]{krueger}. Figure~4.3 of the thesis~\cite[p.~84]{krueger}
+($f=0.4$, $\varphi=\pi/4$) shows the angle increasing on $[0,\pi]$, in accordance with
+Proposition~\ref{prop:es-alpha}(c).}
+\item \reve{\emph{Projectors.} Proposition~\ref{prop:es-projectors} is Lemma~4.6 and (4.24)
+of~\cite[pp.~84--85]{krueger}; the thesis proves idempotence through eigenvectors (its footnote~8),
+here through $N(k)^2=-1$.}
+\item \reve{\emph{Stationary states.} The thesis writes the invariant form as
+$\hat\varepsilon(k)=\ii\sigma_s(P_k-\bar P_k)$ for $0<\varphi<\pi$ and
+$\ii\sigma_s(\bar P_k-P_k)$ for $-\pi<\varphi<0$, with the real expression (4.28) for the first
+case~\cite[pp.~87,~89]{krueger}; Definition~\ref{def:es-eps} is one formula for both, by
+Proposition~\ref{prop:es-eps}(e). Theorem~\ref{thm:es-stationary} is Theorem~4.8 of the thesis,
+with the factor written $g$ there and $\eta$ here, and the rotation angle written $\alpha(k)$ there
+and $\theta(k)$ here, since $\alpha$ denotes automorphisms in these notes. The thesis proves that
+every $g\hat\varepsilon$ with $g\ge1$ is stationary and that the limit of its dynamics has this form,
+and it states that \emph{all} stationary reflection-symmetric states are of this form; the
+completeness half, (i)$\Rightarrow$(ii), rests on Proposition~\ref{prop:es-invariant}, which is not in
+the thesis. The state condition is taken in its Fourier form; by Theorem~\ref{thm:gs-fourier} and
+Remark~\ref{rem:gs-fourier-general} it is equivalent to the state condition of the covariance form.}
+\item \reve{\emph{The massless field.} Proposition~\ref{prop:es-finding2} is not in the thesis. It
+shows that no mass makes every wave number of the lattice Klein--Gordon field of
+Example~\ref{ex:gs-leapfrog} elliptic, and that the massless field is the example system on the
+boundary of the regime of the thesis's convergence result.}
+\end{enumerate}

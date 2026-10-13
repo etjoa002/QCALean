@@ -1,0 +1,53 @@
+% Adapted from LinearAQFT's docs/lecture-notes (commit deaff11); macro prefix AQFT renamed QCA.
+% Navigation only; checked labels are maintained with reviewed correspondence.
+\definecolor{QCATagFill}{HTML}{EEEAF8}
+\definecolor{QCATagBorder}{HTML}{D6CEEB}
+\definecolor{QCATagText}{HTML}{5B477D}
+\newcommand{\QCALeanTag}{%
+  \tikz[baseline=(tag.base)]\node[rounded corners=1.5pt,
+    fill=QCATagFill,draw=QCATagBorder,text=QCATagText,
+    line width=0.3pt,inner xsep=3pt,inner ysep=1.5pt] (tag)
+    {\normalfont\scriptsize\sffamily Lean\,\ensuremath{\checkmark}};}
+\definecolor{QCAArtFill}{HTML}{F2F2F2}
+\definecolor{QCAArtBorder}{HTML}{BDBDBD}
+\definecolor{QCAArtText}{HTML}{555555}
+\newcommand{\QCAArtefactTag}{%
+  \tikz[baseline=(tag.base)]\node[rounded corners=1.5pt,
+    fill=QCAArtFill,draw=QCAArtBorder,text=QCAArtText,dashed,
+    line width=0.3pt,inner xsep=3pt,inner ysep=1.5pt] (tag)
+    {\normalfont\scriptsize\sffamily formalization};}
+\newcommand{\artefact}[1]{#1\nobreak\hspace{0.3em}\QCAArtefactTag}
+% Status tags for examples without a reviewed Lean counterpart: script ✓ (exhaustively
+% verified by a check script) and paper (checked on paper only).
+\definecolor{QCAScrFill}{HTML}{E8F3EC}
+\definecolor{QCAScrBorder}{HTML}{BFDCC9}
+\definecolor{QCAScrText}{HTML}{2F6B45}
+\newcommand{\QCAScriptTag}{%
+  \tikz[baseline=(tag.base)]\node[rounded corners=1.5pt,
+    fill=QCAScrFill,draw=QCAScrBorder,text=QCAScrText,
+    line width=0.3pt,inner xsep=3pt,inner ysep=1.5pt] (tag)
+    {\normalfont\scriptsize\sffamily script\,\ensuremath{\checkmark}};}
+\definecolor{QCAPapFill}{HTML}{FBF1E3}
+\definecolor{QCAPapBorder}{HTML}{E6CFA8}
+\definecolor{QCAPapText}{HTML}{7A5520}
+\newcommand{\QCAPaperTag}{%
+  \tikz[baseline=(tag.base)]\node[rounded corners=1.5pt,
+    fill=QCAPapFill,draw=QCAPapBorder,text=QCAPapText,
+    line width=0.3pt,inner xsep=3pt,inner ysep=1.5pt] (tag)
+    {\normalfont\scriptsize\sffamily paper};}
+\makeatletter
+\newcommand{\QCAExampleStatus}[2]{\expandafter\gdef\csname qca@status@#1\endcsname{#2}}
+\newcommand{\QCACheckedLabel}[1]{\expandafter\gdef\csname qca@checked@#1\endcsname{}}
+\newcommand{\QCAEnableLinks}{%
+  \let\QCAOriginalLabel\label
+  \renewcommand{\label}[1]{%
+    \QCAOriginalLabel{##1}%
+    \ifcsname qca@checked@##1\endcsname
+      \nobreak\hspace{0.4em}\hyperlink{lean:##1}{\QCALeanTag}%
+    \else\ifcsname qca@status@##1\endcsname
+      \nobreak\hspace{0.4em}\QCAStatusTag{\csname qca@status@##1\endcsname}%
+    \fi\fi}}
+\def\qca@script{script}\def\qca@paper{paper}
+\newcommand{\QCAStatusTag}[1]{\edef\qca@s{#1}%
+  \ifx\qca@s\qca@script\QCAScriptTag\else\ifx\qca@s\qca@paper\QCAPaperTag\fi\fi}
+\makeatother
