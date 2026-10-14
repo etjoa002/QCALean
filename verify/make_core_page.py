@@ -42,18 +42,33 @@ def items() -> list[tuple[str, str, str]]:
     return out
 
 
+MATH = re.compile(r"\$([^$]+)\$([.,;:])?")  # a formula with the punctuation that follows it
+RELATION = re.compile(r"(?<![<>!])=|\\le\b|\\ge\b|\\leq|\\geq|\\subseteq|\\iff|\\equiv|(?<!\\)<|(?<!\\)>|\\ne\b")
+LARGE = re.compile(r"\\sum|\\int|\\prod|\\frac|\\exp|\\sqrt|\\bigl|\\Bigl")
+
+
+def is_display(body: str) -> bool:
+    """Set a formula on its own lines: a matrix, or a relation (equation, inequality, inclusion) of
+    some length, at least 30 symbols, or 18 when it contains a sum, integral, fraction, root or
+    exponential. Commands count as one symbol. The statements themselves are not changed."""
+    if re.search(r"\\begin\{[a-z]*matrix\}", body):
+        return True
+    n = len(re.sub(r"\\[A-Za-z]+", "x", re.sub(r"\s+", " ", body)))
+    return bool(RELATION.search(body)) and (n >= 30 or (bool(LARGE.search(body)) and n >= 18))
+
+
 def github_math(s: str) -> str:
     """Inline math in GitHub's protected form $`...`$: in the plain form $...$ Markdown removes the
     backslash before punctuation first (`\\,`, `\\{`, `\\|`, `\\\\`), which breaks thin spaces, braces,
     norms and matrix rows. `\\operatorname{x}` does not render on GitHub and becomes
-    `\\mathrm{x}\\,`. A formula containing a matrix is set as a display formula on its own lines, with
-    the punctuation that follows it. The LaTeX page is written from the unchanged text."""
+    `\\mathrm{x}\\,`. A display formula (`is_display`) is set on its own lines, with the punctuation
+    that follows it."""
     def one(m: re.Match) -> str:
         body = re.sub(r"\\operatorname\{([^{}]*)\}", r"\\mathrm{\1}\\,", m.group(1))
-        if re.search(r"\\begin\{[a-z]*matrix\}", body):
+        if is_display(body):
             return "\n\n```math\n" + body + (m.group(2) or "") + "\n```\n\n"
         return "$`" + body + "`$" + (m.group(2) or "")
-    out = re.sub(r"\$([^$]+)\$([.,;:])?", one, s)
+    out = MATH.sub(one, s)
     return re.sub(r"\n\n +", "\n\n", out).strip()
 
 
@@ -76,11 +91,13 @@ def markdown(its) -> str:
 
 def latex(its) -> str:
     def tex(s: str) -> str:
-        parts = re.split(r"(\$[^$]*\$)", s)  # keep math, escape text
+        parts = re.split(r"(\$[^$]*\$[.,;:]?)", s)  # keep math, escape text
         res = []
         for p in parts:
             if p.startswith("$"):
-                res.append(p)
+                m = MATH.fullmatch(p)
+                res.append(r"\[" + m.group(1) + (m.group(2) or "") + r"\]"
+                           if m and is_display(m.group(1)) else p)
             else:
                 p = p.replace("\\", r"\textbackslash{}").replace("&", r"\&").replace("%", r"\%").replace("#", r"\#").replace("_", r"\_")
                 p = re.sub(r"`([^`]*)`", r"\\texttt{\1}", p)
@@ -92,7 +109,7 @@ def latex(its) -> str:
             body.append(f"\\section*{{{tex(a)}}}" + (f"\n{tex(b)}\n" if b else ""))
         else:
             k += 1
-            body.append(f"\\paragraph{{{k}.}} {tex(b)}\\\\{{\\footnotesize\\texttt{{Sealed.{a.replace('_', chr(92) + '_')}}}}}\n")
+            body.append(f"\\paragraph{{{k}.}} {tex(b)}\\par{{\\footnotesize\\texttt{{Sealed.{a.replace('_', chr(92) + '_')}}}}}\n")
     return ("\\documentclass[11pt]{article}\n\\usepackage[a4paper,margin=2.4cm]{geometry}\n"
             "\\usepackage{amsmath,amssymb}\n\\usepackage[hidelinks]{hyperref}\n"
             "\\newcommand{\\Aql}{\\mathcal{A}_{\\mathrm{ql}}}\n\\setlength{\\parindent}{0pt}\n"
