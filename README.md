@@ -48,7 +48,7 @@ thesis, are listed in `CONVENTIONS.md`.
 
 The 60 theorems of the core are 31 main results, 24 statements that describe the library's
 definitions in Mathlib's terms (some with further facts, such as the formulas of the example
-system), and five examples (a pure shift and a nearest-neighbour rule of the second kind, cells
+system), and 5 examples (a pure shift and a nearest-neighbour rule of the second kind, cells
 satisfying the Fourier condition, a parameter point in the regime with vacuum cell data, a
 noiseless lattice channel for every example rule, and a reversible automaton that is not on site),
 which show that the hypotheses on parameters, cells and noiseless channels can be met and that the
@@ -116,7 +116,7 @@ the density of the Weyl operators.
 [`docs/lecture-notes/QCALean.pdf`](docs/lecture-notes/QCALean.pdf) gives the account with full
 proofs, examples and a dictionary to the thesis, in the sections listed in the table above, after a
 reading guide on the translation between forms on phase space and the familiar covariance and
-channel matrices. A tag beside a theorem links to the Lean declaration that proves it; every
+channel matrices. A tag beside a theorem links to the Lean declarations that prove it; every
 example is marked as proved in Lean, checked by a script, or checked on paper. A few pinpoint
 citations to secondary sources are marked in the text as not yet checked against the source.
 
