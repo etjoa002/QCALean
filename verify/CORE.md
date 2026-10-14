@@ -34,7 +34,13 @@ Let $`V`$ be a real vector space and $`\sigma`$ a real bilinear form on $`V`$. T
 **8.** Gaussian states and the state condition: a Gaussian state is a state $`\omega`$ with a symmetric real bilinear form $`\gamma`$ (the covariance form) and a real linear functional $`d`$ (the displacement); a state with such $`\gamma`$ and $`d`$ is Gaussian exactly when $`\chi_\omega(u) = \exp(i\, d(u) - \gamma(u, u)/4)`$ for every $`u`$. A real bilinear form $`\gamma`$ satisfies the state condition for $`\sigma`$ exactly when $`\gamma(u, u) \ge 0`$ and $`\sigma(u, w)^2 \le \gamma(u, u)\, \gamma(w, w)`$ for all $`u`$, $`w`$.  
 <sub>`Sealed.gaussianState_iff`</sub>
 
-**9.** Covariance matrices: a phase-space index of $`n`$ modes is an element of the disjoint union of two copies of $`\{1, \dots, n\}`$, the positions $`q_1, \dots, q_n`$ followed by the momenta. The standard symplectic matrix is $`\Omega = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}`$ in these blocks, and a real $`2n \times 2n`$ matrix $`\gamma`$ is an admissible covariance matrix exactly when it is symmetric and $`\gamma - i\Omega`$ is positive semidefinite (Hermitian with $`\bar x^T (\gamma - i\Omega) x \ge 0`$ for every complex vector $`x`$).  
+**9.** Covariance matrices: a phase-space index of $`n`$ modes is an element of the disjoint union of two copies of $`\{1, \dots, n\}`$, the positions $`q_1, \dots, q_n`$ followed by the momenta. The standard symplectic matrix is 
+
+```math
+\Omega = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}
+```
+
+in these blocks, and a real $`2n \times 2n`$ matrix $`\gamma`$ is an admissible covariance matrix exactly when it is symmetric and $`\gamma - i\Omega`$ is positive semidefinite (Hermitian with $`\bar x^T (\gamma - i\Omega) x \ge 0`$ for every complex vector $`x`$).  
 <sub>`Sealed.admissible_iff`</sub>
 
 ## The lattice phase space and symbols
@@ -68,7 +74,13 @@ Let $`G`$ be an abelian group, $`\mathcal A`$ a net over the subsets of $`G`$ in
 
 ## One mode, nearest neighbour
 
-A chain of single modes has the sites $`\mathbb Z`$ and one position and one momentum per site, positions first; $`\Omega = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}`$ is the one-mode symplectic matrix, also regarded as a constant symbol. A symbol over $`\mathbb Z`$ is a matrix of Laurent polynomials in $`z`$, $`z^m`$ being the element $`1 z^m`$ of $`\mathbb R[\mathbb Z]`$; it is symplectic when $`M^{\star T} \Omega M = \Omega`$, which by the twisted criterion says that its map preserves $`\sigma(u, w) = \sum_x u(x)^T \Omega w(x)`$.
+A chain of single modes has the sites $`\mathbb Z`$ and one position and one momentum per site, positions first; 
+
+```math
+\Omega = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}
+```
+
+is the one-mode symplectic matrix, also regarded as a constant symbol. A symbol over $`\mathbb Z`$ is a matrix of Laurent polynomials in $`z`$, $`z^m`$ being the element $`1 z^m`$ of $`\mathbb R[\mathbb Z]`$; it is symplectic when $`M^{\star T} \Omega M = \Omega`$, which by the twisted criterion says that its map preserves $`\sigma(u, w) = \sum_x u(x)^T \Omega w(x)`$.
 
 **17.** One-mode nearest-neighbour rules (thesis Prop. 4.4, corrected). For real $`2 \times 2`$ matrices $`\ell_-`$, $`\ell_0`$, $`\ell_+`$ the nearest-neighbour symbol $`\hat L = \ell_- z^{-1} + \ell_0 + \ell_+ z`$ has the entries $`(\ell_-)_{ij} z^{-1} + (\ell_0)_{ij} + (\ell_+)_{ij} z`$. It is symplectic, $`\hat L^{\star T} \Omega \hat L = \Omega`$, exactly when one of two cases holds: either $`\ell_0 = 0`$ and the rule is a pure shift, $`\ell_+ = 0`$ with $`\ell_-^T \Omega \ell_- = \Omega`$ or $`\ell_- = 0`$ with $`\ell_+^T \Omega \ell_+ = \Omega`$ (the case the thesis omits); or $`\ell_0^T \Omega \ell_0 = \Omega`$, $`\ell_+ = \ell_-`$, $`\det \ell_+ = 0`$ (rank at most one) and $`\ell_+^T \Omega \ell_0 + \ell_0^T \Omega \ell_+ = 0`$.  
 <sub>`Sealed.rev_nn_symplectic_iff`</sub>
@@ -76,7 +88,19 @@ A chain of single modes has the sites $`\mathbb Z`$ and one position and one mom
 **18.** Fourier modes (thesis (4.14)–(4.15)). For a symbol $`M`$ over $`\mathbb Z`$, the Fourier symbol $`\hat M(k)`$ at $`k \in \mathbb R`$ is $`M`$ evaluated entrywise on the unit circle at $`z = e^{-ik}`$: $`\hat M(k)_{ij} = \sum_m c_m e^{-ikm}`$, where $`c_m`$ is the coefficient of $`z^m`$ in $`M_{ij}`$ (a finite sum). If an $`n`$-mode symbol $`M`$ is symplectic, $`M^{\star T} \Omega M = \Omega`$ with $`\Omega`$ the standard symplectic matrix of $`n`$ modes, then every Fourier mode is symplectic: $`\hat M(k)^\dagger \Omega \hat M(k) = \Omega`$ for every real $`k`$ (thesis p. 82).  
 <sub>`Sealed.rev_fourierSymbol`</sub>
 
-**19.** The leapfrog symbol of the lattice Klein–Gordon field. Let $`m^2 \in \mathbb R`$. The leapfrog symbol is $`\hat F = \begin{pmatrix} 0 & 1 \\ -1 & z + z^{-1} - m^2 \end{pmatrix}`$ and the inverse leapfrog symbol is $`\begin{pmatrix} z + z^{-1} - m^2 & -1 \\ 1 & 0 \end{pmatrix}`$. Both are symplectic and their product (leapfrog times inverse) is $`1`$. The map $`F`$ of the leapfrog symbol acts on the values $`u(x) = (q(x), p(x))`$ of a vector of the one-mode chain by $`(F u)(x) = (p(x),\, -q(x) + p(x + 1) + p(x - 1) - m^2 p(x))`$, the leapfrog step of the lattice Klein–Gordon field, and the trace of its Fourier symbol is $`2 \cos k - m^2`$.  
+**19.** The leapfrog symbol of the lattice Klein–Gordon field. Let $`m^2 \in \mathbb R`$. The leapfrog symbol is 
+
+```math
+\hat F = \begin{pmatrix} 0 & 1 \\ -1 & z + z^{-1} - m^2 \end{pmatrix}
+```
+
+and the inverse leapfrog symbol is 
+
+```math
+\begin{pmatrix} z + z^{-1} - m^2 & -1 \\ 1 & 0 \end{pmatrix}.
+```
+
+Both are symplectic and their product (leapfrog times inverse) is $`1`$. The map $`F`$ of the leapfrog symbol acts on the values $`u(x) = (q(x), p(x))`$ of a vector of the one-mode chain by $`(F u)(x) = (p(x),\, -q(x) + p(x + 1) + p(x - 1) - m^2 p(x))`$, the leapfrog step of the lattice Klein–Gordon field, and the trace of its Fourier symbol is $`2 \cos k - m^2`$.  
 <sub>`Sealed.rev_leapfrog_symbol`</sub>
 
 ## The lattice CCR net and reversible Gaussian automata
@@ -92,10 +116,28 @@ Let $`G`$ be an abelian group (the sites) and $`n`$ the number of modes per site
 **22.** The local rule (thesis Lemma 4.2 in Gaussian form). Let $`M`$, $`M'`$ be $`n`$-mode symbols over $`\mathbb R[G]`$ with maps $`L`$, $`L'`$, and $`e_i = e_{0,i}`$ the unit vectors at the site $`0`$. If $`L e_i = L' e_i`$ for every $`i`$, then $`M = M'`$: a rule is determined by its values on one site. And $`M`$ is symplectic, $`M^{\star T} \Omega M = \Omega`$, exactly when these values satisfy the one-cell commutation relations with their translates: $`\sigma(L e_i, \tau_x L e_j) = \Omega_{ij}`$ if $`x = 0`$ and $`0`$ otherwise, for all $`i`$, $`j`$ and all $`x \in G`$.  
 <sub>`Sealed.rev_local_rule`</sub>
 
-**23.** Shifts and on-site rules (thesis p. 70). For every $`a \in G`$ the translation $`\alpha_a`$ is the rule of a reversible QCA with neighbourhood $`\{a\}`$ (the shift). On the chain $`G = \mathbb Z`$, every real $`2n \times 2n`$ matrix $`S`$ with $`S \Omega S^T = \Omega`$ gives a reversible QCA with neighbourhood $`\{0\}`$ whose rule maps $`W(u)`$ to $`W(L_S u)`$, where $`L_S`$ is the map of the constant symbol $`S`$, $`(L_S u)(x) = S u(x)`$. For one mode, the rotations $`\begin{pmatrix} \cos\varphi & -\sin\varphi \\ \sin\varphi & \cos\varphi \end{pmatrix}`$ and the squeezings $`\mathrm{diag}\,(e^r, e^{-r})`$ satisfy $`S \Omega S^T = \Omega`$.  
+**23.** Shifts and on-site rules (thesis p. 70). For every $`a \in G`$ the translation $`\alpha_a`$ is the rule of a reversible QCA with neighbourhood $`\{a\}`$ (the shift). On the chain $`G = \mathbb Z`$, every real $`2n \times 2n`$ matrix $`S`$ with $`S \Omega S^T = \Omega`$ gives a reversible QCA with neighbourhood $`\{0\}`$ whose rule maps $`W(u)`$ to $`W(L_S u)`$, where $`L_S`$ is the map of the constant symbol $`S`$, $`(L_S u)(x) = S u(x)`$. For one mode, the rotations 
+
+```math
+\begin{pmatrix} \cos\varphi & -\sin\varphi \\ \sin\varphi & \cos\varphi \end{pmatrix}
+```
+
+and the squeezings $`\mathrm{diag}\,(e^r, e^{-r})`$ satisfy $`S \Omega S^T = \Omega`$.  
 <sub>`Sealed.rev_examples_onsite`</sub>
 
-**24.** Nearest-neighbour examples on the one-mode chain. For real $`\varphi`$ and $`\lambda`$, the example system (4.18) of the thesis, the rotation by $`\varphi`$ with symmetric coupling $`\lambda`$, has the nearest-neighbour symbol with $`\ell_0`$ the rotation $`\begin{pmatrix} \cos\varphi & -\sin\varphi \\ \sin\varphi & \cos\varphi \end{pmatrix}`$ and $`\ell_+ = \ell_- = \lambda \begin{pmatrix} \sin\varphi & \cos\varphi \\ 0 & 0 \end{pmatrix}`$; it gives a reversible QCA with neighbourhood $`\{-1, 0, 1\}`$ whose rule maps $`W(u)`$ to $`W(L u)`$. For $`m^2 \in \mathbb R`$ the leapfrog symbol and the inverse leapfrog symbol likewise give reversible QCA with neighbourhood $`\{-1, 0, 1\}`$, and their rules are inverse to each other.  
+**24.** Nearest-neighbour examples on the one-mode chain. For real $`\varphi`$ and $`\lambda`$, the example system (4.18) of the thesis, the rotation by $`\varphi`$ with symmetric coupling $`\lambda`$, has the nearest-neighbour symbol with $`\ell_0`$ the rotation 
+
+```math
+\begin{pmatrix} \cos\varphi & -\sin\varphi \\ \sin\varphi & \cos\varphi \end{pmatrix}
+```
+
+and 
+
+```math
+\ell_+ = \ell_- = \lambda \begin{pmatrix} \sin\varphi & \cos\varphi \\ 0 & 0 \end{pmatrix};
+```
+
+it gives a reversible QCA with neighbourhood $`\{-1, 0, 1\}`$ whose rule maps $`W(u)`$ to $`W(L u)`$. For $`m^2 \in \mathbb R`$ the leapfrog symbol and the inverse leapfrog symbol likewise give reversible QCA with neighbourhood $`\{-1, 0, 1\}`$, and their rules are inverse to each other.  
 <sub>`Sealed.rev_examples_nn`</sub>
 
 ## Automorphisms of Weyl type and the leapfrog
@@ -148,7 +190,23 @@ On the chain $`\mathbb Z`$ with $`n`$ modes per site, the symbols are matrices o
 
 ## The example system
 
-From here on the chain carries one mode per site, so that cells and Fourier symbols are real or complex $`2 \times 2`$ matrices in the coordinates $`(q, p)`$, written in blocks of $`1 \times 1`$ matrices, and $`\Omega = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}`$. For real $`\varphi`$ write $`R_\varphi = \begin{pmatrix} \cos\varphi & -\sin\varphi \\ \sin\varphi & \cos\varphi \end{pmatrix}`$ for the rotation by $`\varphi`$ and $`\Gamma_\pm = \begin{pmatrix} \sin\varphi & \cos\varphi \\ 0 & 0 \end{pmatrix}`$.
+From here on the chain carries one mode per site, so that cells and Fourier symbols are real or complex $`2 \times 2`$ matrices in the coordinates $`(q, p)`$, written in blocks of $`1 \times 1`$ matrices, and 
+
+```math
+\Omega = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}.
+```
+
+For real $`\varphi`$ write 
+
+```math
+R_\varphi = \begin{pmatrix} \cos\varphi & -\sin\varphi \\ \sin\varphi & \cos\varphi \end{pmatrix}
+```
+
+for the rotation by $`\varphi`$ and 
+
+```math
+\Gamma_\pm = \begin{pmatrix} \sin\varphi & \cos\varphi \\ 0 & 0 \end{pmatrix}.
+```
 
 **37.** The example system (thesis (4.18)). For real $`\varphi`$ and $`\lambda`$, the example rule $`L_{\varphi, \lambda}`$ is the symbol with the coefficient matrices $`\ell_0 = R_\varphi`$, $`\ell_1 = \ell_{-1} = \lambda \Gamma_\pm`$ and $`\ell_m = 0`$ for $`|m| \ge 2`$. For every wave number $`k`$, its Fourier symbol is the real matrix $`\hat L(k) = R_\varphi + 2\lambda\cos k\,\Gamma_\pm`$, and $`\hat L(-k) = \hat L(k)`$, $`\det \hat L(k) = 1`$, $`\mathrm{tr}\, \hat L(k) = 2(\cos\varphi + \lambda \cos k \sin\varphi)`$ and $`\hat L(k)^T \Omega \hat L(k) = \Omega`$. A symbol $`M`$ on the chain with $`n`$ modes per site is symplectic when $`M^{\star T} \Omega M = \Omega`$, and every power $`L_{\varphi, \lambda}^t`$, $`t \in \mathbb N`$, is symplectic.  
 <sub>`Sealed.dyn_example_system`</sub>
@@ -159,7 +217,13 @@ From here on the chain carries one mode per site, so that cells and Fourier symb
 **39.** The rotation angle, the powers of the symbol and the spectral projectors (thesis (4.19), Lemma 4.6 and (4.21)–(4.24)). For real $`\varphi`$, $`\lambda`$ and $`k`$ let $`\theta(k) = \arccos(\cos\varphi + \lambda\cos k\sin\varphi)`$, with the real arccosine, which takes values in $`[0, \pi]`$ and is extended by $`0`$ above $`1`$ and by $`\pi`$ below $`-1`$; let $`N(k) = (\sin\theta(k))^{-1}(\cos\theta(k)\, 1 - \hat L(k))`$, a real matrix, with the convention $`0^{-1} = 0`$ (in the regime $`\sin\theta(k) > 0`$), and let $`P_k = \frac12(1 + i N(k))`$, a complex matrix with complex conjugate $`\bar P_k`$. The angle $`\theta`$ is even and continuous. In the regime: on $`[0, \pi]`$, $`\theta`$ is strictly increasing if $`\lambda\sin\varphi > 0`$ and strictly decreasing if $`\lambda\sin\varphi < 0`$; and for every $`k`$, $`\cos\theta(k) = \cos\varphi + \lambda\cos k\sin\varphi`$, $`\mathrm{tr}\,\hat L(k) = 2\cos\theta(k)`$, $`0 < \theta(k) < \pi`$, $`\theta`$ is differentiable at $`k`$ with $`\theta'(k) = \lambda\sin\varphi\sin k/\sin\theta(k)`$, $`\hat L(k)^t = \frac{\sin t\theta(k)}{\sin\theta(k)}\, \hat L(k) - \frac{\sin (t - 1)\theta(k)}{\sin\theta(k)}\, 1`$ and $`\hat L(k)^t = \cos t\theta(k)\, 1 - \sin t\theta(k)\, N(k)`$ for every $`t \in \mathbb N`$, $`N(k)^2 = -1`$, $`P_k + \bar P_k = 1`$, $`P_k^2 = P_k`$, $`P_k \bar P_k = \bar P_k P_k = 0`$, $`\hat L(k) = e^{i\theta(k)} P_k + e^{-i\theta(k)} \bar P_k`$, and $`\hat L(k)^t = e^{it\theta(k)} P_k + e^{-it\theta(k)} \bar P_k`$ for every $`t \in \mathbb N`$.  
 <sub>`Sealed.dyn_angle_projectors`</sub>
 
-**40.** The invariant form (thesis (4.28)). For real $`\varphi`$, $`\lambda`$ and $`k`$ let $`\hat\varepsilon(k) = -\frac{\mathrm{sgn}\,(\sin\varphi)}{\sin\theta(k)}\, \Omega\,(\cos\theta(k)\, 1 - \hat L(k))`$, with $`\mathrm{sgn}\,`$ the sign function ($`\mathrm{sgn}\, 0 = 0`$) and the convention $`1/0 = 0`$ for the quotient (in the regime $`\sin\theta(k) > 0`$). For all parameters, $`\hat\varepsilon(-k) = \hat\varepsilon(k)`$ and $`\hat L(k)^T \hat\varepsilon(k) \hat L(k) = \hat\varepsilon(k)`$. In the regime, $`\hat\varepsilon`$ is a continuous function of $`k`$, and for every $`k`$: $`\hat\varepsilon(k) = \frac{\mathrm{sgn}\,(\sin\varphi)}{\sin\theta(k)} \begin{pmatrix} \sin\varphi & -\lambda\cos k\sin\varphi \\ -\lambda\cos k\sin\varphi & \sin\varphi - 2\lambda\cos k\cos\varphi \end{pmatrix}`$; $`\hat\varepsilon(k)`$ is symmetric and positive definite, $`\det\hat\varepsilon(k) = 1`$ and $`(\Omega\hat\varepsilon(k))^2 = -1`$; $`\hat\varepsilon(k) = \mathrm{sgn}\,(\sin\varphi)\, i\Omega\,(P_k - \bar P_k)`$; and for every real $`g`$, the complex matrix $`g\hat\varepsilon(k) + i\Omega`$ is positive semidefinite exactly when $`g \ge 1`$.  
+**40.** The invariant form (thesis (4.28)). For real $`\varphi`$, $`\lambda`$ and $`k`$ let $`\hat\varepsilon(k) = -\frac{\mathrm{sgn}\,(\sin\varphi)}{\sin\theta(k)}\, \Omega\,(\cos\theta(k)\, 1 - \hat L(k))`$, with $`\mathrm{sgn}\,`$ the sign function ($`\mathrm{sgn}\, 0 = 0`$) and the convention $`1/0 = 0`$ for the quotient (in the regime $`\sin\theta(k) > 0`$). For all parameters, $`\hat\varepsilon(-k) = \hat\varepsilon(k)`$ and $`\hat L(k)^T \hat\varepsilon(k) \hat L(k) = \hat\varepsilon(k)`$. In the regime, $`\hat\varepsilon`$ is a continuous function of $`k`$, and for every $`k`$: 
+
+```math
+\hat\varepsilon(k) = \frac{\mathrm{sgn}\,(\sin\varphi)}{\sin\theta(k)} \begin{pmatrix} \sin\varphi & -\lambda\cos k\sin\varphi \\ -\lambda\cos k\sin\varphi & \sin\varphi - 2\lambda\cos k\cos\varphi \end{pmatrix};
+```
+
+$`\hat\varepsilon(k)`$ is symmetric and positive definite, $`\det\hat\varepsilon(k) = 1`$ and $`(\Omega\hat\varepsilon(k))^2 = -1`$; $`\hat\varepsilon(k) = \mathrm{sgn}\,(\sin\varphi)\, i\Omega\,(P_k - \bar P_k)`$; and for every real $`g`$, the complex matrix $`g\hat\varepsilon(k) + i\Omega`$ is positive semidefinite exactly when $`g \ge 1`$.  
 <sub>`Sealed.dyn_invariant_form`</sub>
 
 **41.** The stationary covariance cells of the example system (thesis Theorem 4.8, with the completeness direction, which goes beyond the thesis). Let $`(\varphi, \lambda)`$ lie in the regime and let $`(\gamma_x)`$ be cell data on the chain with one mode per site that are reflection symmetric, $`\gamma_{-x} = \gamma_x`$ for every $`x`$. Then the following are equivalent: (i) the cells are stationary, $`(L_{\varphi, \lambda})_* \gamma = \gamma`$, and satisfy the Fourier state condition, $`\hat\gamma(k) + i\Omega \ge 0`$ (positive semidefinite) for every real $`k`$; (ii) there is a continuous function $`g : \mathbb R \to \mathbb R`$ with $`g(-k) = g(k)`$ and $`g(k) \ge 1`$ for every $`k`$ such that $`\hat\gamma(k) = g(k)\, \hat\varepsilon(k)`$ for every $`k`$.  

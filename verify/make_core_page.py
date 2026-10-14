@@ -46,11 +46,15 @@ def github_math(s: str) -> str:
     """Inline math in GitHub's protected form $`...`$: in the plain form $...$ Markdown removes the
     backslash before punctuation first (`\\,`, `\\{`, `\\|`, `\\\\`), which breaks thin spaces, braces,
     norms and matrix rows. `\\operatorname{x}` does not render on GitHub and becomes
-    `\\mathrm{x}\\,`. The LaTeX page is written from the unchanged text."""
+    `\\mathrm{x}\\,`. A formula containing a matrix is set as a display formula on its own lines, with
+    the punctuation that follows it. The LaTeX page is written from the unchanged text."""
     def one(m: re.Match) -> str:
         body = re.sub(r"\\operatorname\{([^{}]*)\}", r"\\mathrm{\1}\\,", m.group(1))
-        return "$`" + body + "`$"
-    return re.sub(r"\$([^$]+)\$", one, s)
+        if re.search(r"\\begin\{[a-z]*matrix\}", body):
+            return "\n\n```math\n" + body + (m.group(2) or "") + "\n```\n\n"
+        return "$`" + body + "`$" + (m.group(2) or "")
+    out = re.sub(r"\$([^$]+)\$([.,;:])?", one, s)
+    return re.sub(r"\n\n +", "\n\n", out).strip()
 
 
 def markdown(its) -> str:
