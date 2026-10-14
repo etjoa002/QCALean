@@ -42,6 +42,17 @@ def items() -> list[tuple[str, str, str]]:
     return out
 
 
+def github_math(s: str) -> str:
+    """Inline math in GitHub's protected form $`...`$: in the plain form $...$ Markdown removes the
+    backslash before punctuation first (`\\,`, `\\{`, `\\|`, `\\\\`), which breaks thin spaces, braces,
+    norms and matrix rows. `\\operatorname{x}` does not render on GitHub and becomes
+    `\\mathrm{x}\\,`. The LaTeX page is written from the unchanged text."""
+    def one(m: re.Match) -> str:
+        body = re.sub(r"\\operatorname\{([^{}]*)\}", r"\\mathrm{\1}\\,", m.group(1))
+        return "$`" + body + "`$"
+    return re.sub(r"\$([^$]+)\$", one, s)
+
+
 def markdown(its) -> str:
     n = sum(k == "theorem" for k, _, _ in its)
     lines = ["# The sealed statements", "",
@@ -51,10 +62,10 @@ def markdown(its) -> str:
     k = 0
     for kind, a, b in its:
         if kind == "section":
-            lines += [f"## {a}", ""] + ([b, ""] if b else [])
+            lines += [f"## {a}", ""] + ([github_math(b), ""] if b else [])
         else:
             k += 1
-            lines += [f"**{k}.** {b}  ", f"<sub>`Sealed.{a}`</sub>", ""]
+            lines += [f"**{k}.** {github_math(b)}  ", f"<sub>`Sealed.{a}`</sub>", ""]
     lines += ["---", "", f"SHA-256 of `verify/Challenge.lean` (LF line endings): `{digest()}`", ""]
     return "\n".join(lines)
 
