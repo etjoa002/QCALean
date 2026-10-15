@@ -18,7 +18,7 @@ field.}}
 group $G$, since the same algebra describes Clifford cellular automata over finite
 fields~\cite{svw}. From Subsection~\ref{sec:nn} on, $R=\R$ and $G=\Z$.}}
 
-\subsection{Lattice phase space}
+\subsection{Lattice phase space}\label{sec:qca-space}
 
 \noindent\motiv{\reve{The \emph{cell} is a finite set $\iota$ indexing the degrees of freedom at one
 site; for $n$ bosonic modes, $\iota=\{q_1,\dots,q_n,p_1,\dots,p_n\}$. The group algebra $R[G]$ is the
@@ -111,7 +111,7 @@ $m\in N$ and $x-m\in\supp u$.
 \noindent\motiv{\reve{For the leapfrog, $N=\{-1,0,1\}$: one step changes the Cauchy data only
 within distance one of their support.}}
 
-\subsection{Forms preserved by symbols}
+\subsection{Forms preserved by symbols}\label{sec:qca-forms}
 
 \noindent\motiv{\reve{A form on one cell, given by a matrix $B\in M_\iota(R)$, defines a form on
 $V$ by summing over sites. Writing it through symbols needs the \emph{involution} of $R[G]$, the
@@ -244,15 +244,15 @@ $\operatorname{adj}\operatorname{adj}A=A$;
 \item For $A=\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}$, both $A^{\mathsf T}\Omega$ and
 $\Omega\operatorname{adj}(A)$ equal $\begin{psmallmatrix}-c&a\\-d&b\end{psmallmatrix}$; multiply on the
 right by $A'$. For $A'=A$, use $\operatorname{adj}(A)A=(\det A)1$.
-\item The entries of $\operatorname{adj}A$ are linear in those of $A$; the other two identities are
-checked on entries.
-\item Checked on entries.
+\item The entries of $\operatorname{adj}A$ are linear in those of $A$; we check the other two identities
+on entries.
+\item We check this on entries.
 \item $\operatorname{adj}A=A$ says $-A_{12}=A_{12}$, $-A_{21}=A_{21}$ and $A_{22}=A_{11}$.
 \end{enumerate}
 \end{proof}
 
 \noindent\motiv{\reve{Part~(d) uses $2\neq0$; over $\Z/2$ every matrix with equal diagonal entries
-equals its adjugate. The classification below is therefore proved over $\R$ (any field of
+equals its adjugate. We therefore prove the classification below over $\R$ (any field of
 characteristic other than $2$ would do).}}
 
 \begin{proposition}[Coefficient equations]\label{prop:qca-C}
@@ -273,7 +273,7 @@ and collect powers of $z$.
 
 \noindent\motiv{\reve{By Lemma~\ref{lem:qca-2x2}(a), $(C_{\pm2})$ say
 $\operatorname{adj}(\ell_\mp)\ell_\pm=0$, and $(C_0)$ says $\det\ell_-+\det\ell_0+\det\ell_+=1$.
-Two families of solutions can be read off:
+We can read off two families of solutions:
 \begin{itemize}
 \item the \emph{pure shifts} $Sz^{-1}$ and $Sz$ with $\det S=1$, where $\ell_0=0$;
 \item $\ell_0\in SL_2(\R)$ and $\ell_+=\ell_-=\ell$ with $\det\ell=0$; then $(C_{\pm2})$ and $(C_0)$
@@ -363,7 +363,7 @@ and $\lambda=1$. For $\hat F$ itself, $\ell_\pm=e_2e_2^{\mathsf T}$ points in th
 Proposition~\ref{prop:qca-form} applies to it only after the change of basis described before
 that proposition.}}
 
-\subsection{Fourier modes}
+\subsection{Fourier modes}\label{sec:qca-fourier}
 
 \noindent\motiv{\reve{Evaluating a symbol on the unit circle gives its Fourier transform: the
 formula of Theorem~\ref{thm:qca-symbol}(c), applied to a plane wave $u(x)=e^{\ii kx}v$ with
@@ -412,7 +412,7 @@ gives the dispersion relation \reve{$\cos\theta(k)=\cos\varphi+\lambda\cos k\sin
 \subsection{Notes and references}\label{sec:qca-thesis}
 
 \noindent\motiv{\reve{The material of this chapter is the phase-space part of Chapter~4
-of~\cite{krueger}; the Notation section at the front lists the correspondence of symbols.}}
+of~\cite{krueger}.}}
 
 \begin{enumerate}
 \item \reve{\emph{Conventions.} In~\cite{krueger} a rule is written

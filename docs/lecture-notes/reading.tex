@@ -1,21 +1,19 @@
-\section*{Forms and matrices: a reading guide}\addcontentsline{toc}{section}{Forms and matrices: a
+\phantomsection\label{sec:reading}\section*{Forms and matrices: a reading guide}\addcontentsline{toc}{section}{Forms and matrices: a
 reading guide}
 
-\noindent\motiv{\reve{\reve{Most texts on Gaussian states and channels work with matrices: covariance
-matrices of finitely many modes and channel matrices $(X,Y)$. The thesis~\cite{krueger}, like these
-notes, works on the lattice with forms on labels, which it writes through the matrices $\Gamma(x)$ and
-$g(x)$, the coefficients and cells below. These notes describe all objects by bilinear forms on the
-phase space $V$ of the whole chain and by their coefficients, the cells (not to be confused with the
-cell of a site, its $2n$ degrees of freedom).} The reason is that a Weyl operator $W(u)$ is labelled by
-a vector $u$ of $V$, so that a Gaussian state or a channel is most directly a prescription on labels,
-with no region and no basis chosen. The two descriptions are equivalent, and the dictionary below is
-all that is needed to pass from one to the other.}}
+\noindent\motiv{\revs{Most texts on Gaussian states and channels work with covariance matrices of
+finitely many modes and channel matrices $(X,Y)$. These notes, like the thesis~\cite{krueger}, work
+with bilinear forms on the phase space $V$ of the whole chain, evaluated on the labels $u$ of the
+Weyl operators $W(u)$, so that no region and no basis need be chosen, and with their coefficients,
+the cells (not to be confused with the cell of a site, its $2n$ degrees of freedom). The paragraphs
+below translate each object into its matrix form and name the statement where the translation is
+proved.}}
 
 \medskip
 \noindent\reve{\textbf{Vectors and forms.} A vector $u\in V$ assigns to every site $x$ a column
 $u(x)\in\R^{2n}$, positions first, and only finitely many are nonzero. A bilinear form $\beta$ on $V$
 takes two such vectors to a number. If $\beta$ is translation invariant, it is determined by the
-matrices $\beta_x$, its \emph{cells}, which record the correlation between the site $x$ and the site
+matrices $\beta_x$, its \emph{cells} \revs{(Definition~\ref{def:gs-cells})}, which record the correlation between the site $x$ and the site
 $0$:
 \[\beta(u,w)=\sum_{x,y}u(x)^{\mathsf T}\beta_{x-y}\,w(y),\qquad(\beta_x)_{ij}=\beta(e_{x,i},e_{0,j}).\]
 Restricted to finitely many sites, $\beta$ is the block matrix $[\beta_{x-y}]$, constant along its
@@ -61,5 +59,6 @@ form $\gamma$ to $\gamma(L\cdot,L\cdot)+\nu$, which in matrices is the familiar
 $\gamma_B\mapsto X\gamma_BX^{\mathsf T}+Y$ with $X=\Omega^{\mathsf T}L^{\mathsf T}\Omega$ and
 $Y=\Omega^{\mathsf T}\nu\,\Omega$ (Proposition~\ref{prop:ch-matrices}); the condition
 $\nu+\ii(\sigma-\sigma(L\cdot,L\cdot))\ge0$ becomes $Y-\ii\Omega+\ii X\Omega X^{\mathsf T}\ge0$. On
-the chain, the noise has cells $\nu_x$\reve{; the two notions of locality are read off from where the
-cells vanish, and the condition from the Fourier symbols at each $k$ (Chapter~\ref{sec:chain})}.}
+the chain, the noise has cells $\nu_x$\revs{, and for noise of finite range the condition becomes
+$\hat\nu(k)+\ii\Omega-\ii\hat L(k)^\dagger\Omega\hat L(k)\ge0$ at every wave number
+(Theorem~\ref{thm:lc-fourier})}.}

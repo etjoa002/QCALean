@@ -7,18 +7,12 @@ chapter introduces the states of the lattice CCR algebra through their character
 singles out the Gaussian states, whose characteristic functions are exponentials of quadratic
 forms, and derives the condition that the quadratic form of a Gaussian state must satisfy. Because
 a Gaussian state is determined by a covariance form on the whole infinite lattice, whereas the
-classical theory of Gaussian states concerns covariance matrices of finitely many modes, a large
-part of the chapter is devoted to showing that the two descriptions agree: restricted to a finite
+classical theory of Gaussian states concerns covariance matrices of finitely many modes, we devote a large
+part of the chapter to showing that the two descriptions agree: restricted to a finite
 region, a covariance form is a covariance matrix of finitely many modes, and the condition on the
 form becomes the familiar matrix inequality on every region. On the chain the condition can also be
 read off pointwise from a Fourier transform, which leads to a matrix condition that saturates the state condition at every wave number, and to an
 explicit law for the evolution of the covariance under a Gaussian automaton.}}
-
-\medskip
-\noindent\motiv{\reve{Two product states serve as examples throughout, the vacuum and the squeezed
-states, and the running example of the previous chapters returns at the end, where one step of the
-leapfrog is applied to the vacuum and the correlations it creates between neighbouring sites are
-computed exactly.}}
 
 \medskip
 \noindent\motiv{\reve{As in Chapter~\ref{sec:ccrautomata}, $G$ is an abelian group, the cell carries
@@ -45,7 +39,7 @@ $\omega(1)=1$ and $\omega(a^*a)\ge0$ for every $a$, where, for a complex number 
 $z$ is real and non-negative.}
 \end{definition}
 
-\noindent\reve{Positivity is required of the complex numbers $\omega(a^*a)$, so that no order on
+\noindent\reve{We require positivity of the complex numbers $\omega(a^*a)$, so that no order on
 the algebra itself needs to be introduced. Continuity follows from positivity on every C*-algebra,
 but it is included in the definition because it is the property the arguments below use directly.}
 
@@ -107,9 +101,9 @@ distinguished representation, and a state need not be given by a density operato
 representation, as Remark~\ref{rem:gs-existence} shows for the representation on $\ell^2(V)$. The
 result that replaces the quantum Bochner theorem there is the characterization of states by their
 characteristic functions quoted in that remark, which requires no continuity of $\chi$.}
-\reve{This Fourier transform acts on the phase-space variable $u$ and is not used below; it is to be
-distinguished from the lattice Fourier transform $x\mapsto k$ of
-Subsection~\ref{sec:gs-fourier}, which acts on the site variable of a vector.}
+\revs{This Fourier transform acts on the phase-space variable $u$, unlike the lattice Fourier
+transform $x\mapsto k$ of Subsection~\ref{sec:gs-fourier}, which acts on the site variable of a
+vector.}
 \end{remark}
 
 \noindent\motiv{\reve{Two properties of characteristic functions suffice for the evolution of
@@ -213,11 +207,11 @@ defines a state follows from the theorem that a function $\chi$ on $V$ with $\ch
 semidefinite twisted kernels is the characteristic function of a unique state on the CCR
 algebra~\cite{mstv},}~\cite[\S5.2]{bratteli-robinson}\reve{. Its proof passes through
 the GNS construction on the group algebra of $V$ twisted by $\sigma$ and through the uniqueness of
-the CCR algebra, and it is not reproduced here. The uniqueness of the CCR algebra, and with it the
+the CCR algebra, and we do not reproduce it here. The uniqueness of the CCR algebra, and with it the
 theorem, requires the form $\sigma$ to be nondegenerate, and this is the one place where
 nondegeneracy enters the existence question: if $\sigma(u,w)=0$ for every $w\in V$, then pairing
 with $w=e_{x,i}$ gives $u(x)^{\mathsf T}\Omega=0$, hence $u(x)=0$, at every site, so that $u=0$.
-Continuity of $\chi$, by contrast, is not needed. The elementary half, that the state condition makes
+The elementary half, that the state condition makes
 the Gaussian twisted kernels positive semidefinite, is Remark~\ref{rem:gs-converse}.}
 \end{remark}
 
@@ -294,7 +288,7 @@ $\sigma$, in each of the three equivalent forms of Definition~\ref{def:gs-statec
 \begin{proof}
 \reve{Let $(\omega,\gamma,d)$ be a Gaussian state, $u_1,\dots,u_J\in V$ and $b\in\C^J$, and put
 $H_{jk}=\tfrac12\bigl(\gamma(u_j,u_k)+\ii\sigma(u_j,u_k)\bigr)$. The matrix $H$ is Hermitian, so that
-$h=\sum_{j,k}\bar b_jb_kH_{jk}$ is real, and it has to be shown that $h\ge0$.}
+$h=\sum_{j,k}\bar b_jb_kH_{jk}$ is real, and we have to show that $h\ge0$.}
 
 \reve{For $s>0$ consider the family $v_0=0$ and $v_k=su_k$ for $1\le k\le J$, and put $\delta_0=1$
 and $\delta_k=\exp\bigl(\ii s\,d(u_k)-\tfrac14s^2\gamma(u_k,u_k)\bigr)$. Expanding
@@ -339,12 +333,12 @@ every symmetric $\gamma$ satisfying the state condition and every linear $d$.}
 \noindent\motiv{\reve{A finite region $O\subseteq G$ carries $n_O=n|O|$ modes, and a Gaussian state
 of finitely many modes is described by a real $2n_O\times2n_O$ covariance matrix $\gamma_B$, which
 is twice the matrix of symmetrized second moments of the canonical coordinates, ordered with all
-positions before all momenta. Such a matrix is called \emph{admissible} if it is symmetric and
+positions before all momenta. We call such a matrix \emph{admissible} if it is symmetric and
 $\gamma_B-\ii\Omega_{n_O}\ge0$, where
 $\Omega_{M}=\begin{psmallmatrix}0&I_M\\-I_M&0\end{psmallmatrix}$ is the symplectic matrix of $M$
 modes in the same order. The covariance form of a lattice state, restricted to a finite region, is
 exactly such a covariance matrix, and the state condition on the region is exactly admissibility,
-once two differences of bookkeeping are accounted for: the site coordinates of a region come site
+once we account for two differences of bookkeeping: the site coordinates of a region come site
 by site, whereas the finite-mode convention puts all positions first, and the form $\gamma$ is evaluated on the labels $u$ of the Weyl operators
 $W(u)$, as a two-point function is evaluated on test functions, whereas $\gamma_B$ is a matrix of
 moments of the canonical coordinates, the two being related by a conjugation with $\Omega$.}}
@@ -431,12 +425,6 @@ and $SR_O(\gamma)S^{\mathsf T}=\cov_O(\gamma)$. The last statement follows from
 Theorem~\ref{thm:gs-necessity}, since the state condition on $V$ implies it on $\loc(O)$.}
 \end{proof}
 
-\noindent\reve{The conjugation by $\Omega_{n_O}$ plays no role for admissibility, since
-$\Omega_{n_O}^{\mathsf T}$ preserves the symplectic matrix; it is there so that $\cov_O(\gamma)$ is
-the physical covariance matrix of the region and the finite-mode examples below mean the same states
-on both sides. The step from $\gamma+\ii\sigma$ to $\gamma-\ii\sigma$ is the complex conjugation of
-Proposition~\ref{prop:gs-statecond}.}
-
 \noindent\motiv{\reve{The familiar operations on covariance matrices of finitely many modes, the
 passage to a subsystem and the direct sum of independent systems, correspond on the lattice to the
 passage to a smaller region and to the union of two regions without correlations between them.}}
@@ -482,7 +470,7 @@ that $u(x)=0$ for every $x\in O$ and $u=0$.}
 \end{remark}
 
 \noindent\motiv{\reve{The two basic examples of the finite-mode theory, the vacuum and the squeezed
-states, are products over the sites. Each is given here by its covariance form, which by
+states, are products over the sites. We give each by its covariance form, which by
 Theorem~\ref{thm:gs-necessity} and Proposition~\ref{prop:gs-admissible} is what a Gaussian state
 with these correlations must have.}}
 
@@ -537,9 +525,7 @@ The family has \emph{range} $\Lambda\in\mathbb N$ if $\gamma_x=0$ for $|x|>\Lamb
 \noindent\reve{The sign in the exponent is that of the Fourier symbol of a rule,
 $\hat L(k)=\sum_g\ell_ge^{-\ii kg}$ of the paragraph after Lemma~\ref{lem:qca-circle}; in this chapter the coefficients
 of a rule are indexed by $g\in\Z$, because the letter $m$ is needed for the mass in
-Example~\ref{ex:gs-leapfrog}. The cell data of this definition are not required to satisfy the
-state condition, and admissibility, which concerns covariance matrices of finite regions, is a
-different notion. The vacuum
+Example~\ref{ex:gs-leapfrog}. \revs{Cell data need not satisfy the state condition.} The vacuum
 form of Example~\ref{ex:gs-vacuum} has the cells $\gamma_0=1$ and $\gamma_x=0$ for $x\neq0$, so
 that $\hat\gamma(k)=1$, and the squeezed form has $\gamma_0=\operatorname{diag}(1/\vartheta,\vartheta)$ and
 $\gamma_x=0$ otherwise; both have range $0$.}
@@ -589,7 +575,7 @@ and $\sum_ga_ge^{-\ii kg}=\hat\gamma(k)+\ii\Omega$.}
 \[\hat\mu(k)^\dagger\bigl(\hat\gamma(k)+\ii\Omega\bigr)\hat\mu(k)
 =\sum_{x,y}\sum_g\mu(x)^\dagger a_g\mu(y)\,e^{\ii k(x-y-g)},\]
 a finite sum over $x,y$ of series in $g$ that converge uniformly in $k$, the terms being bounded by
-$|\mu(x)|\,|\mu(y)|\,\|a_g\|$. The series may therefore be integrated term by term, and since
+$|\mu(x)|\,|\mu(y)|\,\|a_g\|$. We may therefore integrate the series term by term, and since
 $\frac1{2\pi}\int_{-\pi}^\pi e^{\ii kj}\,dk=\delta_{j,0}$ for $j\in\Z$, exactly the terms with
 $g=x-y$ remain, whose sum is $Q(\mu)$.}
 \end{proof}
@@ -646,7 +632,7 @@ semidefinite at every $k$, and so is their average $\hat\gamma(k)$.}
 \subsection{Saturation of the state condition}
 
 \noindent\reve{Purity of a state is not defined in these notes, and nothing in this subsection
-proves that a state is pure. What is proved is the equivalence of three matrix conditions on the
+proves that a state is pure. We prove the equivalence of three matrix conditions on the
 symbol which, by analogy with finitely many modes, are candidates for the characterization of the
 pure translation-invariant Gaussian states.}
 
@@ -863,7 +849,7 @@ form,
 and the substitution $x'=x-g$, $y'=y-g'$ turns $\gamma_{x-y}$ into $\gamma_{x'-y'+g-g'}$, so that the
 inner sum over $g,g'$ is $\gamma'_{x'-y'}$. For the symbol, the substitution $p=j+g-g'$ gives
 $e^{-\ii kj}=e^{\ii kg}e^{-\ii kp}e^{-\ii kg'}$, and since the sums over $g,g'$ are finite and the
-sum over $p$ converges absolutely, the series may be rearranged into
+sum over $p$ converges absolutely, we may rearrange the series into
 $\bigl(\sum_g\ell_g^{\mathsf T}e^{\ii kg}\bigr)\hat\gamma(k)\bigl(\sum_{g'}\ell_{g'}e^{-\ii kg'}\bigr)
 =\hat L(-k)^{\mathsf T}\hat\gamma(k)\hat L(k)$. As the $\ell_g$ are real,
 $\hat L(-k)^{\mathsf T}=\overline{\hat L(k)}^{\mathsf T}=\hat L(k)^\dagger$, and the last statement
@@ -926,19 +912,18 @@ necessity of the state condition ``by a direct generalization of the argument le
 the proof of Theorem~\ref{thm:gs-necessity} is a different, derivative-free argument. The thesis
 works throughout with $\gamma+\ii\sigma$, which corresponds to the finite-mode condition written
 with $\gamma_B-\ii\Omega$; by Proposition~\ref{prop:gs-statecond} and
-Remark~\ref{rem:gs-normalization} the sign is immaterial, and either sign may be called the
-finite-mode condition.}
+Remark~\ref{rem:gs-normalization} the sign is immaterial.}
 \item \reve{\emph{Finite regions.} The thesis's correlation matrix of a region is the matrix of
 the form $\gamma$ on the site vectors, ordered site by site, whereas the finite-mode covariance
 matrix is ordered positions first and is conjugated by $\Omega$; the normalization, fixed by the
-factor $\tfrac14$, is the same. The Notation section lists the conventions.
+factor $\tfrac14$, is the same.
 Definition~\ref{def:gs-covmat} and Proposition~\ref{prop:gs-admissible} make the translation between
 the two explicit; they have no counterpart in the thesis.}
 \item \reve{\emph{Fourier criterion.} The Fourier convention is the thesis's (4.14), the cell indexing
 $\gamma_{x-y}$ is that of (4.4), and Lemma~\ref{lem:gs-parseval} is (4.16)~\cite[pp.~77,
 81]{krueger}. Theorem~\ref{thm:gs-fourier} is Lemma~4.5(i) of the thesis~\cite[p.~82]{krueger},
 which asserts both directions for summable cell data and argues the direction (b) with the
-``sharply peaked Fourier transform of a flat Gaussian''~\cite[p.~81]{krueger}; here (b) is proved
+``sharply peaked Fourier transform of a flat Gaussian''~\cite[p.~81]{krueger}; here we prove (b)
 by the same idea with a rectangular window, first for finite range and then, in
 Remark~\ref{rem:gs-fourier-general}, for all summable cell data.}
 \item \reve{\emph{Purity.} Lemma~4.5(ii) of~\cite[p.~82]{krueger} states, for one mode per site, that

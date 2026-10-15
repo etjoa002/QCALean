@@ -11,15 +11,10 @@ rests on the elementary dichotomy for such matrices. When the trace lies strictl
 $2$, the matrix is conjugate to a rotation, its powers stay bounded, and it preserves exactly one
 positive definite form up to a factor; when the absolute value of the trace exceeds two, it
 squeezes, and the traces $\pm2$, which belong to $\pm1$ and to the parabolic matrices, separate the
-two cases. Determining the parameters for which every wave number is of the
-first kind, the rotation angle as a function of the wave number, and the invariant form, one arrives
+two cases. Having determined the parameters for which every wave number is of the
+first kind, the rotation angle as a function of the wave number, and the invariant form, we arrive
 at a complete description of the stationary reflection-symmetric covariances: their symbols are the
 invariant form multiplied, wave number by wave number, by a factor not less than one.}}
-
-\medskip
-\noindent\motiv{\reve{The chapter closes with the observation that the massless lattice field of the
-earlier chapters is the example system at the edge of the admissible parameters, so that it is not
-covered by the analysis.}}
 
 \medskip
 \noindent\motiv{\reve{Throughout, $G=\Z$ and each site carries one mode, so that cells and symbols
@@ -76,7 +71,7 @@ $S^{\mathsf T}\Omega S=\Omega$.
 
 \noindent\motiv{\reve{Cell data can be recovered from their symbol by the inversion formula of
 Fourier series, and two cell data with the same symbol therefore coincide; this is how
-stationarity will be read off from the symbol.}}
+we will read off stationarity from the symbol.}}
 
 \begin{proposition}[Fourier inversion]\label{prop:es-inversion}
 \reve{Let $(\gamma_x)$ and $(\gamma'_x)$ be cell data.
@@ -149,7 +144,7 @@ real.
 at $\pm1$.
 \item The determinant is
 $(\cos\varphi+2\lambda\cos k\sin\varphi)\cos\varphi-\sin\varphi(-\sin\varphi+2\lambda\cos k\cos\varphi)
-=\cos^2\varphi+\sin^2\varphi$, the trace is read off, and the last identity is
+=\cos^2\varphi+\sin^2\varphi$, we read off the trace, and the last identity is
 Lemma~\ref{lem:qca-2x2} with $\det\hat L(k)=1$.
 \item This is Example~\ref{ex:qca-rotation}.
 \item This is Theorem~\ref{thm:gs-evolution}, whose reflection-symmetric form applies because
@@ -202,10 +197,7 @@ ever at each site.}}
 \end{definition}
 
 \noindent\reve{The first condition already forces $\sin\varphi\neq0$ (Lemma~\ref{lem:es-sign} below),
-so that the second only excludes the uncoupled chain $\lambda=0$. Every numbered statement below
-that assumes the regime remains true under the first condition alone; the second is used in the
-remarks after Propositions~\ref{prop:es-alpha} and~\ref{prop:es-projectors} and in
-Example~\ref{ex:es-running-stat}.}
+so that the second only excludes the uncoupled chain $\lambda=0$.}
 
 \begin{proposition}[Forms of the regime]\label{prop:es-regime}
 \reve{Let $\varphi,\lambda\in\R$.
@@ -363,7 +355,7 @@ projectors are not orthogonal.}
 preserves the transported form. For $\hat L(k)$ this form can be written down directly: since
 $\hat L^{\mathsf T}\Omega\hat L=\Omega$, the matrix $\Omega(a1-\hat L)$ is preserved for every scalar
 $a$, and by \eqref{eq:es-twobytwo} the choice $a=\cos\theta(k)=\frac12\operatorname{tr}\hat L(k)$ makes
-it symmetric. Normalized to determinant one and oriented to be positive definite, it is the form of
+it symmetric. Normalizing it to determinant one and orienting it to be positive definite gives the form of
 the following definition.}}
 
 \begin{definition}[Invariant form]\label{def:es-eps}
@@ -457,7 +449,7 @@ The last statement is the case $E=\hat\varepsilon(k)$, by Proposition~\ref{prop:
 \subsection{Invariant forms of a rotation}
 
 \noindent\motiv{\reve{To show that every reflection-symmetric stationary covariance is built from
-$\hat\varepsilon$, one needs that $\hat\varepsilon(k)$ spans the symmetric forms preserved by
+$\hat\varepsilon$, we need that $\hat\varepsilon(k)$ spans the symmetric forms preserved by
 $\hat L(k)$, and this follows from the description of the real $2\times2$ matrices commuting with a
 given one.}}
 
@@ -496,8 +488,7 @@ for $E$ being nonzero, and uniqueness holds because $E\neq0$.
 \end{enumerate}}
 \end{proof}
 
-\noindent\reve{The proof of (b) uses only (a), so that the hypothesis $|\operatorname{tr}A|<2$ is
-not needed there; it matters for the converse. Conversely, $\Omega(A-\frac12\operatorname{tr}A\,1)$ is
+\noindent\reve{Conversely, $\Omega(A-\frac12\operatorname{tr}A\,1)$ is
 symmetric and invariant by \eqref{eq:es-twobytwo}, and its determinant is
 $1-\frac14(\operatorname{tr}A)^2$, positive exactly in the elliptic case. If the forms are not required
 to be symmetric, the invariant ones span a plane, which also contains $\Omega$. This is why
@@ -555,8 +546,8 @@ trace of products of continuous even functions, and $\eta(k)\ge1$ by
 Proposition~\ref{prop:es-threshold}.}
 \end{proof}
 
-\noindent\reve{The proof of (ii)$\Rightarrow$(i) uses neither the continuity and evenness of $\eta$
-nor reflection symmetry, but these are automatic: if $\hat\gamma=\eta\hat\varepsilon$ for cell data
+\noindent\revs{The continuity and evenness of $\eta$ required in (ii), and the reflection symmetry
+of the cells, are automatic:} \reve{if $\hat\gamma=\eta\hat\varepsilon$ for cell data
 with $\eta\ge1$, then $\eta=\hat\gamma_{11}\sin\theta/|\sin\varphi|$ is continuous, the symbol is real,
 and $\hat\gamma(-k)=\overline{\hat\gamma(k)}=\hat\gamma(k)$ makes $\eta$ even and, by
 Proposition~\ref{prop:es-inversion}(b), the cells reflection symmetric. A stationary covariance of this
@@ -646,10 +637,7 @@ and $\theta(k)$ here, since $\alpha$ denotes automorphisms in these notes. The t
 every $g\hat\varepsilon$ with $g\ge1$ is stationary and that the limit of its dynamics has this form,
 and it states that \emph{all} stationary reflection-symmetric states are of this form; the
 completeness half, (i)$\Rightarrow$(ii), rests on Proposition~\ref{prop:es-invariant}, which is not in
-the thesis. The state condition is taken in its Fourier form; by Theorem~\ref{thm:gs-fourier} and
+the thesis. We take the state condition in its Fourier form; by Theorem~\ref{thm:gs-fourier} and
 Remark~\ref{rem:gs-fourier-general} it is equivalent to the state condition of the covariance form.}
-\item \reve{\emph{The massless field.} Proposition~\ref{prop:es-finding2} is not in the thesis. It
-shows that no mass makes every wave number of the lattice Klein--Gordon field of
-Example~\ref{ex:gs-leapfrog} elliptic, and that the massless field is the example system on the
-boundary of the regime of the thesis's convergence result.}
+\item \reve{\emph{The massless field.} Proposition~\ref{prop:es-finding2} is not in the thesis.}
 \end{enumerate}

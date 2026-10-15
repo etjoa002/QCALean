@@ -17,8 +17,8 @@ chapter shows how far both wishes are met.}}
 \noindent\motiv{\reve{Throughout, $G=\Z$, the phase space $V$ and the form $\sigma$ are those of the
 lattice, and a rule $L$ has coefficients $\ell_m$, finitely many of them nonzero, with range
 $N_L=\{m:\ell_m\neq0\}$ (Corollary~\ref{cor:qca-range}). Cell data $(\nu_x)$ and their covariance
-form and symbol are as in Definition~\ref{def:gs-cells}. The existence of a completely positive map
-with prescribed data is not proved in these notes (Chapter~\ref{sec:channels}). Every statement below
+form and symbol are as in Definition~\ref{def:gs-cells}. These notes do not prove the existence of a completely positive map
+with prescribed data (Chapter~\ref{sec:channels}). Every statement below
 therefore concerns the channels with given data and holds vacuously if there is none, and a
 conclusion about a class of channels, such as the failure of closure under concatenation, presupposes
 that the channels in question exist; the only channels constructed here are the automorphisms of
@@ -219,7 +219,7 @@ finite propagation with a prescribed neighbourhood.}}
 
 \noindent\motiv{\reve{Applying two lattice channels in succession gives a lattice channel whose rule is
 the product of the two rules and whose noise collects the first noise and the pull-back of the second.
-The ranges of the resulting families are controlled by those of the factors.}}
+The ranges of the factors control those of the resulting families.}}
 
 \begin{proposition}[Concatenation of lattice channels]\label{prop:lc-comp}
 \reve{If $T_1$ and $T_2$ are lattice channels with rules $L_1,L_2$ and noise cells $(\nu_{1,x})$,
@@ -288,8 +288,8 @@ P_2(E_{23}-E_{32})P_1=E_{23}\neq0$.}}
 
 \subsection{The example system}
 
-\noindent\motiv{\reve{For the example system, the cell at distance two of the pull-back of on-site
-noise can be computed in closed form, and it decides when two steps with on-site noise again have
+\noindent\motiv{\reve{For the example system, we can compute the cell at distance two of the pull-back of on-site
+noise in closed form, and this cell decides when two steps with on-site noise again have
 on-site noise.}}
 
 \begin{theorem}[Two steps with on-site noise]\label{thm:lc-twosteps}
@@ -382,7 +382,7 @@ and the necessity part only their finite range; it applies verbatim to the cells
 both directions.}
 \end{proof}
 
-\noindent\motiv{\reve{The finite range is assumed only for simplicity, since the cells $a_j$ of summable
+\noindent\motiv{\reve{We assume finite range only for simplicity, since the cells $a_j$ of summable
 noise are summable and Remark~\ref{rem:gs-fourier-general} extends the necessity to them.} \reve{At
 each wave number, the matrix of the theorem is the matrix $\nu+\ii(\Omega-L^{\mathsf T}\Omega L)$ whose
 positivity is the condition for finitely many modes (proof of Proposition~\ref{prop:ch-matrices}(c)),
@@ -399,8 +399,8 @@ number, which is positive semidefinite, in agreement with Proposition~\ref{prop:
 chain by a rule $S$ on $n+n'$ modes per site that preserves the form of
 $\Omega_n\oplus\Omega_{n'}$. As in Proposition~\ref{prop:ch-dilation}, $S(u,0)=(S_{11}u,S_{21}u)$,
 where the symbol $\hat S_{11}$ of the system block is a $2n\times2n$ and the symbol $\hat S_{21}$ of
-the block from system to ancilla a $2n'\times2n$ matrix of Laurent polynomials; the pull-back cells
-$S_{21*}\gamma$ of cells of the ancilla are defined as in Definition~\ref{def:lc-pullback}.}}
+the block from system to ancilla a $2n'\times2n$ matrix of Laurent polynomials; we define the pull-back cells
+$S_{21*}\gamma$ of cells of the ancilla as in Definition~\ref{def:lc-pullback}.}}
 
 \begin{theorem}[Dilations on the chain]\label{thm:lc-dilation}
 \reve{Let $\hat S^{\star\mathsf T}(\Omega_n\oplus\Omega_{n'})\hat S=\Omega_n\oplus\Omega_{n'}$, and
@@ -419,7 +419,7 @@ Lemma~\ref{lem:lc-pullback}(b) says that $\sigma(S_{11}u,S_{11}w)+\sigma'(S_{21}
 \sigma(u,w)$, with $\sigma'$ the form of the ancilla; this is
 Proposition~\ref{prop:ch-dilation}(a) for the translation-invariant maps $S_{11}$ and $S_{21}$, and
 Proposition~\ref{prop:ch-dilation}(b) gives~\eqref{eq:ch-cond}, since the on-site form of
-$\gamma_0+\ii\Omega_{n'}$ is positive semidefinite. The symbol is computed as in
+$\gamma_0+\ii\Omega_{n'}$ is positive semidefinite. We compute the symbol as in
 Theorem~\ref{thm:gs-evolution} for the rectangular matrix $\hat S_{21}$, and the ranges follow as in
 Proposition~\ref{prop:lc-supports}\reve{(b)}, because the blocks of $\hat S$ have ranges within
 $N_S$.}

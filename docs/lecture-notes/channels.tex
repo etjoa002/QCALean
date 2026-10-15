@@ -11,9 +11,8 @@ operators, as the dilations later in the chapter indicate: a Weyl operator $W(u)
 multiple of $W(Lu)$, where the linear map $L$ need no longer preserve $\sigma$. The multiple consists of a phase $e^{\ii\mu(u)}$, which only displaces the states, and a
 damping factor $e^{-\nu(u,u)/4}$ with a quadratic form $\nu$, the noise, which compensates the loss
 of symplecticity. This chapter develops these Gaussian channels over an arbitrary real vector space
-with an alternating form. The lattice enters only at the end, where the definition of a quantum
-cellular automaton is extended to completely positive dynamics and two notions of locality are
-introduced; Gaussian automata on the chain \reve{are treated in Chapter~\ref{sec:chain}}.}}
+with an alternating form. The lattice enters only at the end, where we extend the definition of a quantum
+cellular automaton to completely positive dynamics and introduce two notions of locality; Gaussian automata on the chain \reve{are treated in Chapter~\ref{sec:chain}}.}}
 
 \medskip
 \noindent\motiv{\reve{Throughout, $V$ is a real vector space with an alternating bilinear form
@@ -21,15 +20,15 @@ $\sigma$, no longer only the lattice phase space, and $\CCR(V,\sigma)$ is the C*
 the Weyl operators $W(u)$ on $\ell^2(V)$, constructed exactly as in Chapter~\ref{sec:ccrautomata}, with
 $W(u)W(w)=e^{-\ii\sigma(u,w)/2}W(u+w)$ and $W(u)^*=W(-u)$. The letters $V$, $\sigma$ and $L$ thus
 have a more general meaning in this chapter than in the table of notation, the lattice data being
-one instance. \reve{States, characteristic functions and Gaussian states on $\CCR(V,\sigma)$ are
-defined as in Chapter~\ref{sec:gaussianstates}, whose definitions, and the propositions cited from
+one instance. \reve{We define states, characteristic functions and Gaussian states on $\CCR(V,\sigma)$
+as in Chapter~\ref{sec:gaussianstates}, whose definitions, and the propositions cited from
 it below, use no property of the lattice.} For bilinear
 forms $\gamma$ and $\beta$ on $V$ we write $\gamma+\ii\beta\ge0$ if the matrix
 $\bigl[\gamma(u_j,u_k)+\ii\beta(u_j,u_k)\bigr]_{j,k}$ is positive semidefinite for every finite family
 $u_1,\dots,u_m$ in $V$; for $\beta=\sigma$ this is the state condition of
 Chapter~\ref{sec:gaussianstates}.}}
 
-\subsection{Completely positive maps}
+\subsection{Completely positive maps}\label{sec:ch-cp}
 
 \noindent\motiv{\reve{A linear map $T$ between C*-algebras is \emph{positive} if it maps positive
 elements to positive elements, and \emph{completely positive} if, for every $k$, the map applied
@@ -73,7 +72,7 @@ and each step preserves positivity.}
 \end{proof}
 
 \noindent\motiv{\reve{A positive map between C*-algebras is automatically bounded, and every
-$*$-homomorphism is completely positive~\cite{paulsen}. Both facts are used below: the first to extend identities
+$*$-homomorphism is completely positive~\cite{paulsen}. We use both facts below: the first to extend identities
 from Weyl operators to the whole algebra, the second to regard automorphisms as channels.}}
 
 \subsection{Gaussian channels and the product formula}
@@ -99,10 +98,10 @@ The \emph{dissipation form} of the channel is
 \end{definition}
 
 \noindent\motiv{\reve{Condition \eqref{eq:ch-cond} says that the dissipation form is positive
-semidefinite. In the literature the maps $T$ of this kind are called quasi-free completely positive maps. For
+semidefinite. The literature calls the maps $T$ of this kind quasi-free completely positive maps. For
 finitely many modes it is known that \eqref{eq:ch-cond} is necessary and sufficient for a
 completely positive map with \eqref{eq:ch-channel} to exist~\cite{dvv} \vetsource{(scope of the
-theorem there to be checked)}; in these notes neither direction is proved, and both the map and the
+theorem there to be checked)}; these notes prove neither direction, and both the map and the
 condition are part of the definition. Since $T$ is linear and bounded, it is determined by
 \eqref{eq:ch-channel}, as the following lemma shows.}}
 
@@ -307,12 +306,12 @@ mode prepared in the vacuum, and the auxiliary mode is then discarded. In genera
 real vector space $V'$ with an alternating form $\sigma'$ describe an ancilla, and let $S$ be a
 linear map of $V\times V'$ preserving the form
 \[(\sigma\oplus\sigma')\bigl((u,u'),(w,w')\bigr)=\sigma(u,w)+\sigma'(u',w');\]
-for bilinear forms $\gamma$ on $V$ and $\gamma'$ on $V'$, the form $\gamma\oplus\gamma'$ is defined in the same way.
+for bilinear forms $\gamma$ on $V$ and $\gamma'$ on $V'$, we define the form $\gamma\oplus\gamma'$ in the same way.
 When $S$ is bijective, the reversible dynamics $\alpha_S$ of system and ancilla, followed by
 discarding an ancilla prepared in a Gaussian state with covariance $\gamma'$, should act on
 covariances through the two components of the image of a system vector,
 $S(u,0)=(S_{11}u,S_{21}u)$. The following proposition establishes the corresponding statements for
-the data; the construction at the level of the algebra is not carried out in these notes.}}
+the data; these notes do not carry out the construction at the level of the algebra.}}
 
 \begin{proposition}[Dilation data]\label{prop:ch-dilation}
 \reve{Let $S$ preserve $\sigma\oplus\sigma'$, and let $\gamma'$ be a symmetric bilinear form on $V'$ with
@@ -411,8 +410,8 @@ same in both definitions.}
 with the displacement of the standard definition of a quasi-free completely positive map added; the
 thesis's linear map and noise are $\Gamma$ and $g$. Condition \eqref{eq:ch-cond} is (4.34). That it
 characterizes complete positivity is Theorem~2.6 of~\cite{krueger}, taken from Demoen, Vanheuverzwijn
-and Verbeure~\cite{dvv} \vetsource{(scope of the theorem there to be checked)}; in these notes it is
-assumed through the definition. The displacement appears already in (2.38) of~\cite{krueger}. For
+and Verbeure~\cite{dvv} \vetsource{(scope of the theorem there to be checked)}; these notes assume it
+through the definition. The displacement appears already in (2.38) of~\cite{krueger}. For
 finitely many modes, the channel matrices of Definition~\ref{def:ch-matrices} and their condition are
 equivalent, by conjugation with $\Omega$, to the phase-space description of Holevo and
 Werner~\cite{holevo-werner} \vetsource{(normalization to be checked)}. The term ``dissipation form'' for $\Delta_T$ is the thesis's

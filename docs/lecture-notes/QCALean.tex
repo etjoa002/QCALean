@@ -37,6 +37,9 @@
 \newcommand{\reve}[1]{#1}
 \newcommand{\revtag}[1]{#1}
 \newcommand{\vetsource}[1]{#1}
+% Lecture-form pass of 15 Oct 2026 (front matter, index of terms): set to {#1} once the user has
+% vetted it; while vetting, {{\leavevmode\color{blue}#1}}.
+\newcommand{\revs}[1]{#1}
 \title{Quantum cellular automata on lattice phase space}
 \author{}
 \date{}
@@ -58,32 +61,24 @@ classical phase space.}}
 \medskip
 
 \section*{About these notes}
-\noindent\motiv{\textbf{Coined terms.} These terms are coined for these notes and defined
-where they first appear: the lifted form (Definition~\ref{def:qca-lift}); the twisted criterion
-(Theorem~\ref{thm:qca-criterion}); cell data (Definition~\ref{def:gs-cells}); the regime
-(Definition~\ref{def:es-regime}); the limit symbol and the limit cells
-(Definition~\ref{def:cv-limit}); lattice channels (Definition~\ref{def:lc-channel}); pull-back
-cells (Definition~\ref{def:lc-pullback}). The section on the notation of Kr\"uger's thesis, after
-the Notation, matches the thesis's symbols with those used here.}
+\noindent\motiv{\revs{We assume familiarity with C*-algebras and their states, the Weyl form of
+the canonical commutation relations, and Fourier series and integrals. After the notation come a
+table matching the letters of Kr\"uger's thesis~\cite{krueger} with ours, a reading guide that
+translates the forms on labels used here into the covariance and channel matrices of most texts,
+and a roadmap of the chapters; an index of terms precedes the references.}}
 
 \medskip
-\noindent\motiv{\textbf{Reading conventions.} C*-algebras are unital and complex. Inner products
-are linear in the second argument. The CCR algebra and its relabellings, states on it, the cell
-index and the symplectic matrix of a cell are those of the library BosonicLean; nets of algebras
-are those of the library LinearAQFT.}
-
-\medskip
-\noindent\motiv{A statement marked \revtag{\QCALeanTag{}} has a checked proof in QCALean or in
-the library BosonicLean on which it builds, whose correspondence with the statement here has been
-independently reviewed\revtag{; the declaration index at the end names the checked declarations}.
-\revtag{Every Example carries exactly one status: \QCALeanTag{} as above, \QCAScriptTag{} when a
-check script verifies it exhaustively, or \QCAPaperTag{} when it is checked on paper only.
-Definitions, Remarks and paragraphs of motivation carry no marks. A sentence tagged \QCAArtefactTag{} records a choice made for the
-formalization that a proof on paper would not need.}}
+\noindent\motiv{\revs{A statement marked \QCALeanTag{} has a checked proof in QCALean, or in the
+library BosonicLean on which it builds, whose correspondence with the statement here has been
+independently reviewed, and the declaration index at the end names the declarations; every
+Example carries exactly one of this mark, \QCAScriptTag{} (verified exhaustively by a check
+script) and \QCAPaperTag{} (checked on paper only), while definitions, remarks and motivation carry
+none. A sentence tagged \QCAArtefactTag{} records a choice made for the formalization that a
+proof on paper would not need.}}
 
 \section*{Notation}
-\noindent Each symbol has one meaning throughout, shared with LinearAQFT and BosonicLean where
-they have one, with one exception: $N$ denotes a neighbourhood of a rule, and $N(k)$, always with its
+\noindent\revs{C*-algebras are unital and complex, and inner products are linear in the second
+argument.} Each symbol has one meaning throughout, with one exception: $N$ denotes a neighbourhood of a rule, and $N(k)$, always with its
 argument, the matrix of the example system below.\par\medskip\noindent \reve{Letters that serve only within one proof,
 example or remark, such as scalars, indices and auxiliary matrices, are introduced where they appear
 and may differ from the table. Second meanings over a longer stretch are these: $\mu$ is a complex
@@ -165,6 +160,7 @@ noise form & $g$ & $\nu$ \\
 \input{convergence}
 \input{channels}
 \input{chain}
+\input{terms}
 \input{references}
 \input{lean-index}
 \end{document}
