@@ -171,11 +171,12 @@ using $\Omega^2=-1$; the converse is the same computation for $S^{\mathsf T}$.
 \end{example}
 
 \noindent\motiv{\reve{Under the condition $S\Omega S^{\mathsf T}=\Omega$ the map
-$\gamma\mapsto S\gamma S^{\mathsf T}$ preserves the uncertainty relation $\gamma-\ii\Omega\geq0$ of
-real symmetric covariance matrices.}}
+\revt{$\gamma_B\mapsto S\gamma_BS^{\mathsf T}$ preserves the uncertainty relation $\gamma_B-\ii\Omega\geq0$ of
+real symmetric covariance matrices; the automaton of the on-site rule $S$ itself moves covariance
+matrices by $S^{-1}$, which is symplectic as well (Corollary~\ref{cor:gs-onsite}).}}}
 
 \begin{example}[Coefficient form of the criterion]\label{ex:qca-coeff}
-For $n$ modes and $\hat L=\sum_mz^m\ell_m$, put $\ell_m^+=\Omega^{-1}\ell_m^{\mathsf T}\Omega$, the
+For $n$ modes \revt{on the chain, $G=\Z$ and $R=\R$,} and $\hat L=\sum_mz^m\ell_m$, put $\ell_m^+=\Omega^{-1}\ell_m^{\mathsf T}\Omega$, the
 symplectic adjoint. Multiplying~\eqref{eq:qca-coeff} with $B=\Omega$ on the left by $\Omega^{-1}$,
 $\hat L$ is symplectic if and only if
 \[\sum_m\ell_m^+\ell_{m+k}=\delta_{k0}1\qquad\text{for every }k\in\Z.\]
@@ -406,7 +407,7 @@ The rule is symplectic for all $\varphi$ and $\lambda$, and
 \[\operatorname{tr}\hat L(k)=2\cos\varphi+2\lambda\cos k\sin\varphi.\]
 \end{example}
 
-\noindent\motiv{\reve{The trace comes from $\hat L(k)=\ell_0+2\cos k\,\ell_\pm$. Since $\det\hat L(k)=1$, writing $\operatorname{tr}\hat L(k)=2\cos\theta(k)$
+\noindent\motiv{\reve{The trace comes from $\hat L(k)=\ell_0+2\cos k\,\ell_\pm$. Since $\det\hat L(k)=1$, writing $\operatorname{tr}\hat L(k)=2\cos\theta(k)$ \revt{where $|\operatorname{tr}\hat L(k)|\le2$}
 gives the dispersion relation \reve{$\cos\theta(k)=\cos\varphi+\lambda\cos k\sin\varphi$}.}}
 
 \subsection{Notes and references}\label{sec:qca-thesis}

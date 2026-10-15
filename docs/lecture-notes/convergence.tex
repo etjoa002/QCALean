@@ -266,10 +266,10 @@ function.
 $\chi_{\omega_t}(u)=\exp\bigl(-\frac14\gamma(L^tu,L^tu)\bigr)$, and by Theorem~\ref{thm:gs-evolution} and
 Proposition~\ref{prop:es-iterate}, $\gamma(L^tu,L^tu)=\sum_{x,y}u(x)^{\mathsf T}\bigl((L_*)^t\gamma\bigr)_{x-y}\,u(y)$. The sum is finite, each cell converges by Theorem~\ref{thm:cv-converge}, and
 the exponential is continuous.
-\item On a finite combination $b=\sum_jz_jW(u_j)$ the sequence $\omega_t(b)=\sum_jz_j\chi_{\omega_t}(u_j)$
+\item On a finite combination \revt{$b=\sum_jc_jW(u_j)$} the sequence \revt{$\omega_t(b)=\sum_jc_j\chi_{\omega_t}(u_j)$}
 converges by (a). The span of the Weyl operators is dense in $\CCR(V,\sigma)$, which is its closure; for
-arbitrary $a$ and $\zeta>0$ choose such a $b$ with $\|a-b\|<\zeta$. By
-Lemma~\ref{lem:cv-norm}, $|\omega_t(a)-\omega_{t'}(a)|\le2\zeta+|\omega_t(b)-\omega_{t'}(b)|$, so that
+arbitrary $a$ and \revt{$\delta>0$} choose such a $b$ with \revt{$\|a-b\|<\delta$}. By
+Lemma~\ref{lem:cv-norm}, \revt{$|\omega_t(a)-\omega_{t'}(a)|\le2\delta+|\omega_t(b)-\omega_{t'}(b)|$}, so that
 $(\omega_t(a))_t$ is a Cauchy sequence. Its limit $\omega_\infty(a)$ is linear in $a$ and satisfies
 $|\omega_\infty(a)|\le\|a\|$, so that it is continuous, and $\omega_\infty(1)=1$ and
 $\omega_\infty(a^*a)\ge0$ hold in the limit because the non-negative reals form a closed subset of $\C$.
@@ -309,9 +309,10 @@ limit is a stationary state in the sense of cell data, on the grounds that $\hat
 continuous~\cite[p.~89]{krueger}. Continuity of a symbol does not by itself imply summability of its
 Fourier coefficients. The conclusion holds nevertheless, by the real-analyticity of $N$ and the
 algebra property used in Remark~\ref{rem:cv-summable}.}
-\item \reve{\emph{The limit state.} Theorem~\ref{thm:cv-weak} is the first part of Theorem~4.9
-of~\cite{krueger}, the convergence of expectation values. The second part, convergence of the reduced
-density matrices of finite regions in trace norm, is not treated in these notes.
+\item \reve{\emph{The limit state.} \revt{Theorem~4.9 of~\cite[p.~89]{krueger} states convergence in trace norm
+on finite regions to the state with characteristic function (4.29); its proof first establishes the
+convergence of expectation values, which is Theorem~\ref{thm:cv-weak}. The trace-norm statement
+itself, convergence of the reduced density matrices of finite regions, is not treated in these notes.}
 Lemma~\ref{lem:cv-norm} is the standard bound $\|\omega\|=\omega(1)$ for positive functionals on a
 unital C*-algebra.}
 \end{enumerate}

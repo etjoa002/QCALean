@@ -286,10 +286,10 @@ construction of $F$ in Example~\ref{ex:qca-leapfrog-rule}. Hence $\Lambda_{t-1}=
 
 \noindent\motiv{\reve{Translating a solution forward in time shifts its Cauchy data at a fixed time backwards, and
 on observables the consequence of this shift depends on how $W(u)$ is to be read. If $W(u)$ is
-thought of as $e^{\ii\sigma(u,\Phi_t)}$, with $\Phi_t$ the Cauchy data of the quantum field at time
+thought of as \revt{$e^{\ii\sigma(\Phi_t,u)}$, as in the realization $W(u)=\exp(\ii(u_p\hat q-u_q\hat p))$ of Chapter~\ref{sec:gaussianstates},} with $\Phi_t$ the Cauchy data of the quantum field at time
 $t$ (a heuristic reading here, since $\ell^2(V)$ carries no field operators and $t\mapsto W(tu)$ is
 not continuous), then the field moves as $\Phi_{t+1}=F\Phi_t$, so that
-$\sigma(u,\Phi_{t+1})=\sigma(F^{-1}u,\Phi_t)$; under this reading the forward time step is therefore
+\revt{$\sigma(\Phi_{t+1},u)=\sigma(\Phi_t,F^{-1}u)$}; under this reading the forward time step is therefore
 the automaton $\alpha_{F^{-1}}$ of Example~\ref{ex:ccr-leapfrog}, rather than $\alpha_F$.}}
 
 \subsection{Notes and references}\label{sec:ccr-notes}
@@ -308,8 +308,9 @@ whereas each cell here carries the Weyl algebra of $\R^{2n}$.}
 for which $T(W(\xi))=W(\Gamma\xi)$ defines a homomorphism ``would have to be linear \dots\ and
 fulfill $\sigma(\Gamma\xi,\Gamma\eta)=\sigma(\xi,\eta)$''. Theorem~\ref{thm:weyl-type} proves this claim
 and additionally records the character $c$, which the thesis omits. Lemma~\ref{lem:relabel}, together
-with the uniqueness of the CCR algebra for nondegenerate $\sigma$ (established in the proof of
-Theorem~\ref{thm:weyl-type}), of which $\CCR(V,\sigma)$ is a concrete realization, is due to
+with the uniqueness of the CCR algebra for nondegenerate $\sigma$ \revt{(the lattice form is
+nondegenerate, as the proof of Theorem~\ref{thm:weyl-type} shows; the uniqueness theorem itself is
+cited, not proved, see Remark~\ref{rem:gs-existence})}, of which $\CCR(V,\sigma)$ is a concrete realization, is due to
 Manuceau~\cite{manuceau}, Slawny~\cite{slawny}, and Manuceau, Sirugue, Testard and
 Verbeure~\cite{mstv}; see~\cite[\S5.2]{bratteli-robinson}.}
 \item \reve{\emph{Examples.} The thesis lists the free evolution, the left- and right-shifter, continued

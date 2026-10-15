@@ -281,9 +281,9 @@ and $n=1$, the on-site cell of $L_{2*}\sigma$ is antisymmetric and hence a multi
 then $(L_2L_1)_*\sigma=c\,L_{1*}\sigma$ is again on site. For $n=2$ this fails. With coordinates
 $(q_1,q_2,p_1,p_2)$, let $L_1$ have the coefficients $\ell_0=P_2$ and $\ell_1=P_1$, the projections
 onto the second and the first mode, so that it shifts the first mode and fixes the second, and let
-$L_2$ act at every site by the matrix $S=1+E_{12}$, that is, $q_1\mapsto q_1+q_2$. Both $L_{1*}\sigma$
-and $L_{2*}\sigma$ are on site, the latter with the cell $S^{\mathsf T}\Omega S=\Omega+E_{23}-E_{32}$,
-but the cell of $(L_2L_1)_*\sigma$ at $j=1$ is $\ell_0^{\mathsf T}(S^{\mathsf T}\Omega S)\ell_1=
+$L_2$ act at every site by the matrix \revt{$R=1+E_{12}$}, that is, $q_1\mapsto q_1+q_2$. Both $L_{1*}\sigma$
+and $L_{2*}\sigma$ are on site, the latter with the cell \revt{$R^{\mathsf T}\Omega R$}$=\Omega+E_{23}-E_{32}$,
+but the cell of $(L_2L_1)_*\sigma$ at $j=1$ is \revt{$\ell_0^{\mathsf T}(R^{\mathsf T}\Omega R)\ell_1$}$=
 P_2(E_{23}-E_{32})P_1=E_{23}\neq0$.}}
 
 \subsection{The example system}
@@ -449,7 +449,7 @@ Proposition~\ref{prop:lc-independent}(b) have.}
 which is stated with ``if''; its proof argues the converse for notion (II), and the scaling step
 that turns $e^{-\Delta_T/2}=1$ into $\Delta_T=0$ is not written there. The thesis's condition
 (4.36), $\sum_x\Gamma^+_x\Gamma_{\Delta+x}=0$ with $\Gamma^+=-\sigma_s\Gamma^{\mathsf T}\sigma_s$, is
-$-\Omega(L_*\sigma)_\Delta=0$. The thesis's witness for ``(II) does not imply (I)'' in the proof of
+\revt{$-\Omega(L_*\sigma)_j=0$ with $j$ the thesis's index $\Delta$}. The thesis's witness for ``(II) does not imply (I)'' in the proof of
 Lemma~4.10(v)~\cite[pp.~94--95]{krueger}, the completely depolarizing channel, maps every observable
 to a multiple of the unit and so has finite propagation with neighbourhood $\{0\}$. Since every
 automaton has finite propagation for some finite neighbourhood, what can be meant is that
@@ -473,10 +473,10 @@ asserts that for one mode per site a rule of both types need not be symplectic; 
 explicit instance, with noise that satisfies~\eqref{eq:ch-cond}.}
 \item \reve{\emph{Dilations.} Theorem~\ref{thm:lc-dilation} is Lemma~4.12 of~\cite[p.~97]{krueger} at
 the level of covariances, with the reduction (4.40) of~\cite[p.~98]{krueger}; that the data satisfy
-the condition goes beyond the thesis, which checks that the noise is real and symmetric. The thesis
-writes the symbol of the noise with transposes, $\hat C^{\mathsf T}(k)\hat\gamma'\hat C(k)$; the
-conjugate transpose of Theorem~\ref{thm:lc-dilation} agrees with it for reflection-symmetric blocks,
-as in the note on (4.17) in Chapter~\ref{sec:gaussianstates}. The range statements correspond to
+the condition goes beyond the thesis, which checks that the noise is real and symmetric. \revt{The thesis
+writes the symbol of the noise as $\overline{\hat C^{\mathsf T}}(k)\,\hat\gamma'(k)\,\hat C(k)$, with the
+conjugate transpose, as in Theorem~\ref{thm:lc-dilation} and as in its (4.17b), on which see the note
+in Chapter~\ref{sec:gaussianstates}.} The range statements correspond to
 Lemma~4.10(iii)--(iv) of~\cite[p.~94]{krueger}. The construction of the channel on the algebra is not
 carried out here. \revq{In finite dimensions without translation invariance, factorization does not
 imply that a channel is a local dilation~\cite[Theorem~2 and Example~2]{piroli-cirac}.}}

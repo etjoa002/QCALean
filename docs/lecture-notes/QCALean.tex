@@ -44,6 +44,7 @@
 % blue until the user vets them; set to {#1} once accepted.
 \newcommand{\revq}[1]{#1}
 \newcommand{\revr}[1]{#1}
+\newcommand{\revt}[1]{#1}
 \title{Quantum cellular automata on lattice phase space}
 \author{}
 \date{}
@@ -82,17 +83,25 @@ proof on paper would not need.}}
 
 \section*{Notation}
 \noindent\revs{C*-algebras are unital and complex, and inner products are linear in the second
-argument.} Each symbol has one meaning throughout, with one exception: $N$ denotes a neighbourhood of a rule, and $N(k)$, always with its
-argument, the matrix of the example system below.\par\medskip\noindent \reve{Letters that serve only within one proof,
+argument.} Each symbol has one meaning throughout, with one exception: $N$ denotes a neighbourhood of a rule, and $N(k)$, \revt{written with its argument except where $N=N(k)$ has been set within a statement or proof,} the matrix of the example system below.\par\medskip\noindent \reve{Letters that serve only within one proof,
 example or remark, such as scalars, indices and auxiliary matrices, are introduced where they appear
 and may differ from the table. Second meanings over a longer stretch are these: $\mu$ is a complex
 combination of vectors in the discussion after Definition~\ref{def:gs-statecond} and in
 Subsection~\ref{sec:gs-fourier}; $S$ is a symplectic matrix in
-Chapters~\ref{sec:gaussianqca}--\ref{sec:stationary} \reve{and a symmetric invariant matrix in the part of Chapter~\ref{sec:stationary} on invariant forms}; $K$ is a second rule and the twisted kernel in
+Chapters~\ref{sec:gaussianqca}--\ref{sec:stationary} \reve{and a symmetric invariant matrix in the part of Chapter~\ref{sec:stationary} on invariant forms}\revt{, and also the symmetric matrix $S(k)$ in the proof of Theorem~\ref{thm:es-stationary}, a generic matrix in Chapter~\ref{sec:convergence} and the symplectic dilation rule of Chapters~\ref{sec:channels} and~\ref{sec:chain}}; $K$ is a second rule and the twisted kernel in
 Chapters~\ref{sec:ccrautomata} and~\ref{sec:gaussianstates}; $T_O$ is the matrix of
 Corollary~\ref{cor:gs-onsite}; and in Chapter~\ref{sec:channels} the letters $V$, $\sigma$ and $L$
 denote a general real vector space, an alternating form on it and a linear map of it, of which the
-lattice data are one instance.}
+lattice data are one instance.} \revt{A few letters also have a local meaning within one
+statement and its discussion: $\varepsilon(c)$ the coefficient at the origin and $r$ a row of $\ell_0$
+in Chapter~\ref{sec:gaussianqca}, and $u_i$ the coordinates in Definition~\ref{def:qca-space}; in
+Chapter~\ref{sec:ccrautomata}, $\Lambda_t$ the Cauchy-data map and $\tau$ the time translation of
+Proposition~\ref{prop:time-direction}, $r$ a squeezing parameter, $\theta\in\R^{2n}$ the parameter of a
+character, and $\mu,\nu$ complex scalars in Lemma~\ref{lem:separation}; $k$ an integer index
+in~\eqref{eq:qca-coeff} and in $k(u,w)$; in Chapter~\ref{sec:gaussianstates}, $z$ a complex number in
+Definition~\ref{def:gs-state}, $r$ the enumeration of modes in Definition~\ref{def:gs-covmat},
+$\alpha,\beta$ scalars in Lemma~\ref{lem:gs-reorder}(c), and $\Lambda$ the range of cell data in
+Definition~\ref{def:gs-cells}.}
 \begin{center}\small
 \begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.74\textwidth}@{}}
 $G$, $x$ & the lattice (an abelian group; $\Z$ for chains) and a point of it \\
