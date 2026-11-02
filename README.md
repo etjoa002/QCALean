@@ -190,6 +190,11 @@ need infinite tensor products of the cell algebras; the locality notions (III) a
 4.10(i)–(iv); the dilating channel of Lemma 4.12 on the algebra; the structure theorem for
 reversible QCA (B. Schumacher and R. F. Werner, arXiv:quant-ph/0405174).
 
+## Acknowledgement
+
+E.T. acknowledges support from the Alexander von Humboldt Foundation through the Humboldt Research
+Fellowship. This work has been supported by Klaus Tschira Foundation.
+
 ## Citation and licence
 
 Erickson Tjoa, *QCALean: quantum cellular automata in Lean*, 2026,
